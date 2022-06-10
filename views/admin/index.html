@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+   <!-- Css de Bootstrap -->
+   <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css">
+   <!-- Css personal  -->
+   <link rel="stylesheet" href="../../css/admin/index.css" />
+   <!-- Favicon del sitio -->
+   <link rel="shortcut icon" href="../../resources/logo.png" />
+
+   <!-- Iconos Font Awesome -->
+   <script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
+
+   <title>Inicio</title>
+</head>
+
+<body>
+   <!--Menu de arriba-->
+   <header class="header-nav">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+         <div class="container-fluid">
+           <a class="navbar-brand" href="#"><img class="logo" src="../../resources/logo.png" alt="" srcset="">PlaySoccer</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="#">Reservaciones</a>
+               </li>
+               <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Acciones
+                 </a>
+                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <li><a class="dropdown-item" href="empleados.html">Empleados</a></li>
+                   <li><a class="dropdown-item" href="cliente.html">Clientas</a></li>
+                   <li><a class="dropdown-item" href="canchas.html">Chalecos</a></li>
+                   <li><a class="dropdown-item" href="canchas.html">Canchas</a></li>
+                   <li><hr class="dropdown-divider"></li>
+                   <li><a class="dropdown-item" href="administracion.html">Administración</a></li>
+                 </ul>
+               </li>
+             </ul>
+             <form class="d-flex">
+               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Search</button>
+             </form>
+           </div>
+         </div>
+       </nav>
+   </header>
+
+   <!-- ------------------------- Contendor Pricnicipal del sitio ------------------------- -->
+   <main class="main">
+      <div class="container">
+         <div class="row margin-top">
+            <div class="col-md-6">
+               <h2 class="mt-3 font-bold">Dashboard Play Soccer</h2>
+               <p>La manera más eficiente para reservas canchas </p>
+               <div class="lado-A">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <div class="d-flex">
+                           <img src="../../resources/icons/admin/icons8_calendar_96px.png"
+                              class="img-fluid iconos-card" alt="">
+                           <div class="row">
+                              <h6 class="dashboard-text">13 nuevas resercaciones</h6>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="d-flex">
+                           <img src="../../resources/icons/admin/icons8_stadium_96px.png"
+                              class="img-fluid iconos-card" alt="">
+                           <div class="row">
+                              <h6 class="dashboard-text">3 canchas a disposición</h6>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="d-flex">
+                           <img src="../../resources/icons/admin/icons8_total_sales_96px.png"
+                              class="img-fluid iconos-card" alt="">
+                           <div class="row">
+                              <h6 class="dashboard-text">$230 ventas semanales</h6>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <li>
+                  <hr class="dropdown-divider">
+               </li>
+               <div class="contenedor main-chart">
+                  <div class="contenido">
+                     <h3>Ventas Totales</h3>
+                     <div class="col-8 col-sm-4"><select class="form-select form-select-sm mt-2" id="select-gross-revenue-month">
+                           <option>Mar 1 - 31, 2022</option>
+                           <option>April 1 - 30, 2022</option>
+                           <option>May 1 - 31, 2022</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <canvas id="main" width="450" height="300"></canvas>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <!-- Charts superiores para muestra de datos de la base -->
+               <div class="row">
+                  <div class="col-md-6 cards">
+                     <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                             <div class="badges">
+                                 <h6>Total orders <span class="badge rounded-pill bg-danger">-19%</span></h6>
+                                 <h5>16,247</h5>
+                             </div>
+                             <p>Last 7 days</p>
+                          </div>
+                           <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6 cards">
+                     <div class="card">
+                        <div class="card-body">
+                           <div class="row">
+                              <div class="badges">
+                                 <h6>Total orders <span class="badge rounded-pill bg-danger">-19%</span></h6>
+                                 <h5>16,247</h5>
+                              </div>
+                              <p>Last 7 days</p>
+                           </div>
+                           <div class="card-body">
+                              <canvas id="sales" width="400" height="400"></canvas>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Charts inferiores para muestra de datos -->
+               <div class="row">
+                  <div class="col-md-6 cards">
+                     <div class="card">
+                        <div class="card-body">
+                           <div class="row">
+                              <div class="badges">
+                                 <h6>Total orders <span class="badge rounded-pill bg-secondary">-19%</span></h6>
+                                 <h5>16,247</h5>
+                              </div>
+                              <p>Last 7 days</p>
+                           </div>
+                           <canvas id="cliente" width="400" height="400"></canvas>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6 cards">
+                     <div class="card">
+                        <div class="card-body">
+                           <div class="card-body">
+                              <div class="row">
+                                 <div class="badges">
+                                    <h6>Total orders <span class="badge rounded-pill bg-success">-19%</span></h6>
+                                    <h5>16,247</h5>
+                                 </div>
+                                 <p>Last 7 days</p>
+                              </div>
+                              <canvas id="reportes" width="400" height="400"></canvas>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </main>
+
+   <!-- ------------------------- Suscripciones del sitio ------------------------- -->
+   <section class="suscripciones">
+      <div class="banner-suscribe">
+         <div class="container">
+            <div class="row" id="newsletter">
+               <div class="col-md-12">
+                  <form method="get" class="suscribe">
+                     <h4 class="suscribe-letter">Our newsleter</h4>
+                     <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-md-6">
+                           <p class="suscribe-text">
+                              Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna
+                              derita
+                              valies darta donna mare fermentum iaculis
+                           </p>
+                           <div class="input-group mb-3">
+                              <input type="text" class="form-control" aria-describedby="button-addon2" />
+                              <button class="btn btn-outline-secondary suscribe-button" type="button"
+                                 id="button-addon2">
+                                 Suscribe
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section>
+      <div class="contenedor align-items-center">
+         <div class="banner-footer">
+            <div class="container banner">
+               <div class="row">
+                  <div class="col-md-6 margin-top">
+                     <h4 class="marcador">
+                        <img class="img-fluid logo" src="../../resources/logo.png" alt="" /> PlaySoccer
+                     </h4>
+                     <h6 class="text-reset">
+                        Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
+                        valies
+                        darta donna mare fermentum iaculis eu non diam phasellus.
+                     </h6>
+
+                     <div class="icons-footer">
+                        <i class="fa-brands fa-twitter fa-button" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="Go on Twitter"></i>
+                        <i class="fa-brands fa-instagram fa-button data-bs-toggle=" tooltip data-bs-placement="top"
+                           title="Go on Instagram"></i>
+                        <i class="fa-brands fa-facebook-square fa-button data-bs-toggle=" tooltip
+                           data-bs-placement="top" title="Go on Facebook"></i>
+                        <i class="fa-brands fa-linkedin fa-button data-bs-toggle=" tooltip data-bs-placement="top"
+                           title="Go on Linkedin"></i>
+                     </div>
+                  </div>
+                  <div class="col-md-6 margin-top">
+                     <div class="row spacing-bottom">
+                        <div class="col-md-4">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h6 class="card-title mb-3">USEFUL LINKS</h6>
+                                 <form>
+                                    <li class="">
+                                       <i class="fa-solid fa-caret-down"></i>
+                                       <a href="#" class="card-link links-footer">Dahsboard</a>
+                                    </li>
+                                    <li>
+                                       <i class="fa-solid fa-caret-down"></i>
+                                       <a href="#" class="card-link links-footer">Reservaciones</a>
+                                    </li>
+                                    <li><i class="fa-solid fa-caret-down"></i> <a href="#"
+                                          class="card-link">Empleados</a></li>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h6 class="card-title">OUR SERVICES</h6>
+                                 <p class="card-text">
+                                    Some quick example text to build on the card title and make up the bulk of the
+                                    card's content.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h6 class="card-title">CONTACT US</h6>
+                                 <p class="card-text">A108 Adam Street New York, NY 535022 United States</p>
+                                 <p><span class="fw-bold">Phone:</span> +503 5875-6585</p>
+                                 <p><span class="fw-bold" class="fw-bold">Email:</span> info@example.com</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ------------------------- Footer del sitio ------------------------- -->
+   <footer>
+      <div class="contenerdor">
+         <div class="banner-final">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12 footer-final spacing-top">
+                     <h5 class="footer-text" id="copyright">
+                        &copy; Copyright <a href="df.com">PlaySoccer</a> All Rights Reserved
+                     </h5>
+                  </div>
+                  <div class="col-md-12 footer-final">
+                     <p>Designed by AlphaSoftware</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <!-- CDN de los gráficos Chart -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <!-- js del sitio -->
+   <script src="../../js/admin/chart.js"></script>
+
+   <!-- Js de Bootstrap -->
+   <script src="../../js/bootsrtap/bootstrap.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,318 @@
+/* importando tipos de letras */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/*declarando variables*/
+:root {
+  --white: #fff;
+  --black: #000;
+  --green-btn: #7eb928;
+  --btn_hover: #e7f1c7;
+  --background: #f5f7fa;
+  --green-menu: #005200;
+  --banner1_color: #f6f9ff;
+  --iconos: #98c206;
+  --iconos_hover: #589102;
+  --banner_final: #efefef;
+  --main_button: #cdd424;
+  --main_hover: #dde26d;
+  --modal_color: #e6e6e6;
+}
+
+body{
+    background: var(--background);
+}
+
+/* Funtes con estilos personlaizados */
+.font-bold{
+    font-weight: 700;
+}
+
+.dashboard-text{
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Margenes fijos */
+.margin-top{
+    margin-top: 5rem;
+}
+
+/* Navbar fijo */
+.navbar{
+    background: var(--white);
+}
+
+/* css parte del main.html*/
+a {
+  text-decoration: none !important;
+}
+
+/* Dashboard */
+.iconos-card{
+    height: 60px;
+    vertical-align: middle;
+}
+
+.cards{
+    margin-top: 30px;
+}
+
+.badges{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-divider{
+    margin-top: 30px;
+    color: var(--modal_color);
+}
+
+.main-chart{
+    margin-top: 40px;
+}
+
+.contenido{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+  height: 35px;
+}
+
+.profile {
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+
+.add-court {
+  background: var(--main_hover);
+  border: none;
+  color: var(--black);
+  font-size: 18px;
+  border: none;
+}
+.add-court:hover {
+  background: var(--main_button);
+  color: var(--black);
+  border: none;
+}
+.add-court::selection {
+  background-color: var(--main_button);
+}
+
+.add-court:active {
+  background: var(--main_button);
+}
+
+.color-btn {
+  background-color: var(--green-btn);
+  color: white;
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.zona-1 {
+  height: auto;
+  margin-top: 5rem;
+}
+
+/* css parte del inicio*/
+.icon-user {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.main-section {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconos {
+  width: 24px;
+  height: 24px;
+}
+
+.menu-icono {
+  height: 60px;
+  width: 60px;
+}
+
+.texto-menu {
+  color: white;
+}
+
+.texto-menu:hover {
+  color: gray;
+}
+
+.iconos-menu {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.centrar-contenido {
+  margin-left: 40px;
+}
+
+.margen-top {
+  padding-top: 5%;
+  padding-left: 0%;
+}
+
+.offcanvas-header {
+  padding: 50px;
+}
+
+.authentication-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-input {
+  background: var(--modal_color);
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
+.plus{
+    height: 45px;
+    transform: translate(-60%,70%);
+}
+
+/* Footer */
+
+.banner-footer {
+  background-color: var(--white);
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.marcador {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+}
+
+.suscribe-button {
+  background: var(--green-btn);
+  color: var(--white);
+  border: none;
+}
+
+.suscribe-button:hover {
+  background: var(--btn_hover);
+  color: var(--black);
+  border: none;
+}
+
+#newsletter {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.suscribe-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.suscribe {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.suscribe-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-reset {
+  font-weight: 300;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* iconos */
+.fa-button {
+  color: var(--iconos);
+  font-size: 20px;
+  margin: 3px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: 45px;
+}
+
+.fa-caret-down {
+  transform: rotate(270deg);
+  color: var(--iconos);
+}
+
+.fa-button:hover {
+  color: var(--iconos_hover);
+}
+
+.banner-final {
+  background-color: var(--banner_final);
+}
+
+.footer-text {
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.footer-final {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.spacing-top {
+  margin-top: 35px;
+}
+
+.spacing-bottom {
+  margin-bottom: 35px;
+}
+
+.card {
+  border: none;
+}
+
+ul {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+li {
+  list-style: none;
+  text-decoration: none;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+  color: var(--green-btn);
+}
+a:hover {
+  color: var(--iconos_hover);
+}

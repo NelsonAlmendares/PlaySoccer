@@ -1,0 +1,88 @@
+/* variables */
+:root {
+  --black: #000;
+  --green: #4bb453;
+  --white: #fff;
+  --main: #FFB400;
+  --main_hover: #FFCD55;
+}
+
+/* Iconos de Bootstrap */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap'); 
+
+/* body */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Navbar */
+.language{
+  height: 30px;
+}
+
+.actions{
+  margin-left: 15px;
+}
+
+.login-btn{
+  border-radius: 50px;
+  border-color: var(--main);
+  background: var(--main);
+  color: var(--white);
+}
+
+.login-btn:hover{
+  background-color: var(--main_hover);
+  border-color: var(--main_hover);
+  color: var(--white);
+}
+
+/* Header */
+.margin-top{
+  margin-top: 2rem;
+}
+.margin-bottom{
+  margin-bottom: 2rem;
+}
+
+/* Contenedores */
+.zona1{
+  background: url('../../resources/img/fondo.png') no-repeat;
+  background-size: cover;
+}
+
+.main-letter{
+  font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-reserva{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* footer */
+
+/* clases */
+
+.logo {
+  height: 25px;
+}
+
+/* identificadores */
+
+
+/* Media Querys del sitio */
+

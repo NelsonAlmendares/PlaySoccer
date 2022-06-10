@@ -1,0 +1,533 @@
+/* importando tipos de letras */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/*declarando variables*/
+:root {
+  --white: #fff;
+  --black: #000;
+  --green-btn: #7eb928;
+  --btn_hover: #e7f1c7;
+  --green-menu: #005200;
+  --banner1_color: #f6f9ff;
+  --iconos: #98c206;
+  --iconos_hover: #589102;
+  --banner_final: #efefef;
+  --main_button: #cdd424;
+  --main_hover: #dde26d;
+  --modal_color: #e6e6e6;
+}
+
+/*inicia el css de register*/
+.registro-fondo {
+  background-image: url('../../resources/login/fondo_login.png');
+  height: 105vh;
+  background-size: cover;
+}
+
+.registro-col {
+  background-color: #f5f7fa;
+  height: 980px;
+}
+
+.con-re {
+  padding-top: 1%;
+}
+
+.nombre-input {
+  border: none;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 40%;
+}
+
+.apellido-input {
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 40%;
+}
+
+.dui-input {
+  border: none;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 25%;
+}
+
+.celular-input {
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 25%;
+}
+
+.tipoe-input {
+  border: none;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 40%;
+}
+
+.nombre-lbl {
+  margin-left: 30%;
+}
+
+.dui-lbl {
+  margin-left: 21%;
+}
+/*finaliza el css de register*/
+
+/* css parte del main.html*/
+a {
+  text-decoration: none !important;
+}
+
+header {
+  position: fixed;
+  z-index: 10;
+}
+
+.logo {
+  height: 35px;
+}
+
+.profile {
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+
+.add-court {
+  background: var(--main_hover);
+  border: none;
+  color: var(--black);
+  font-size: 18px;
+  border: none;
+}
+.add-court:hover {
+  background: var(--main_button);
+  color: var(--black);
+  border: none;
+}
+.add-court::selection {
+  background-color: var(--main_button);
+}
+
+.add-court:active {
+  background: var(--main_button);
+}
+
+.color-btn {
+  background-color: var(--green-btn);
+  color: white;
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.login-fondo {
+  background-image: url('../../resources/login/fondo_login.png');
+  height: 100vh;
+  background-size: cover;
+}
+
+.zona-1 {
+  height: auto;
+  margin-top: 5rem;
+}
+
+.con-lo {
+  padding-top: 10%;
+}
+
+.login-col {
+  background-color: #f5f7fa;
+  height: 600px;
+}
+
+.login-icon {
+  padding-top: 5%;
+  height: 175px;
+  width: 160px;
+}
+
+.titulo-log {
+  text-align: center;
+}
+
+.login-input {
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/*inicia el css de register*/
+.registro-fondo{
+    background-image: url('../../resources/login/fondo_login.png');
+    height: 105vh;
+    background-size: cover;
+}
+
+.registro-col{
+    background-color: #F5F7FA;
+    height: 980px;
+}
+
+.con-re{
+    padding-top: 1%;
+}
+
+.nombre-input{
+    border: none;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 40%;   
+}
+
+.apellido-input{
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 40%;   
+}
+
+.dui-input{
+    border: none;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 25%;   
+}
+
+.celular-input{
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 25%;   
+}
+
+.tipoe-input{
+    border: none;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 40%;   
+}
+
+.nombre-lbl{
+    margin-left: 30%;
+}
+
+.dui-lbl{
+    margin-left: 21%;
+}
+/*finaliza el css de register*/
+
+/* css parte del inicio*/
+.icon-user {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.main-section {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.iconos {
+  width: 24px;
+  height: 24px;
+}
+
+.menu {
+  border-radius: 10%;
+  border: none;
+  margin-right: 10px;
+}
+
+.contenido-menu {
+  background-color: var(--green-menu);
+  color: white;
+}
+
+.menu-icono {
+  height: 60px;
+  width: 60px;
+}
+
+.texto-menu {
+  color: white;
+}
+
+.texto-menu:hover {
+  color: gray;
+}
+
+.iconos-menu {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.centrar-contenido {
+  margin-left: 40px;
+}
+
+.margen-top {
+  padding-top: 5%;
+  padding-left: 0%;
+}
+
+.offcanvas-header {
+  padding: 50px;
+}
+
+.authentication-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-input {
+  background: var(--modal_color);
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
+.plus{
+    height: 45px;
+    transform: translate(-60%,70%);
+}
+
+/* Footer */
+.banner-footer {
+  background-color: var(--white);
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.marcador {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+}
+
+.banner-suscribe {
+  background: var(--banner1_color);
+}
+
+.suscribe-button {
+  background: var(--green-btn);
+  color: var(--white);
+  border: none;
+}
+
+.suscribe-button:hover {
+  background: var(--btn_hover);
+  color: var(--black);
+  border: none;
+}
+
+#newsletter {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.suscribe-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.suscribe {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.suscribe-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-reset {
+  font-weight: 300;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* iconos */
+.fa-button {
+  color: var(--iconos);
+  font-size: 20px;
+  margin: 3px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: 45px;
+}
+
+.fa-caret-down {
+  transform: rotate(270deg);
+  color: var(--iconos);
+}
+
+.fa-button:hover {
+  color: var(--iconos_hover);
+}
+
+.banner-final {
+  background-color: var(--banner_final);
+}
+
+.footer-text {
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.footer-final {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.spacing-top {
+  margin-top: 35px;
+}
+
+.spacing-bottom {
+  margin-bottom: 35px;
+}
+
+.card {
+  border: none;
+}
+
+ul {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+li {
+  list-style: none;
+  text-decoration: none;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+  color: var(--green-btn);
+}
+a:hover {
+  color: var(--iconos_hover);
+}
+
+/* CSS Diego */
+.cardcontenidomodal {
+  float: left;
+
+  width: 50%;
+
+  height: 30%;
+
+  background: green;
+}
+
+.card_modal_registro_chalecos {
+  background: red;
+}
+
+.modal fade {
+  background: black;
+
+  width: 100%;
+}
+
+.containermodalhalecos {
+  width: 100%;
+
+  height: 100%;
+}
+
+#costochalecos {
+  text-align: left;
+}
+
+.form-controlregistrochalecos {
+  width: 90%;
+
+  border: 0px;
+
+  background-color: #e6e6e6;
+
+  padding-top: 0px;
+
+  border-color: #e6e6e6;
+}
+
+#segundorowdelaparrillaregistrochaleco {
+  padding-top: 40px;
+}
+
+#comboboxregistrochalecos {
+  background-color: #e6e6e6;
+
+  color: black;
+
+  width: 60%;
+
+  text-align: right;
+
+  border-color: #e6e6e6;
+}
+
+#btnagregarchaleco {
+  background-color: #7eb928;
+
+  border-color: #7eb928;
+}
+
+#btncancelaragregarchaleco {
+  background-color: #c8c8c8;
+
+  border-color: #c8c8c8;
+}
+
+#imagendeperfilcliente {
+  width: 50%;
+
+  height: 150px;
+}
+
+.form-controlregistrochalecosfalso {
+  background-color: #ffffff;
+
+  border: none;
+}
