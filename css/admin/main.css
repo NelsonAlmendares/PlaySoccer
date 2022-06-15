@@ -89,55 +89,8 @@ a {
   text-decoration: none !important;
 }
 
-header {
-  position: fixed;
-  z-index: 10;
-}
-
-.logo {
-  height: 35px;
-}
-
-.profile {
-  margin-top: 5px;
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-}
-
-.add-court {
-  background: var(--main_hover);
-  border: none;
-  color: var(--black);
-  font-size: 18px;
-  border: none;
-}
-.add-court:hover {
-  background: var(--main_button);
-  color: var(--black);
-  border: none;
-}
-.add-court::selection {
-  background-color: var(--main_button);
-}
-
-.add-court:active {
-  background: var(--main_button);
-}
-
-.color-btn {
-  background-color: var(--green-btn);
-  color: white;
-  border: none;
-  width: 100%;
-  font-size: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-}
 
 .login-fondo {
-  background-image: url('../../resources/login/fondo_login.png');
   height: 100vh;
   background-size: cover;
 }
@@ -418,17 +371,6 @@ li {
   margin-top: 0;
 }
 
-.spacing-top {
-  margin-top: 35px;
-}
-
-.spacing-bottom {
-  margin-bottom: 35px;
-}
-
-.card {
-  border: none;
-}
 
 ul {
   margin-left: 0;
@@ -449,85 +391,3 @@ a:hover {
   color: var(--iconos_hover);
 }
 
-/* CSS Diego */
-.cardcontenidomodal {
-  float: left;
-
-  width: 50%;
-
-  height: 30%;
-
-  background: green;
-}
-
-.card_modal_registro_chalecos {
-  background: red;
-}
-
-.modal fade {
-  background: black;
-
-  width: 100%;
-}
-
-.containermodalhalecos {
-  width: 100%;
-
-  height: 100%;
-}
-
-#costochalecos {
-  text-align: left;
-}
-
-.form-controlregistrochalecos {
-  width: 90%;
-
-  border: 0px;
-
-  background-color: #e6e6e6;
-
-  padding-top: 0px;
-
-  border-color: #e6e6e6;
-}
-
-#segundorowdelaparrillaregistrochaleco {
-  padding-top: 40px;
-}
-
-#comboboxregistrochalecos {
-  background-color: #e6e6e6;
-
-  color: black;
-
-  width: 60%;
-
-  text-align: right;
-
-  border-color: #e6e6e6;
-}
-
-#btnagregarchaleco {
-  background-color: #7eb928;
-
-  border-color: #7eb928;
-}
-
-#btncancelaragregarchaleco {
-  background-color: #c8c8c8;
-
-  border-color: #c8c8c8;
-}
-
-#imagendeperfilcliente {
-  width: 50%;
-
-  height: 150px;
-}
-
-.form-controlregistrochalecosfalso {
-  background-color: #ffffff;
-
-  border: none;
-}

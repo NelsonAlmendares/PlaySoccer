@@ -22,37 +22,12 @@ body{
     background: var(--background);
 }
 
-/* Funtes con estilos personlaizados */
-.font-bold{
-    font-weight: 700;
-}
-
-.dashboard-text{
-    text-align: center;
-    margin-top: 5px;
-}
-
-/* Margenes fijos */
-.margin-top{
-    margin-top: 5rem;
-}
-
-/* Navbar fijo */
-.navbar{
-    background: var(--white);
-}
-
 /* css parte del main.html*/
 a {
   text-decoration: none !important;
 }
 
 /* Dashboard */
-.iconos-card{
-    height: 60px;
-    vertical-align: middle;
-}
-
 .cards{
     margin-top: 30px;
 }
@@ -62,65 +37,8 @@ a {
     justify-content: space-between;
 }
 
-.dropdown-divider{
-    margin-top: 30px;
-    color: var(--modal_color);
-}
-
 .main-chart{
     margin-top: 40px;
-}
-
-.contenido{
-    display: flex;
-    justify-content: space-between;
-}
-
-.logo {
-  height: 35px;
-}
-
-.profile {
-  margin-top: 5px;
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-}
-
-.add-court {
-  background: var(--main_hover);
-  border: none;
-  color: var(--black);
-  font-size: 18px;
-  border: none;
-}
-.add-court:hover {
-  background: var(--main_button);
-  color: var(--black);
-  border: none;
-}
-.add-court::selection {
-  background-color: var(--main_button);
-}
-
-.add-court:active {
-  background: var(--main_button);
-}
-
-.color-btn {
-  background-color: var(--green-btn);
-  color: white;
-  border: none;
-  width: 100%;
-  font-size: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-}
-
-.zona-1 {
-  height: auto;
-  margin-top: 5rem;
 }
 
 /* css parte del inicio*/
@@ -130,43 +48,9 @@ a {
   border-radius: 100%;
 }
 
-.main-section {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .iconos {
   width: 24px;
   height: 24px;
-}
-
-.menu-icono {
-  height: 60px;
-  width: 60px;
-}
-
-.texto-menu {
-  color: white;
-}
-
-.texto-menu:hover {
-  color: gray;
-}
-
-.iconos-menu {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-.centrar-contenido {
-  margin-left: 40px;
-}
-
-.margen-top {
-  padding-top: 5%;
-  padding-left: 0%;
 }
 
 .offcanvas-header {
@@ -187,11 +71,6 @@ footer {
   position: relative;
   width: 100%;
   bottom: 0;
-}
-
-.plus{
-    height: 45px;
-    transform: translate(-60%,70%);
 }
 
 /* Footer */
@@ -296,23 +175,4 @@ li {
 
 .card {
   border: none;
-}
-
-ul {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-li {
-  list-style: none;
-  text-decoration: none;
-}
-
-a {
-  list-style: none;
-  text-decoration: none;
-  color: var(--green-btn);
-}
-a:hover {
-  color: var(--iconos_hover);
 }

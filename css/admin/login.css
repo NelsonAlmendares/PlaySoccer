@@ -22908,3 +22908,7 @@ a[href].bg-200:hover {
     text-decoration: none;
     color: #b81800
 }
+
+body{
+    background-color: #fff;
+}
