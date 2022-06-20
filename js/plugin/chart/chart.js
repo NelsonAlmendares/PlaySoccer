@@ -1,27 +1,13 @@
+import { dataMain } from "./config.js";
+import { dataLines } from "./config.js";
+import { dataDoughnut  } from "./config.js";
+import { dataBar } from "./config.js";
+import { dataBarStacked } from "./config.js";
 
 const ctx = document.getElementById("main").getContext("2d");
 const myChart = new Chart(ctx, {
   type: "line",
-  data: {
-    datasets: [
-      {
-        data: [
-          {
-            x: "2021-11-06 23:39:30",
-            y: 50,
-          },
-          {
-            x: "2021-11-07 01:00:28",
-            y: 60,
-          },
-          {
-            x: "2021-11-07 09:00:28",
-            y: 20,
-          },
-        ],
-      },
-    ],
-  },
+  data: dataMain,
   options: {
     scales: {
       x: {
@@ -34,32 +20,7 @@ const myChart = new Chart(ctx, {
 const ctxSales = document.getElementById("sales").getContext("2d");
 const myChartSales = new Chart(ctxSales, {
   type: "bar",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "Chart",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
+  data: dataBar,
   options: {
     scales: {
       y: {
@@ -69,36 +30,11 @@ const myChartSales = new Chart(ctxSales, {
   },
 });
 
-//Configuracion para chart de Lineas
+//Configuracion para chart de Linea
 const ctxCanchas = document.getElementById("canchas").getContext("2d");
 const myChartCanchas = new Chart(ctxCanchas, {
   type: "line",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "Chart",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
+  data: dataLines,
   options: {
     scales: {
       y: {
@@ -112,32 +48,7 @@ const myChartCanchas = new Chart(ctxCanchas, {
 const ctxEquipo = document.getElementById("equipo").getContext("2d");
 const myChartEquipo = new Chart(ctxEquipo, {
   type: "doughnut",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "Chart",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
+  data: dataDoughnut,
   options: {
     scales: {
       y: {
@@ -149,37 +60,20 @@ const myChartEquipo = new Chart(ctxEquipo, {
 
 const ctxBalones= document.getElementById("balones").getContext("2d");
 const myChartBalones = new Chart(ctxBalones, {
-  type: "radar",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "Chart",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
+  type: "line",
+  data: dataBarStacked,
   options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "Min and Max Settings",
+      },
+    },
     scales: {
       y: {
-        beginAtZero: true,
+        min: 10,
+        max: 50,
       },
     },
   },

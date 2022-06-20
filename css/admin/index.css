@@ -5,21 +5,17 @@
 :root {
   --white: #fff;
   --black: #000;
-  --green-btn: #7eb928;
-  --btn_hover: #e7f1c7;
-  --background: #f5f7fa;
-  --green-menu: #005200;
-  --banner1_color: #f6f9ff;
-  --iconos: #98c206;
-  --iconos_hover: #589102;
-  --banner_final: #efefef;
-  --main_button: #cdd424;
-  --main_hover: #dde26d;
-  --modal_color: #e6e6e6;
+  --navvbar: #243742;
+  --background: #F6F9FF;
+  --hovers: rgba(132, 232, 90);
 }
 
 body{
     background: var(--background);
+}
+
+.navbar-background{
+  background-color: var(--navvbar);
 }
 
 /* css parte del main.html*/
@@ -32,6 +28,28 @@ a {
     margin-top: 30px;
 }
 
+.profile{
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-site{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dashboard-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .badges{
     display: flex;
     justify-content: space-between;
@@ -41,6 +59,47 @@ a {
     margin-top: 40px;
 }
 
+.dropdown{
+  width: 100%;
+}
+
+.fa-circle{
+  margin-bottom: 20px;
+  font-size: 5px;
+  color: var(--black);
+}
+
+.point_separator{
+  align-items: center;
+  justify-content: center;
+}
+
+.terms{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terms a{
+  color: var(--black);
+  font-size: 15px;
+}
+
+.terms__li {
+  list-style: none;
+  display: inline;
+  padding: 5px 5px 5px 5px;
+  transition: border-bottom 90ms;
+  cursor: pointer;
+}
+
+.selected,
+.terms__li:hover {
+  border-bottom: 2px solid var(--hovers);
+  padding-bottom: 3px;
+}
+
 /* css parte del inicio*/
 .icon-user {
   width: 40px;
@@ -48,9 +107,9 @@ a {
   border-radius: 100%;
 }
 
-.iconos {
-  width: 24px;
-  height: 24px;
+.icons {
+  width: 100px;
+  padding: 15px;
 }
 
 .offcanvas-header {

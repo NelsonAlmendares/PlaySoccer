@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="../../css/admin/style.css">
     <link rel="stylesheet" href="../../css/admin/index.css">
+    <link rel="stylesheet" href="../../css/admin/general.css">
 
     <link rel="shortcut icon" href="../../resources/logo.png">
 
@@ -19,7 +20,7 @@
 
 <body>
     <!-- top navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-background fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                 aria-controls="offcanvasExample">
@@ -47,12 +48,36 @@
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Cerrar Sesión <i class="fa-solid fa-right-from-bracket text-danger"></i></a></li>
-                            <li><a class="dropdown-item" href="#">Configuracion <i class="fa-solid fa-gears text-muted"></i></a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Estadísticas <i class="fa-solid fa-chart-line text-info"></i></a>
-                            </li>
+                            <div class="container-fluid">
+                                <div class="container-fluid">
+                                    <div class="card" style="width: 18rem;">
+                                        <div class="profile-site">
+                                            <img src="../../resources/img/profile/profile1.png"
+                                                class="img-fluid profile" alt="">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Jenny Salmenron</h5>
+                                        </div>
+                                        <div class="card-body text-center w-100">
+                                            <li><a class="dropdown-item mt-1" href="#">Configuracion <i
+                                                        class="fa-solid fa-gears text-muted"></i></a></li>
+                                            <li><a class="dropdown-item mt-1" href="#">Estadísticas <i
+                                                        class="fa-solid fa-chart-line text-info"></i></a></li>
+                                            <a class="btn btn-outline-danger w-100" href="../admin/index.html">Cerrar
+                                                Sesión <i class="fa-solid fa-right-from-bracket"></i></a>
+                                            <div class="terms">
+                                                <li class="terms__li"><a href="">Políticas</a></li>
+                                                <span class="text-bold point_separator"><i
+                                                        class="fa-solid fa-circle"></i></span>
+                                                <li class="terms__li"><a href="">Términos</a></li>
+                                                <span class="text-bold point_separator"><i
+                                                        class="fa-solid fa-circle"></i></span>
+                                                <li class="terms__li"><a href="">Cookies</a></li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
                     </li>
                 </ul>
@@ -61,7 +86,7 @@
     </nav>
     <!-- top navigation bar -->
     <!-- offcanvas -->
-    <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
+    <div class="offcanvas offcanvas-start sidebar-nav navbar-background" tabindex="-1" id="sidebar">
         <div class="offcanvas-body p-0">
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
@@ -123,12 +148,7 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- <li>
-                  <a href="#" class="nav-link px-3">
-                     <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                     <span>Pages</span>
-                  </a>
-               </li> -->
+
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light" />
                     </li>
@@ -164,70 +184,159 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row mt-3">
                         <h2>Administración de Clientes</h2>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                .<div class="container">
-                    <div class="col">
-                        <button type="button" class="btn btn-success">Agregar <i class="fa-solid fa-address-book"></i></button>
-                        <button type="button" class="btn btn-warning">Reporte <i class="fa-solid fa-chart-column"></i></button>
+                <div class="container">
+                    <div class="col actions">
+                        <button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
+                            data-bs-target="#agregar"> Agregar <i class="fa-solid fa-address-book"></i> </button>
+                        <button type="button" class="btn btn-warning"> Reporte <i
+                                class="fa-solid fa-chart-column"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                .<div class="container">
-                    <div class="col-md-12">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Documento</th>
-                                    <th scope="col">Celular</th>
-                                    <th scope="col">Correo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- Modal agregar cliente -->
+            <div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Clientes <i
+                                    class="fa-solid fa-address-book text-muted"></i></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form action="" method="post">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="nombre" class="form-label">Nombre del Cliente </label> <i
+                                                    class="fa-solid fa-pen text-secondary"></i>
+                                                <input class="form-control" type="text" id="nombre" name="nombre"
+                                                    placeholder="Jhon Doe" max="16" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="apellido" class="form-label">Apellido del Cliente</label> <i
+                                                    class="fa-solid fa-pen text-secondary""></i>
+                                                <input class=" form-control" type="text" id="apellido" name="apellido"
+                                                    placeholder="Jhon Doe" max="16" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="documento" class="form-label">DUI del Cliente</label> <i
+                                                    class="fa-solid fa-address-card text-secondary""></i>
+                                                <input class=" form-control" type="text" id="documento"
+                                                    name="documento" placeholder="Jhon Doe" max="10" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="celular" class="form-label">Celular del Cliente</label> <i
+                                                class="fa-solid fa-phone text-secondary""></i>
+                                            <div class=" input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">+503</span>
+                                                <input type="text" class="form-control" placeholder="celular" max="8"
+                                                    id="ceular" name="celular" aria-label="Username"
+                                                    aria-describedby="basic-addon1" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Correo del Cliente</label> <i
+                                                class="fa-solid fa-at text-secondary""></i>
+                                                <input class=" form-control" type="email" id="email" name="email"
+                                                placeholder="Jhon Doe" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="foto" class="form-label">Foto del Cliente</label> <i
+                                                class="fa-solid fa-image text-secondary""></i>
+                                                <input class=" form-control" type="file" id="foto" name="foto"
+                                                placeholder="Jhon Doe" required>
+                                        </div>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel <i
+                                class="fa-solid fa-ban"></i>
+                            <button type="submit" class="btn btn-outline-success"> Agregar <i
+                                    class="fa-solid fa-person-circle-plus"></i>
                     </div>
                 </div>
             </div>
-            <div class="row"></div>
+        </div>
+
+        <div class="row">
+            <div class="container">
+                <div class="col-md-12">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center"> ID </th>
+                                <th scope="col" class="text-center"> Foto </th>
+                                <th scope="col" class="text-center"> Nombre </th>
+                                <th scope="col" class="text-center"> Apellido </th>
+                                <th scope="col" class="text-center"> Documento </th>
+                                <th scope="col" class="text-center"> Celular </th>
+                                <th scope="col" class="text-center"> Correo </th>
+                                <th scope="col" class="text-center"> Acciones </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-center">1</th>
+                                <td class="text-center"><img src="../../resources/img/profile/profile1.png"
+                                        class="img-fluid perfiles" alt=""></td>
+                                <td class="text-center">Jennifer</td>
+                                <td class="text-center">Salmeron</td>
+                                <td class="text-center">00800565-9</td>
+                                <td class="text-center"><b>+530</b> 7489-9512</td>
+                                <td class="text-center">JenniSalmer431@gmail.com</td>
+                                <td class="text-center">
+                                    <button class="btn btn-outline-info"><i
+                                            class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center">2</th>
+                                <td class="text-center"><img src="../../resources/img/profile/profile2.png"
+                                        class="img-fluid perfiles" alt=""></td>
+                                <td class="text-center">Claudia</td>
+                                <td class="text-center">Torres</td>
+                                <td class="text-center">02500865-7</td>
+                                <td class="text-center"><b>+530</b> 7287-5968</td>
+                                <td class="text-center">ClaudiadeSamayoa1999@gmail.com</td>
+                                <td class="text-center">
+                                    <button class="btn btn-outline-info"><i
+                                            class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-center">3</th>
+                                <td class="text-center"><img src="../../resources/img/profile/profile3.png" class="img-fluid perfiles" alt=""></td>
+                                <td class="text-center">Anthony</td>
+                                <td class="text-center">Brignthon</td>
+                                <td class="text-center">00832578-9</td>
+                                <td class="text-center"><b>+530</b> 7489-9512</td>
+                                <td class="text-center">GrubStudyGroup192@gmail.com</td>>
+                                <td class="text-center">
+                                    <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
 
         </div>
     </main>
@@ -240,8 +349,6 @@
 
     <script src="../../js/plugin/jquery-3.5.1.js"></script>
     <script src="../../js/admin/sc-ript.js"></script>
-
-    <script src="../../js/plugin/chart/chart.js"></script>
 
 </body>
 

@@ -7,8 +7,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
    <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-   
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
    <!-- Estilos -->
    <link rel="stylesheet" href="../../css/admin/style.css">
    <link rel="stylesheet" href="../../css/admin/index.css">
@@ -21,7 +21,7 @@
 <body>
 
    <!-- top navigation bar -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-dark navbar-background fixed-top">
       <div class="container-fluid">
          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
             aria-controls="offcanvasExample">
@@ -37,7 +37,7 @@
                <div class="input-group">
                   <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
                   <button class="btn btn-primary" type="submit">
-                     <i class="bi bi-search"></i>
+                     <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
                </div>
             </form>
@@ -48,11 +48,31 @@
                      <i class="bi bi-person-fill"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                     <li><a class="dropdown-item mt-1" href="index.html">Cerrar Sesión <i class="fa-solid fa-right-from-bracket text-danger"></i></a></li>
-                     <li><a class="dropdown-item mt-1" href="#">Configuracion <i class="fa-solid fa-gears text-muted"></i></a></li>
-                     <li>
-                        <a class="dropdown-item mt-1" href="#">Estadísticas <i class="fa-solid fa-chart-line text-info"></i></a>
-                     </li>
+                     <div class="container-fluid">
+                        <div class="container-fluid">
+                           <div class="card" style="width: 18rem;">
+                              <div class="profile-site">
+                                 <img src="../../resources/img/profile/mujer1.png" class="img-fluid profile" alt="">
+                              </div>
+                              <div class="card-body text-center">
+                                 <h5 class="card-title">Jenny Salmenron</h5>
+                                 <p class="card-text">Some quick example.</p>
+                              </div>
+                              <div class="card-body text-center w-100">
+                                 <li><a class="dropdown-item mt-1" href="#">Configuracion <i class="fa-solid fa-gears text-muted"></i></a></li>
+                                 <li><a class="dropdown-item mt-1" href="#">Estadísticas <i class="fa-solid fa-chart-line text-info"></i></a></li>
+                                 <a class="btn btn-outline-danger w-100" href="../admin/index.html">Cerrar Sesión <i class="fa-solid fa-right-from-bracket"></i></a>
+                                 <div class="terms">
+                                    <li class="terms__li"><a href="">Políticas</a></li>
+                                    <span class="text-bold point_separator"><i class="fa-solid fa-circle"></i></span>
+                                    <li class="terms__li"><a href="">Términos</a></li>
+                                    <span class="text-bold point_separator"><i class="fa-solid fa-circle"></i></span>
+                                    <li class="terms__li"><a href="">Cookies</a></li>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                   </ul>
                </li>
             </ul>
@@ -61,7 +81,7 @@
    </nav>
    <!-- top navigation bar -->
    <!-- offcanvas -->
-   <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar">
+   <div class="offcanvas offcanvas-start sidebar-nav navbar-background" tabindex="-1" id="sidebar">
       <div class="offcanvas-body p-0">
          <nav class="navbar-dark">
             <ul class="navbar-nav">
@@ -173,8 +193,8 @@
                         <div class="row">
                            <div class="col-md-4">
                               <div class="d-flex">
-                                 <img src="../../resources/icons/admin/icons8_calendar_96px.png"
-                                    class="img-fluid iconos-card" alt="">
+                                 <img src="../../resources/icons/admin/calendar.png"
+                                    class="img-fluid icons" alt="">
                                  <div class="row">
                                     <h6 class="dashboard-text">13 nuevas resercaciones</h6>
                                  </div>
@@ -183,7 +203,7 @@
                            <div class="col-md-4">
                               <div class="d-flex">
                                  <img src="../../resources/icons/admin/icons8_stadium_96px.png"
-                                    class="img-fluid iconos-card" alt="">
+                                    class="img-fluid icons" alt="">
                                  <div class="row">
                                     <h6 class="dashboard-text">3 canchas a disposición</h6>
                                  </div>
@@ -191,8 +211,8 @@
                            </div>
                            <div class="col-md-4">
                               <div class="d-flex">
-                                 <img src="../../resources/icons/admin/icons8_total_sales_96px.png"
-                                    class="img-fluid iconos-card" alt="">
+                                 <img src="../../resources/icons/admin/diagram.png"
+                                    class="img-fluid icons" alt="">
                                  <div class="row">
                                     <h6 class="dashboard-text">$230 ventas semanales</h6>
                                  </div>
@@ -325,13 +345,16 @@
    <!-- Font Awesome -->
    <script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
 
+   <!-- Bootstrap scripts -->
    <script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
 
+   <!-- Jquery -->
    <script src="../../js/plugin/jquery-3.5.1.js"></script>
    <script src="../../js/admin/sc-ript.js"></script>
 
-   <script src="../../js/plugin/chart/chart.js"></script>
+   <!-- Chart  -->
+   <script src="../../js/plugin/chart/chart.js" type="module"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
 
 </body>
 

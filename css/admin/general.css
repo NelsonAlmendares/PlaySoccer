@@ -1,0 +1,30 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --navvbar: #243742;
+  --background: #F6F9FF;
+  --hovers: rgba(132, 232, 90);
+}
+
+body{
+    background: var(--background);
+}
+
+.actions{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.margin__btn{
+    margin-right: 10px;
+}
+
+.perfiles{
+    height: 90px;
+    border-radius: 5px;
+}
+
+td,th{
+    vertical-align: middle;
+}
