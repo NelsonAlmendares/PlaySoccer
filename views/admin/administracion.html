@@ -15,7 +15,7 @@
 
 	<link rel="shortcut icon" href="../../resources/logo.png">
 
-	<title>PlaySoccer | Clientes</title>
+	<title>PlaySoccer | Reservaciones</title>
 </head>
 
 <body>
@@ -142,7 +142,7 @@
 							</ul>
 							<ul class="navbar-nav ps-3">
 								<li>
-									<a href="#" class="nav-link px-3 mt-3">
+									<a href="empleados.html" class="nav-link px-3 mt-3">
 										<span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
 										<span>Empleados</span>
 									</a>
@@ -204,7 +204,7 @@
 
 			<!-- Modal -->
 			<div class="modal fade" id="agregar" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-xl modal-dialog-centered">
+				<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Agregar una Reservación</h5>
@@ -215,26 +215,62 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="mb-3">
-											<label for="fecha" class="form-label-date"> Fecha: </label>
+											<label for="fecha" class="form-label-date"> Fecha: </label> <i class="fa-solid fa-calendar"></i>
 											<input type="date" class="form-control mt-2" id="fecha" name="fecha" placeholder="">
 										</div>
 										<div class="mb-3">
-											<label for="balones" class="form-label-balon"> Balones: </label>
+											<label for="balones" class="form-label-balon"> Balones: </label> <i class="fa-solid fa-futbol"></i>
 											<input type="number" class="form-control mt-2" id="balones" name="balones" placeholder="1">
 										</div>
 										<div class="mb-3">
-											<label for="observacion" class="form-label-observacion"> Observaciones: </label>
+											<label for="observacion" class="form-label-observacion"> Observaciones: </label> <i class="fa-solid fa-calendar-lines-pen"></i>
 											<textarea class="form-control mt-2" id="observacion" name="cant" rows="2"></textarea>
 										</div>
 										<div class="mb-3">
-											<label for="cantidadChalecos" class="form-label-cantidad"> Cantidad de chalecos: </label>
-											<textarea class="form-control mt-2" id="cantidadChalecos" name="cantidadChalecos" rows="2"></textarea>
+											<label for="cantidadChalecos" class="form-label-cantidad"> Cantidad de chalecos: </label> <i class="fa-solid fa-vest"></i>
+											<input type="number" class="form-control mt-2" id="cantidadChalecos" name="cantidadChalecos" placeholder="1">
+										</div>
+										<div class="mb-3">
+											<label for="empleado" class="form-label-balon"> Empleado: </label><i class="fa-solid fa-user-large"></i>
+											<input type="text" class="form-control mt-2" id="empleado" name="empleado" placeholder="Jhon Doe">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="mb-3">
-											<label for="exampleFormControlInput1" class="form-label">Email address</label>
-											<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+											<label for="email" class="form-label">Asistencia</label> <i class="fa-solid fa-calendar-exclamation"></i>
+											<input type="text" class="form-control" id="asistencia" name="asistencia" placeholder="presente">
+										</div>
+										<div class="mb-3">
+											<label for="empleado" class="form-label-balon"> Cancha: </label>
+											<input type="number" class="form-control mt-2" id="cancha" name="cancha" placeholder="1">
+										</div>
+										<div class="mb-3">
+											<label for="empleado" class="form-label-horario"> Horario: </label> <i class="fa-solid fa-alarm-plus"></i>
+											<select class="form-select mt-2" aria-label="Default select example">
+												<option selected>Horario</option>
+												<option value="1">Matutino</option>
+												<option value="2">Vespertino</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label for="cliente" class="form-label"> Cliente: </label> <i class="fa-solid fa-person"></i>
+											<input type="text" class="form-control" id="cliente" name="cliente" placeholder="Jhon Doe">
+										</div>
+										<div class="mb-3">
+											<label for="empleado" class="form-label-horario"> Tipo Balón: </label> <i class="fa-solid fa-futbol text-muted"></i>
+											<select class="form-select mt-2" aria-label="Default select example">
+												<option selected> Usos </option>
+												<option value="1">Matutino</option>
+												<option value="2">Vespertino</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label for="empleado" class="form-label-horario"> Color de chalecos: </label> <i class="fa-solid fa-vest text-muted"></i>
+											<select class="form-select mt-2" aria-label="Default select example">
+												<option selected>Horario</option>
+												<option value="1">Matutino</option>
+												<option value="2">Vespertino</option>
+											</select>
 										</div>
 									</div>
 								</div>

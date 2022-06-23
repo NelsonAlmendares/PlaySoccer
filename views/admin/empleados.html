@@ -11,10 +11,11 @@
 
    <link rel="stylesheet" href="../../css/admin/style.css">
    <link rel="stylesheet" href="../../css/admin/index.css">
+   <link rel="stylesheet" href="../../css/admin/general.css">
 
    <link rel="shortcut icon" href="../../resources/logo.png">
 
-   <title>PlaySoccer | Clientes</title>
+   <title>PlaySoccer | Empleados</title>
 </head>
 
 <body>
@@ -51,7 +52,7 @@
                         <div class="container-fluid">
                            <div class="card" style="width: 18rem;">
                               <div class="profile-site">
-                                 <img src="../../resources/img/profile/mujer1.png" class="img-fluid profile" alt="">
+                                 <img src="../../resources/img/profile/profile1.png" class="img-fluid profile" alt="">
                               </div>
                               <div class="card-body text-center">
                                  <h5 class="card-title">Jenny Salmenron</h5>
@@ -94,7 +95,7 @@
                   </div>
                </li>
                <li>
-                  <a href="main.html" class="nav-link px-3 active mt-3">
+                  <a href="main.html" class="nav-link px-3 mt-3">
                      <span class="me-2"><i class="fa-solid fa-house"></i></span>
                      <span>Dashboard</span>
                   </a>
@@ -138,7 +139,7 @@
                      </ul>
                      <ul class="navbar-nav ps-3">
                         <li>
-                           <a href="#" class="nav-link px-3 mt-3">
+                           <a href="#" class="nav-link px-3 active mt-3">
                               <span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
                               <span>Empleados</span>
                            </a>
@@ -146,12 +147,7 @@
                      </ul>
                   </div>
                </li>
-               <!-- <li>
-                  <a href="#" class="nav-link px-3">
-                     <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                     <span>Pages</span>
-                  </a>
-               </li> -->
+
                <li class="my-4">
                   <hr class="dropdown-divider bg-light" />
                </li>
@@ -187,51 +183,147 @@
       <div class="container-fluid">
          <div class="row">
             <div class="col-md-12">
-               <div class="row">
-
-
+               <div class="row mt-3">
+                  <h2>Administración de Empleados</h2>
+               </div>
+            </div>
+         </div>
+         
+         <div class="row">
+            <div class="container">
+               <div class="col actions">
+                  <button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
+                     data-bs-target="#agregar"> Agregar <i class="fa-solid fa-address-book"></i> </button>
+                  <button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
                </div>
             </div>
          </div>
 
-         <div class="row"></div>
-
-         <div class="row">
-            <div class="col-md-6 mb-3">
-               <div class="card h-100">
-                  <div class="card-header">
-                     <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                     Area Chart Example
+         <!-- Modal agregar empleado -->
+         <div class="modal fade" id="agregar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Agregar Empleados <i
+                           class="fa-solid fa-address-book text-muted"></i></h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="card-body">
-
+                  <div class="modal-body">
+                     <div class="container">
+                        <form action="" method="post">
+                           <div class="row">
+                              <div class="col-md-6">
+                                 <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre del Empleado </label> <i
+                                       class="fa-solid fa-pen text-secondary"></i>
+                                    <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Jhon Doe"
+                                       max="16" required>
+                                 </div>
+                                 <div class="mb-3">
+                                    <label for="apellido" class="form-label">Apellido del Empleado </label> <i
+                                       class="fa-solid fa-pen text-secondary""></i>
+                                                         <input class=" form-control" type="text" id="apellido" name="apellido"
+                                       placeholder="Jhon Doe" max="16" required>
+                                 </div>
+                                 <div class="mb-3">
+                                    <label for="documento" class="form-label">DUI del Empleado </label> <i
+                                       class="fa-solid fa-address-card text-secondary""></i>
+                                                         <input class=" form-control" type="text" id="documento"
+                                       name="documento" placeholder="Jhon Doe" max="10" required>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <label for="celular" class="form-label">Celular del Empleado</label> <i
+                                    class="fa-solid fa-phone text-secondary""></i>
+                                                     <div class=" input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">+503</span>
+                                    <input type="text" class="form-control" placeholder="celular" max="8" id="ceular"
+                                       name="celular" aria-label="Username" aria-describedby="basic-addon1" required>
+                              </div>
+                              <div class="mb-3">
+                                    <label for="email" class="form-label">Correo del Empleado </label> <i class="fa-solid fa-at text-secondary""></i>
+                                    <input class=" form-control" type="email" id="email" name="email" placeholder="Jhon Doe" required>
+                              </div>
+                              <div class="mb-3">
+                                 <label for="password" class="form-label">Contraseña del Empleado </label> <i class="fa-solid fa-lock text-muted"></i>
+                                 <input class=" form-control" type="password" id="password" name="password" placeholder="Jhon Doe" required>
+                              </div>
+                              <div class="mb-3">
+                                 <label for="foto" class="form-label">Foto del Empleado </label> <i
+                                    class="fa-solid fa-image text-secondary""></i>
+                                                         <input class=" form-control" type="file" id="foto" name="foto"
+                                    placeholder="Jhon Doe" required>
+                              </div>
+                           </div>
+                     </div>
+                     </form>
                   </div>
+         
                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-               <div class="card h-100">
-                  <div class="card-header">
-                     <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                     Area Chart Example
-                  </div>
-                  <div class="card-body">
-
-                  </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel
+                     <button type="submit" class="btn btn-outline-success"> Agregar <i
+                           class="fa-solid fa-person-circle-plus"></i>
                </div>
             </div>
          </div>
+         </div>
+
+         <div class="row mt-3">
+            <div class="container">
+               <div class="col-md-12 mt-3">
+                  <table class="table table-sm table-hover">
+                     <thead>
+                        <tr>
+                           <th scope="col" class="text-center"> ID </th>
+                           <th scope="col" class="text-center"> Foto </th>
+                           <th scope="col" class="text-center"> Nombre </th>
+                           <th scope="col" class="text-center"> Apellido </th>
+                           <th scope="col" class="text-center"> DUI </th>
+                           <th scope="col" class="text-center"> Celular </th>
+                           <th scope="col" class="text-center"> Correo </th>
+                           <th scope="col" class="text-center"> TipoEmpleado </th>
+                           <th scope="col" class="text-center"> Acciones </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th scope="row" class="text-center">1</th>
+                           <td class="text-center"> <img src="../../resources/img/profile/profile2.png" class="img-fluid perfiles" alt=""> </td>
+                           <td class="text-center"> Karla </td>
+                           <td class="text-center"> Menjivar </td>
+                           <td class="text-center"> 00500935-9 </td>
+                           <td class="text-center"> <b>503</b> 7895-8654 </td>
+                           <td class="text-center"> Karlamarleny4521@gmail.com </td>
+                           <td class="text-center"> Vendedora </td>
+                           <td class="text-center">
+                              <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
+                              <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th scope="row" class="text-center">2</th>
+                           <td class="text-center"> <img src="../../resources/img/profile/profile3.png" class="img-fluid perfiles" alt=""> </td>
+                           <td class="text-center"> Marcos </td>
+                           <td class="text-center"> Ponce </td>
+                           <td class="text-center"> 00702596-8 </td>
+                           <td class="text-center"> <b>503</b> 7453-9519 </td>
+                           <td class="text-center"> MarcosAntonioSolis1234@gmail.com </td>
+                           <td class="text-center"> Ordenanza </td>
+                           <td class="text-center">
+                              <button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> </button>
+                              <button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>      
+         </div>
 
          <div class="row">
-            <div class="col-md-12 mb-3">
-               <div class="card">
-                  <div class="card-header">
-                     <span><i class="bi bi-table me-2"></i></span> Data Table
-                  </div>
-                  <div class="card-body">
-
-                  </div>
-               </div>
-            </div>
+            <div class="col-md-6 mb-3"></div>
          </div>
 
       </div>
@@ -245,8 +337,6 @@
 
    <script src="../../js/plugin/jquery-3.5.1.js"></script>
    <script src="../../js/admin/sc-ript.js"></script>
-
-   <script src="../../js/plugin/chart/chart.js"></script>
 
 </body>
 
