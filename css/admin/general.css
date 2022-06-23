@@ -21,10 +21,16 @@ body{
 }
 
 .perfiles{
-    height: 90px;
+    height: 60px;
     border-radius: 5px;
 }
 
 td,th{
     vertical-align: middle;
+}
+
+.colorPicker{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

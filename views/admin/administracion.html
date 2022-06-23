@@ -11,6 +11,7 @@
 
 	<link rel="stylesheet" href="../../css/admin/style.css">
 	<link rel="stylesheet" href="../../css/admin/index.css">
+	<link rel="stylesheet" href="../../css/admin/general.css">
 
 	<link rel="shortcut icon" href="../../resources/logo.png">
 
@@ -51,7 +52,7 @@
 								<div class="container-fluid">
 									<div class="card" style="width: 18rem;">
 										<div class="profile-site">
-											<img src="../../resources/img/profile/mujer1.png" class="img-fluid profile"
+											<img src="../../resources/img/profile/profile1.png" class="img-fluid profile"
 												alt="">
 										</div>
 										<div class="card-body text-center">
@@ -149,12 +150,6 @@
 							</ul>
 						</div>
 					</li>
-					<!-- <li>
-                  <a href="#" class="nav-link px-3">
-                     <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                     <span>Pages</span>
-                  </a>
-               </li> -->
 					<li class="my-4">
 						<hr class="dropdown-divider bg-light" />
 					</li>
@@ -191,50 +186,136 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
-
-
-					</div>
-				</div>
-			</div>
-
-			<div class="row"></div>
-
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<div class="card h-100">
-						<div class="card-header">
-							<span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-							Area Chart Example
-						</div>
-						<div class="card-body">
-
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 mb-3">
-					<div class="card h-100">
-						<div class="card-header">
-							<span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-							Area Chart Example
-						</div>
-						<div class="card-body">
-
+						<div class="container">
+							<h2 class="mt-3">Administración de Reservaciones</h2>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-12 mb-3">
-					<div class="card">
-						<div class="card-header">
-							<span><i class="bi bi-table me-2"></i></span> Data Table
-						</div>
-						<div class="card-body">
+				<div class="container">
+					<div class="col actions">
+						<button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal" data-bs-target="#agregar"> Agregar <i class="fa-solid fa-address-book"></i> </button>
+						<button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
+					</div>
+				</div>
+			</div>
 
+			<!-- Modal -->
+			<div class="modal fade" id="agregar" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Agregar una Reservación</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label for="fecha" class="form-label-date"> Fecha: </label>
+											<input type="date" class="form-control mt-2" id="fecha" name="fecha" placeholder="">
+										</div>
+										<div class="mb-3">
+											<label for="balones" class="form-label-balon"> Balones: </label>
+											<input type="number" class="form-control mt-2" id="balones" name="balones" placeholder="1">
+										</div>
+										<div class="mb-3">
+											<label for="observacion" class="form-label-observacion"> Observaciones: </label>
+											<textarea class="form-control mt-2" id="observacion" name="cant" rows="2"></textarea>
+										</div>
+										<div class="mb-3">
+											<label for="cantidadChalecos" class="form-label-cantidad"> Cantidad de chalecos: </label>
+											<textarea class="form-control mt-2" id="cantidadChalecos" name="cantidadChalecos" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="mb-3">
+											<label for="exampleFormControlInput1" class="form-label">Email address</label>
+											<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-outline-success">Save changes</button>
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<div class="row">
+				<div class="container mt-3">
+					<div class="row mt-3">
+						<div class="container">
+							<table class="table table-sm table-hover">
+								<thead>
+									<tr>
+										<th scope="col" class="text-center"> ID </th>
+										<th scope="col" class="text-center"> Fecha </th>
+										<th scope="col" class="text-center"> Balones </th>
+										<th scope="col" class="text-center"> Observaciones </th>
+										<th scope="col" class="text-center"> Cantidad de chalecos </th>
+										<th scope="col" class="text-center"> Empleado </th>
+										<th scope="col" class="text-center"> Cancha </th>
+										<th scope="col" class="text-center"> Horario </th>
+										<th scope="col" class="text-center"> Cliente </th>
+										<th scope="col" class="text-center"> Asistencia </th>
+										<th scope="col" class="text-center"> Tipo Balón </th>
+										<th scope="col" class="text-center"> Chaleco </th>
+										<th scope="col" class="text-center"> Acciones </th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row" class="text-center">1</th>
+										<td class="text-center"> 05/11/2022 </td>
+										<td class="text-center"> 2 </td>
+										<td class="text-center"> Todos juegan con Tacos </td>
+										<td class="text-center"> 20 </td>
+										<td class="text-center"> Nelson </td>
+										<td class="text-center"> 2 </td>
+										<td class="text-center"> Matutino </td>
+										<td class="text-center"> Daniel </td>
+										<td class="text-center"> Presente </td>
+										<td class="text-center"> Sala </td>
+										<td class="text-center"> Verde </td>
+										<td class="text-center">
+											<button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
+											<button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row" class="text-center">2</th>
+										<td class="text-center"> 14/11/2022 </td>
+										<td class="text-center"> 3 </td>
+										<td class="text-center"> Toma 2 turnos seguidos de la mañana </td>
+										<td class="text-center"> 25 </td>
+										<td class="text-center"> Nelson </td>
+										<td class="text-center"> Matutino </td>
+										<td class="text-center"> Oscar </td>
+										<td class="text-center"> Presente </td>
+										<td class="text-center"> Grama </td>
+										<td class="text-center"> Soccer </td>
+										<td class="text-center"> Naranja </td>
+										<td class="text-center">
+											<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> </button>
+											<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> </button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3"></div>
+				<div class="col-md-6 mb-3"></div>
 			</div>
 
 		</div>
@@ -248,8 +329,6 @@
 
 	<script src="../../js/plugin/jquery-3.5.1.js"></script>
 	<script src="../../js/admin/sc-ript.js"></script>
-
-	<script src="../../js/plugin/chart/chart.js"></script>
 
 </body>
 

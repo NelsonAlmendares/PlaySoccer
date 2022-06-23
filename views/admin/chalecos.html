@@ -52,7 +52,7 @@
 								<div class="container-fluid">
 									<div class="card" style="width: 18rem;">
 										<div class="profile-site">
-											<img src="../../resources/img/profile/mujer1.png" class="img-fluid profile" alt="">
+											<img src="../../resources/img/profile/profile1.png" class="img-fluid profile" alt="">
 										</div>
 										<div class="card-body text-center">
 											<h5 class="card-title">Jenny Salmenron</h5>
@@ -202,41 +202,99 @@
 			</div>
 
 			<!-- Modal -->
+			<div class="modal fade" id="agregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-xl">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Agregar Chalecos <i class="fa-solid fa-vest text-muted"></i></h5> 
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-3">
+										<label for="costo" class="form-label">Costo del chaleco: </label> <i class="fa-solid fa-vest text-muted"></i>
+										<input class="form-control" type="number" id="costo" name="costo" placeholder="$00.00" max="16" required>
+									</div>
+									<div class="mb-3">
+										<label for="exampleColorInput" class="form-label">Color del chaleco</label> <i class="fa-solid fa-eye-dropper text-muted"></i>
+										<input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c"
+											title="Choose your color">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-3">
+										<label for="cantidad" class="form-label">Costo del chaleco: </label> <i class="fa-solid fa-dollar-sign text-muted"></i>
+										<input class="form-control" type="cantidad" id="cantidad" name="costo" placeholder="0" max="16" required>
+									</div>
+									<div class="mb-3">
+										<label for="talla" class="form-label">Talla del chaleco: <i class="fa-solid fa-ruler-vertical text-muted mb-3"></i>
+										<select class="form-select" aria-label="Default select example">
+											<option selected>Tallas...</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-outline-success">Agregar <i class="fa-solid fa-vest"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="row">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<table class="table table-sm table-hover">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">First</th>
-										<th scope="col">Last</th>
-										<th scope="col">Handle</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td colspan="2">Larry the Bird</td>
-										<td>@twitter</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+				<div class="container mt-3">
+					<div class="col-md-12 mt-3">
+						<table class="table table-sm table-hover">
+							<thead>
+								<tr>
+									<th scope="col" class="text-center"> ID </th>
+									<th scope="col" class="text-center"> Costo </th>
+									<th scope="col" class="text-center"> Cantidad </th>
+									<th scope="col" class="text-center"> Color </th>
+									<th scope="col" class="text-center"> Talla </th>
+									<th scope="col" class="text-center"> Acciones </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row" class="text-center">1</th>
+									<td class="text-center">$ 5.95</td>
+									<td class="text-center"> 20 </td>
+									<td class="text-center">
+										<div class="container colorPicker">
+											<input type="color" class="form-control form-control-color" id="colorValue" value="#85E85A" title="Choose your color">
+										</div>
+									</td>
+									<td class="text-center"> S </td>
+									<td class="text-center">
+										<button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
+										<button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row" class="text-center">2</th>
+									<td class="text-center">$ 6.00</td>
+									<td class="text-center"> 15 </td>
+									<td class="text-center">
+										<div class="container colorPicker">
+											<input type="color" class="form-control form-control-color" id="colorValue" value="#85E85A"
+												title="Choose your color">
+										</div>
+									</td>
+									<td class="text-center"> M </td>
+									<td class="text-center">
+										<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> </button>
+										<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> </button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -253,8 +311,6 @@
 
 	<script src="../../js/plugin/jquery-3.5.1.js"></script>
 	<script src="../../js/admin/sc-ript.js"></script>
-
-	<script src="../../js/plugin/chart/chart.js"></script>
 
 </body>
 

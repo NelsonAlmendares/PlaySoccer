@@ -19,7 +19,6 @@
 
 /*inicia el css de register*/
 .registro-fondo {
-  background-image: url('../../resources/login/fondo_login.png');
   height: 105vh;
   background-size: cover;
 }
