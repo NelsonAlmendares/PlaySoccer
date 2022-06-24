@@ -20,7 +20,7 @@
 
 <body>
     <!-- Loader -->
-    
+
     <div class="loader" id="loader">
         <div class="loadingio-spinner-pulse-e3biv8bdgj7">
             <div class="ldio-gmkqzm8qfmm">
@@ -46,37 +46,35 @@
                             <h3>Iniciar Sesión</h3>
                             <p class="text-700">Obten el acceso a una nueva cuenta</p>
                         </div>
-                        <button class="btn btn-phoenix-secondary w-100 mb-3">
-                            <span class="fa-brands fa-google text-google me-2 fs--1"></span>
-                            Iniciar sesión con google
-                        </button><button class="btn btn-phoenix-secondary w-100">
-                            <span class="fab fa-facebook text-facebook me-2 fs--1"></span>Iniciar sesión con facebook</button>
-                        <div class="position-relative mt-4">
-                            <hr class="bg-200">
-                            <div class="divider-content-center">or use email</div>
-                        </div>
-                        <div class="mb-3 text-start"><label class="form-label" for="email">Correo Eletrectrónico</label>
-                            <div class="form-icon-container">
-                                <input class="form-control form-icon-input" id="email" required
-                                    type="email" placeholder="name@example.com"><span
-                                    class="fas fa-user text-900 fs--1 form-icon">
-                                </span></div>
-                        </div>
-                        <div class="mb-3 text-start"><label class="form-label" for="password">Contraseña</label>
-                            <div class="form-icon-container"><input class="form-control form-icon-input" type="password"
-                                    placeholder="Contraseña"><span class="fas fa-user text-900 fs--1 form-icon"></span>
+                        <form id="inicio-sesion">
+                            <div class="mb-3 text-start"><label class="form-label" for="email">Correo
+                                    Eletrectrónico</label>
+                                <div class="form-icon-container">
+                                    <input class="form-control form-icon-input" id="email" name="correo_empleado"
+                                        required type="email" placeholder="name@example.com"><span
+                                        class="fas fa-user text-900 fs--1 form-icon">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row flex-between-center mb-7">
-                            <div class="col-auto">
-                                <div class="form-check mb-0"><input class="form-check-input" id="basic-checkbox"
-                                        type="checkbox" checked="checked"><label class="form-check-label mb-0"
-                                        for="basic-checkbox">Recordarme</label></div>
+                            <div class="mb-3 text-start"><label class="form-label" for="password">Contraseña</label>
+                                <div class="form-icon-container"><input class="form-control form-icon-input"
+                                        type="password" name="clave" placeholder="Contraseña"><span
+                                        class="fas fa-user text-900 fs--1 form-icon"></span>
+                                </div>
                             </div>
-                            <div class="col-auto"><a class="fs--1 fw-semi-bold" href="#!">Olvidó su contraseña?</a></div>
-                        </div>
-                        <a href="./main.html" type="submit"  class="btn btn-outline-success w-100 mb-3">Registrarme</a>
-                        <div class="text-center"><a class="fs--1 fw-bold" href="./registro.html">Crear una cuenta!</a></div>
+                            <div class="row flex-between-center mb-7">
+                                <div class="col-auto">
+                                    <div class="form-check mb-0"><input class="form-check-input" id="basic-checkbox"
+                                            type="checkbox" checked="checked"><label class="form-check-label mb-0"
+                                            for="basic-checkbox">Recordarme</label></div>
+                                </div>
+                                <div class="col-auto"><a class="fs--1 fw-semi-bold" href="#!">Olvidó su contraseña?</a>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success w-100 mb-3">Registrarme</button>
+                            <div class="text-center"><a class="fs--1 fw-bold" href="./registro.html">Crear una
+                                    cuenta!</a></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -85,7 +83,11 @@
 
     <script src="../../js/plugin/loader.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
-
+    <!--Sweet Alert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Controladores JS-->
+    <script src="../../controller/components.js"></script>
+    <script src="../../controller/admin/index.js"></script>
 </body>
 
 </html>

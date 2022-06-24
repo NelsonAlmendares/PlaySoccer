@@ -1,22 +1,21 @@
 <?php
-
-    class Validator {
-
-    private $passwordError = null;
+    
+    class Validator{
+        private $passwordError = null;
         private $fileError = null;
         private $fileName = null;
 
-        /* Obtenemos el error que se pueda generar en la contraseña */
-    public function getPasswordError() {
+    /* Obtenemos el error que se pueda generar en la contraseña */
+    public function getPasswordError(){
         return $this->passwordError;
     }
 
     /* Obteniendo errores de los arhivos agregados recientemente */
-    public function getFileName() {
+    public function getFileName(){
         return $this->fileName;
     }
 
-    public function getFileError() {
+    public function getFileError(){
         return $this->fileError;
     }
 
@@ -40,8 +39,7 @@
 
     /* metodo para verificar las dimensiones de las imagenes */
     public function validateImageFile($file, $maxWidth, $maxHeigth)
-    {
-        // Se verifica si el archivo existe, de lo contrario se establece el mensaje de error correspondiente.
+    {   // Se verifica si el archivo existe, de lo contrario se establece el mensaje de error correspondiente.
         if ($file) {
             // Se comprueba si el archivo tiene un tamaño menor o igual a 2MB, de lo contrario se establece el mensaje de error correspondiente.
             if ($file['size'] <= 2097152) {
@@ -209,7 +207,7 @@
     public function validatePDFFile($file)
     {
          // Se verifica si el archivo existe, de lo contrario se establece el mensaje de error correspondiente.
-        if ($file) {
+         if ($file) {
              // Se comprueba si el archivo tiene un tamaño menor o igual a 2MB, de lo contrario se establece un número de error.
              if ($file['size'] <= 2097152) {
                  // Se verifica el tipo de archivo.
@@ -232,7 +230,5 @@
              return false;
          }
      }
-
-    }
-
+}
 ?>

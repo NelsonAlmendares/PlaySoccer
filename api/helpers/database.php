@@ -1,20 +1,23 @@
 <?php
-
     class Database{
+        /* variablas para la conexion con la base de datos */
         private static $connection = null;
         private static $statement = null;
         private static $error = null;
 
-        public static function connect () {
+        public static function connect(){
             $server = 'localhost';
             $database = 'PlaySoccer';
             $username = 'postgres';
-            $password = 'AdminUser';
+            $password = '1234';
 
-            self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432' ,  $username, $password);
+
+            self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432' , $username, $password);
         }
 
-        public static function executeRow ($query, $values) {
+        /* Funcion para las operaciones insert, update y delete */
+
+        public static function executeRow($query, $values){
             try {
                 self::connect();
                 self::$statement = self::$connection->prepare($query);
@@ -27,7 +30,8 @@
             }
         }
 
-        public static function getLastRow ($query, $values) {
+        public static function getLastRow($query, $values)
+    {
         try {
             self::connect();
             self::$statement = self::$connection->prepare($query);
@@ -47,7 +51,7 @@
     }
 
         /*Funcion para mandar a llamar los registros con sentencia de sql tipo SELECT retornando un valor booleano*/
-        public static function getRows ($query, $values) {
+        public static function getRows($query, $values){
             try {
                 self::connect();
                 self::$statement = self::$connection->prepare($query);
@@ -67,7 +71,8 @@
     *   
     *   Retorno: arreglo asociativo del registro si la sentencia SQL se ejecuta satisfactoriamente o false en caso contrario.
     */
-    public static function getRow ($query, $values) {
+    public static function getRow($query, $values)
+    {
         try {
             self::connect();
             self::$statement = self::$connection->prepare($query);
@@ -82,7 +87,7 @@
         }
     }
 
-    private static function setException ($code, $message) {
+        private static function setException($code, $message){
         // Se asigna el mensaje del error original por si se necesita.
         self::$error = utf8_encode($message);
         // Se compara el código del error para establecer un error personalizado.
@@ -108,10 +113,8 @@
         }
 
         /* Metodo para obtener errores de una excecion */
-    public static function getException() {
-        return self::$error;
+        public static function getException(){
+            return self::$error;
+        }
     }
-        
-    }
-
 ?>

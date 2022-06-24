@@ -33,43 +33,43 @@
                         <h3>Register</h3>
                         <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.
                         </p>
-                        <form action="#" method="post">
+                        <form action="#" method="post" id="registrarse">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group first">
-                                        <label class="mt-3" for="fname">First Name</label>
-                                        <input type="text" class="form-control mt-2" placeholder="e.g. John" id="fname">
+                                        <label class="mt-3" for="nombre">Nombre:</label>
+                                        <input type="text" class="form-control mt-2" placeholder="e.g. John" id="nombre" name="nombre_empleado">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group first">
-                                        <label class="mt-3" for="lname">Last Name</label>
-                                        <input type="text" class="form-control mt-2" placeholder="e.g. Smith" id="lname">
+                                        <label class="mt-3" for="apellido">Apellido:</label>
+                                        <input type="text" class="form-control mt-2" placeholder="e.g. Smith" id="apellido" name="apellido_empleado"">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group first">
-                                        <label class="mt-3" for="email">Email Address</label>
+                                        <label class="mt-3" for="email">Correo electrónico</label>
                                         <input type="email" class="form-control mt-2" placeholder="e.g. john@your-domain.com"
-                                            id="email">
+                                            id="email" name="correo_empleado">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group first">
-                                        <label class="mt-3" for="lname">Phone Number</label>
+                                        <label class="mt-3" for="celular">Número de teleno:</label>
                                         <input type="text" class="form-control mt-2" placeholder="+00 0000 000 0000"
-                                            id="lname">
+                                            id="celular" name="celular_empleado">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group first">
-                                        <label class="mt-3" for="lname">Website</label>
+                                        <label class="mt-3" for="dui">DUI:</label>
                                         <input type="text" class="form-control mt-2" placeholder="e.g. https://google.com"
-                                            id="lname">
+                                            id="dui" name="dui_empleado">
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <div class="form-group last mb-3">
                                         <label class="mt-3" for="password">Password</label>
                                         <input type="password" class="form-control mt-2" placeholder="Your Password"
-                                            id="password">
+                                            id="password" name="clave">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -87,9 +87,9 @@
                                     <div class="form-group last mb-3">
                                         <label class="mt-3" for="re-password">Re-type Password</label>
                                         <input type="password" class="form-control mt-2" placeholder="Your Password"
-                                            id="re-password">
+                                            id="re-password" name="confirmar">
                                     </div>
-                                </div>
+                                </div>                                
                             </div>
 
                             <div class="d-flex mb-5 mt-4 align-items-center">
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
 
-                            <input type="submit" value="Register" class="btn px-5 btn-primary">
+                            <button type="submit" value="Register" class="btn px-5 btn-primary">Register</button>
 
                         </form>
                     </div>
@@ -122,6 +122,11 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <script src="../../js/admin/register.js"></script>
+    <!--Sweet Alert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Controladores JS-->
+    <script src="../../controller/components.js"></script>
+     <script src="../../controller/admin/register.js"></script>
 </body>
 
 </html>

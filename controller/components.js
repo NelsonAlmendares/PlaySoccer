@@ -7,7 +7,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/ThruColors/api/';
+const SERVER = 'http://localhost/PlaySoccer/api/';
 
 
 /*
@@ -154,7 +154,7 @@ function confirmDelete(api, data) {
 }
 
 /*
-*   Funciones para manejar los mensajes de notificación al usuario. Requiere el archivo sweetalert.min.js para funcionar.
+*   Funciones para manejar los mensajes de notificación al usuario. Requiere el archivo sweetalert2.min.js para funcionar.
 *
 *   Parámetros: type (tipo de mensaje), text (texto a mostrar) y url (ubicación para enviar al cerrar el mensaje).
 *
@@ -203,6 +203,7 @@ function sweetAlert(type, text, url) {
     }
 }
 
+//Se crea la variable ToastS para poder manejar los alerts como toasts
 const ToastS = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -214,7 +215,13 @@ const ToastS = Swal.mixin({
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   });
- 
+/*
+*   Funciones para manejar los mensajes de notificación al usuario de tipo Toast. Requiere el archivo sweetalert2.min.js para funcionar.
+*
+*   Parámetros: type (tipo de mensaje), text (texto a mostrar) y url (ubicación para enviar al cerrar el mensaje).
+*
+*   Retorno: ninguno.
+*/
 function Toast(type, text, url) {
     // Se compara el tipo de mensaje a mostrar.
     switch (type) {
