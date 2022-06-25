@@ -286,6 +286,8 @@ class Empleados extends Validator
     /*----------------Método para crear empleados--------------------*/
     public function createRow()
     {   
+        //Se asigna una imagen predeterminada        
+        $this->foto_empleado = '1.png';
         $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado)
            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->celular_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado);                
