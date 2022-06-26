@@ -1,3 +1,7 @@
 <?php
-    print('Hello World');
+    
+    class Reservaciones extends Validator{
+        
+    }
+
 ?>
