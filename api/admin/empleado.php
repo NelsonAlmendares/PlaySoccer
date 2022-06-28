@@ -287,7 +287,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleado->setClave($_POST['clave'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
-                } elseif ($empleado->createRow()) {
+                } elseif ($empleado->primerUso()) {
                     $result['status'] = 1;                
                     $result['message'] = 'El empleado registrado correctamente';
                 } elseif (Database::getException()) {                   
