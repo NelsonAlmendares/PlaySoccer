@@ -283,8 +283,8 @@ class Empleados extends Validator
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
-    /*----------------Método para crear empleados--------------------*/
-    public function createRow()
+    /*----------------Método para el primer uso--------------------*/
+    public function primerUso()
     {   
         //Se asigna una imagen predeterminada        
         $this->foto_empleado = '1.png';
@@ -293,20 +293,30 @@ class Empleados extends Validator
         $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->celular_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado);                
         return Database::executeRow($sql, $params);
     }
+    /*----------------Método para crear empleados--------------------*/
+    public function createRow()
+    {           
+        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado)
+           VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->celular_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado);                
+        return Database::executeRow($sql, $params);
+    }
     /*-------------Método para buscar empleados-----------*/
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado
-                FROM tb_empleado
-                ORDER BY id_empleado;';
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                ORDER BY id_empleado';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, password_empleado, tipo_empleado, foto_empleado
-                FROM tb_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
                 WHERE id_empleado = ?';
         $params = array($this->id_empleado);
         return Database::getRow($sql, $params);

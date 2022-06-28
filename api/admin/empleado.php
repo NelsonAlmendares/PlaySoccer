@@ -153,35 +153,27 @@ if (isset($_GET['action'])) {
             case 'create':
                 $_POST = $empleado->validateForm($_POST);
                 
-                if (!$empleado->setNombre_e($_POST['nombre_empleado'])) {
+                if (!$empleado->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrectos';
-                } elseif (!$empleado->setApellido_e($_POST['apellido_empleado'])) {
+                } elseif (!$empleado->setApellido($_POST['apellido'])) {
                     $result['exception'] = 'Apellido incorrectos';
-                } elseif (!$empleado->setDUI_e($_POST['DUI_empleado'])) {
-                    $result['exception'] = 'DUI incorrecto';
-                } elseif (!is_uploaded_file($_FILES['foto_empleado']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$empleado->setFoto_e($_FILES['foto_empleado'])) {
-                    $result['exception'] = $empleado->getFileError();
-                } elseif (!$empleado->setDireccion_e($_POST['direccion_empleado'])) {
-                    $result['exception'] = 'Direccion incorrecto';
-                } elseif (!$empleado->setCodigo_e($_POST['codigo_empleado'])) {
-                    $result['exception'] = 'Codigo incorrecto';
+                } elseif (!$empleado->setDUI($_POST['dui'])) {
+                    $result['exception'] = 'DUI incorrecto';               
+                } elseif (!$empleado->setCelular($_POST['celular'])) {
+                    $result['exception'] = 'Celular incorrecto';
+                } elseif (!$empleado->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Correo incorrecto';
                 } elseif (!isset($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
-                } elseif (!$empleado->setTipo_e($_POST['tipo_empleado'])) {
+                } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Tipo empleado incorrecto';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleado->setClave($_POST['clave'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
-                } elseif ($empleado->createRow()) {
-                    $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['foto_empleado'], $empleado->getRuta(), $empleado->getFoto_e())) {
-                    $result['message'] = 'El empleado registrado correctamente';
-                    } else {
-                        $result['message'] = 'El empleado se registro pero no se guardó la imagen';
-                    }
+                } elseif ($empleado->primerUso()) {
+                    $result['status'] = 1;                    
+                    $result['message'] = 'El empleado registrado correctamente';                    
                 } elseif (Database::getException()) {                   
                     $result['exception'] = Database::getException();
                 } else {
@@ -287,7 +279,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleado->setClave($_POST['clave'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
-                } elseif ($empleado->createRow()) {
+                } elseif ($empleado->primerUso()) {
                     $result['status'] = 1;                
                     $result['message'] = 'El empleado registrado correctamente';
                 } elseif (Database::getException()) {                   
