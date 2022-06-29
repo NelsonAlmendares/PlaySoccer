@@ -189,42 +189,36 @@
 				<div class="modal-dialog modal-dialog-centered modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Agregar Chalecos <i class="fa-solid fa-vest text-muted"></i></h5> 
+							<h5 class="modal-title" id="staticBackdropLabel">Asignación de Horario <i class="bi bi-alarm"></i></h5> 
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-3">
-										<label for="costo" class="form-label">Costo del chaleco: </label> <i class="fa-solid fa-vest text-muted"></i>
-										<input class="form-control" type="number" id="costo" name="costo" placeholder="$00.00" max="16" required>
+										<label for="hora" class="form-label">Hora de Inicio: </label> <i class="bi bi-alarm"></i>
+										<input class="form-control" type="time" id="hora" name="hora"  required>
 									</div>
 									<div class="mb-3">
-										<label for="exampleColorInput" class="form-label">Color del chaleco</label> <i class="fa-solid fa-eye-dropper text-muted"></i>
-										<input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c"
-											title="Choose your color">
+										<label for="exampleColorInput" class="form-label">Tipo de Horario</label> <i class="bi bi-hourglass-bottom"></i>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Asigne el tipo de Horario</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                        </select>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="mb-3">
-										<label for="cantidad" class="form-label">Costo del chaleco: </label> <i class="fa-solid fa-dollar-sign text-muted"></i>
-										<input class="form-control" type="cantidad" id="cantidad" name="costo" placeholder="0" max="16" required>
-									</div>
-									<div class="mb-3">
-										<label for="talla" class="form-label">Talla del chaleco: <i class="fa-solid fa-ruler-vertical text-muted mb-3"></i>
-										<select class="form-select" aria-label="Default select example">
-											<option selected>Tallas...</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										</select>
+										<label for="hora" class="form-label">Hora de Finalización: </label> <i class="bi bi-alarm"></i>
+										<input class="form-control" type="time" id="hora" name="hora"   required>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-outline-success">Agregar <i class="fa-solid fa-vest"></i></button>
+							<button type="button" class="btn btn-outline-success">Agregar</button>
 						</div>
 					</div>
 				</div>
@@ -246,7 +240,7 @@
 								<tr>
 									<th scope="row" class="text-center">1</th>
 									<td class="text-center">10:20 a.m</td>
-									<td class="text-center">12:40 m.d</td>
+									<td class="text-center">12:40 a.m</td>
 									<td class="text-center">Diurno<td>
 									<td class="text-center">
 										<button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
