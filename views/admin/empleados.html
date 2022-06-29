@@ -35,7 +35,7 @@
 			<div class="collapse navbar-collapse" id="topNavBar">
 				<form class="d-flex ms-auto my-3 my-lg-0" id="search-form">
 					<div class="input-group">
-						<input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+						<input class="form-control" type="search" placeholder="Search" aria-label="Search" id="buscar" name="buscar"/>
 						<button class="btn btn-primary" type="submit">
 							<i class="bi bi-search"></i>
 						</button>
@@ -179,8 +179,8 @@
 			</div>
 
 			<!-- Modal agregar empleado -->
-			<div class="modal fade" id="modal-empleado" tabindex="-1"
-				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal fade" id="modal-empleado" tabindex="-1" aria-labelledby="staticBackdropLabel"
+				aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-centered">
 					<div class="modal-content">
 						<form action="" method="post" id="save-form">
@@ -188,13 +188,13 @@
 								<h5 class="modal-title" id="titulo-modal">Agregar Empleados <i
 										class="fa-solid fa-address-book text-muted"></i></h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
+									aria-label="Close" onclick="cleanModal()"></button>
 							</div>
 							<div class="modal-body">
 								<div class="container">
 									<div class="row">
 										<div class="col-md-6">
-											<div class="mb-3" id="id">
+											<div class="mb-3" id="id-empleado">
 												<label for="id" class="form-label">ID del Empleado </label> <i
 													class="fa-solid fa-pen text-secondary"></i>
 												<input class="form-control" type="text" id="id" name="id"
@@ -227,45 +227,43 @@
 										</div>
 										<div class="col-md-6">
 											<label for="celular" class="form-label">Celular del Empleado</label> <i
-												class="fa-solid fa-phone text-secondary""></i>
-                                                     <div class=" input-group mb-3">
+												class="fa-solid fa-phone text-secondary"></i>
+												<div class=" input-group mb-3">
 												<span class="input-group-text" id="basic-addon1">+503</span>
 												<input type="text" class="form-control" placeholder="celular" max="8"
-													id="ceular" name="celular" aria-label="Username"
+													id="celular" name="celular" aria-label="Username"
 													aria-describedby="basic-addon1" required>
 										</div>
 										<div class="mb-3">
 											<label for="email" class="form-label">Correo del Empleado </label> <i
 												class="fa-solid fa-at text-secondary""></i>
-                                    <input class=" form-control" type="email" id="email" name="email"
-												placeholder="Jhon Doe" required>
-										</div>
-										<div class="mb-3">
-											<label for="clave" class="form-label">Contraseña del Empleado </label> <i
-												class="fa-solid fa-lock text-muted"></i>
-											<input class=" form-control" type="password" id="clave" name="clave"
-												placeholder="Jhon Doe" required>
-										</div>
-										<div class="mb-3">
-											<label for="confirmar" class="form-label">Confirmar contraseña del Empleado
-											</label> <i class="fa-solid fa-lock text-muted"></i>
-											<input class=" form-control" type="password" id="confirmar" name="confirmar"
+												<input class=" form-control" type="email" id="email" name="email"
 												placeholder="Jhon Doe" required>
 										</div>
 										<div class="mb-3" id="foto">
 											<label for="foto" class="form-label">Foto del Empleado </label> <i
 												class="fa-solid fa-image text-secondary""></i>
-                                                         <input class=" form-control" type="file" id="foto" name="foto"
+												<input class=" form-control" type="file" id="foto" name="foto"
 												placeholder="Jhon Doe">
+										</div>
+										<div class="mb-3">
+											<label for="clave" class="form-label">Contraseña del Empleado </label> <i
+												class="fa-solid fa-lock text-muted"></i>
+											<input class=" form-control" type="password" id="clave" name="clave" required>
+										</div>
+										<div class="mb-3" id="confirmar">
+											<label for="confirmar" class="form-label">Confirmar contraseña del Empleado
+											</label> <i class="fa-solid fa-lock text-muted"></i>
+											<input class=" form-control" type="password" id="confirmar" name="confirmar">
 										</div>
 									</div>
 								</div>
 							</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel</button>
-							<button type="submit" class="btn btn-outline-success"> Agregar <i
-									class="fa-solid fa-person-circle-plus"></i></button>
+						<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="cleanModal()"> Cancel</button>
+						<button type="submit" class="btn btn-outline-success" id="btn-accion"></i> <i
+								class="fa-solid fa-person-circle-plus"></i></button>
 					</div>
 					</form>
 				</div>
@@ -309,7 +307,6 @@
 
 	<script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-
 	<script src="../../js/plugin/jquery-3.5.1.js"></script>
 	<!--Sweet Alert-->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
