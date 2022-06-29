@@ -122,9 +122,16 @@ if (isset($_GET['action'])) {
             case 'search':
                 $_POST = $empleado->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($empleado->validateNaturalNumber($_POST['buscar'])) {
-                    if ($result['dataset'] = $empleado->searchNumbers($_POST['buscar'])) {
+                    if ($result['dataset'] = $empleado->readAll()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Todos los datos han sido cargados';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay datos registrados';
+                    }
+                } elseif ($empleado->validatePhone($_POST['buscar'])) {
+                    if ($result['dataset'] = $empleado->searchCelular($_POST['buscar'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } else{
@@ -138,7 +145,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'No hay coincidencias';
                     }
                 } elseif ($empleado->validateDUI($_POST['buscar'])) {
-                    if ($result['dataset'] = $empleado->searchDUIs($_POST['buscar'])) {
+                    if ($result['dataset'] = $empleado->searchDui($_POST['buscar'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } else{

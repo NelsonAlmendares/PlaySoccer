@@ -256,30 +256,33 @@ class Empleados extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    /*-------------Método para buscar el nombre y apellido de empleado.-------------*/
+    /*-------------Método para buscar el nombre y apellido del empleado.-------------*/
     public function searchRows($value)
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, tipo_empleado, foto_empleado
-                FROM tb_empleado
-                WHERE apellido_empleado ILIKE ? OR nombre_empleado ILIKE ? OR direccion_empleado ILIKE ?';
-        $params = array("%$value%", "%$value%", "%$value%");
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                WHERE apellido_empleado ILIKE ? OR nombre_empleado ILIKE ? OR correo_empleado ILIKE ? OR tipoempleado ILIKE ?';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
-    /*-------------Método para buscar el coddigo y tipo empleado de empleado.-------------*/
-    public function searchNumbers($value)
+    /*-------------Método para buscar el celular del empleado.-------------*/
+    public function searchCelular($value)
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, tipo_empleado, foto_empleado
-        FROM tb_empleado
-        WHERE codigo_empleado = ? OR tipo_empleado = ?';
-        $params = array("$value", "$value");
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                WHERE celular_empleado ILIKE ?';
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
-    /*-------------Método para buscar el DUI de empleado.-------------*/
-    public function searchDUIs($value)
+    /*-------------Método para buscar el DUI del empleado.-------------*/
+    public function searchDui($value)
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, tipo_empleado, foto_empleado
-                FROM tb_empleado
-                WHERE "DUI" ILIKE ?';
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                WHERE dui_empleado ILIKE ?';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
