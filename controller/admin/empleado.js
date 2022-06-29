@@ -39,8 +39,8 @@ function fillTable(dataset) {
                     <td class="text-center"> ${row.correo_empleado} </td>
                     <td class="text-center"> ${row.tipo_empleado} </td>
                     <td class="text-center">
-                    <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+                    <button class="btn btn-outline-info" onclick="openUpdate(${row.id_empleado})"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn btn-outline-danger" onclick="openDelete(${row.id_empleado})"><i class="fa-solid fa-eraser"></i></button>
                     </td>
                 </tr>          
         `;
@@ -63,100 +63,44 @@ function openCreate() {
     modal.show();
     // Se asigna el título para el modal.
     document.getElementById('titulo-modal').textContent = 'Crear usuario de empleado';
+    // Se asigna el texto al boton.
+    document.getElementById('btn-accion').textContent = 'Agregar';
     //se ocultan y deshabilitan los campos correspondientes del id
     document.getElementById('id').hidden = true;
-    document.getElementById('foto').hidden = true;
     document.getElementById('id').disabled = true;
+    document.getElementById('id-empleado').hidden = true;
+    //se ocultan y deshabilitan los campos correspondientes del foto
+    document.getElementById('foto').hidden = true;
     document.getElementById('foto').disabled = true;
+    //Se muestran y habilitan los campos correspondientes de confirmación de contraseña  
+    document.getElementById('confirmar').hidden = false;
+    document.getElementById('confirmar').disabled = false;
+    //Se habilita los campos correspondientes a la contraseña
+    document.getElementById('clave').disabled = false;
     //se llena el select    
     fillSelect(ENDPOINT_TIPO_E, 'tipo_empleado', null);
 }
 
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_empleado) {
-    // Se crea la variable que guardara todas las etiquetas html.
-    let update = '';
-    // Se crea todo el formulario.
-        update += `            
-        <h2 id="modal-titulo"></h2>
-        <!-- No se coloca el id solo al momento de modificar al momento de modificar -->
-        <div class="openModal">
-            <div class="lateral1">
-                <div class="input-field ">
-                    <label class="label" for="id_empleado" id="id_e">ID de empleado:</label>
-                    <input type="number" class="form-control input-label" id="id_empleado" name="id_empleado" step="000" placeholder="1" min="1"
-                        required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="nombre_empleado">Nombre de empleado:</label>
-                    <input type="text" class="form-control input-label" id="nombre_empleado" name="nombre_empleado" placeholder="Nombre"
-                        required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="apellido_empleado">Apellido de empleado:</label>
-                    <input type="text" class="form-control input-label" id="apellido_empleado" name="apellido_empleado" placeholder="Apellido"
-                        required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="DUI_empleado">DUI de empleado:</label>
-                    <input type="text" class="form-control input-label" id="DUI_empleado" name="DUI_empleado" placeholder="12345678-9"
-                        maxlength="10" required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="foto_empleado">Foto de empleado:</label>
-                    <div class="file-select">
-                        <input type="file" class="form-control" id="foto_empleado" name="foto_empleado" accept=".jpg, .png" />
-                    </div>
-                </div>
-            </div>
-            
-            <div class="lateral2">
-                <div class="input-field ">
-                    <label class="label" for="direccion_empleado">Direccion de empleado:</label>
-                    <input type="text" class="form-control input-label" id="direccion_empleado" name="direccion_empleado"
-                        placeholder="Residencial, pasaje, casa N°..." required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="codigo_empleado">Código de empleado:</label>
-                    <input type="number" class="form-control input-label" id="codigo_empleado" name="codigo_empleado" step="000"
-                        placeholder="001" min="1" required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="tipo_empleado">Tipo empleado</label>
-                    <select id="tipo_empleado" class="select_id" name="tipo_empleado">
-                    </select>
-                </div>
-                <div class="input-field  ">
-                    <label class="label" for="clave">Contraseña:</label>
-                    <input type="password" id="clave" name="clave" maxlength="8" class="form-control input-label" placeholder="Contraseña"
-                        required />
-                </div>
-                <div class="input-field ">
-                    <label class="label" for="password" id="confirm">Confirmar Contraseña:</label>
-                    <input id="confirmar" type="password" name="confirmar" maxlength="8" class="form-control input-label"
-                        placeholder="Confirmar contraseña" required>
-                </div>
-            </div>
-        </div>
-        
-        <div class="input-field col s12 m6">
-            <a class="active" href="empleados.html" id="cerrar_form">Cerrar</a>
-            <button id="agregar" type="submit">Actualizar</button>
-        </div>                           
-        `;
-    // Se agregan agregan todos los campos al formulario mediante su id para crear un registro.
-    document.getElementById('save-form').innerHTML = update;
-    // Se asigna el título para el formulario.
-    document.getElementById('modal-titulo').textContent = 'Actualizar usuario de empleado';
-    // Se deshabilitan los campos de alias y contraseña.
-    document.getElementById('id_empleado').hidden = false;
-    document.getElementById('id_e').hidden = false;
-    document.getElementById('id_empleado').disabled = false;
-    document.getElementById('id_e').disabled = false;   
+    //Se abre el modal
+    modal.show();
+    // Se asigna el título para el modal.
+    document.getElementById('titulo-modal').textContent = 'Actualizar usuario de empleado';
+    // Se asigna el texto al boton.
+    document.getElementById('btn-accion').textContent = 'Actualizar';
+    //Se muestran y habilitan los campos correspondientes del id
+    document.getElementById('id').hidden = false;
+    document.getElementById('id').disabled = false;
+    document.getElementById('id-empleado').hidden = false;   
+    //Se muestran y habilitan los campos correspondientes del foto
+    document.getElementById('foto').hidden = false;
+    document.getElementById('foto').disabled = false;
+    //Se oculta y deshabilitan los campos correspondientes de confirmación de contraseña  
     document.getElementById('confirmar').hidden = true;
-    document.getElementById('confirm').hidden = true;
-    document.getElementById('clave').disabled = true;
     document.getElementById('confirmar').disabled = true;
+    //Se deshabilita los campos correspondientes a la contraseña
+    document.getElementById('clave').disabled = true;
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id_empleado', id_empleado);
@@ -171,14 +115,14 @@ function openUpdate(id_empleado) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id_empleado').value = response.dataset.id_empleado;
-                    document.getElementById('nombre_empleado').value = response.dataset.nombre_empleado;
-                    document.getElementById('apellido_empleado').value = response.dataset.apellido_empleado;
-                    document.getElementById('DUI_empleado').value = response.dataset.DUI;                    
-                    document.getElementById('direccion_empleado').value = response.dataset.direccion_empleado;
-                    document.getElementById('codigo_empleado').value = response.dataset.codigo_empleado;
+                    document.getElementById('id').value = response.dataset.id_empleado;
+                    document.getElementById('nombre').value = response.dataset.nombre_empleado;
+                    document.getElementById('apellido').value = response.dataset.apellido_empleado;
+                    document.getElementById('dui').value = response.dataset.dui_empleado;                    
+                    document.getElementById('celular').value = response.dataset.celular_empleado;
+                    document.getElementById('email').value = response.dataset.correo_empleado;
                     fillSelect(ENDPOINT_TIPO_E, 'tipo_empleado', response.dataset.tipo_empleado);
-                    document.getElementById('clave').value = response.dataset.clave;                    
+                    document.getElementById('clave').value = response.dataset.contrasena_empleado;
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -204,8 +148,10 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     }    
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
     saveRow(API_USUARIOS, action, 'save-form');
+    // Se limpia la caja de dialogo (modal) del formulario.  
+    cleanModal();
     // Se cierra la caja de dialogo (modal) del formulario.  
-    modal.hide();
+    modal.hide();   
 });
 
 // Función para establecer el registro a eliminar y abrir una caja de diálogo de confirmación.
@@ -215,4 +161,16 @@ function openDelete(id_empleado) {
     data.append('id_empleado', id_empleado);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
     confirmDelete(API_USUARIOS, data);
+}
+
+// Función para limpiar el formulario del modal
+function cleanModal(){
+	//se liempia el input accediendo a su ID
+	$("#nombre").val('');
+    $("#apellido").val('');
+    $("#dui").val('');
+    $("#celular").val('');
+    $("#email").val('');
+    $("#clave").val('');
+    $("#confirmar").val('');
 }

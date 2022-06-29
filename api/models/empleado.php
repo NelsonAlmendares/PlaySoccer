@@ -15,7 +15,7 @@ class Empleados extends Validator
     private $clave = null;
     private $foto_empleado = null;
     private $tipo_empleado = null;
-    private $ruta = '../imagenes/empleados/';
+    private $ruta = '../imagenes/empleado/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -311,7 +311,7 @@ class Empleados extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
-
+    /*-------------Método para buscar el prefil de un empleado-----------*/
     public function readOne()
     {
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
@@ -321,16 +321,22 @@ class Empleados extends Validator
         $params = array($this->id_empleado);
         return Database::getRow($sql, $params);
     }
-
+/*-------------Método para actualizar el prefil de un empleado-----------*/
     public function updateRow($foto_imagen)
     {
-        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
-        ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
+        // Se verifica si la imagen que existe no es la default, para no eliminarla
+        if(!$foto_imagen=='1.png'){
+            // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+            ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
+        }else{
+            $this->foto_empleado = $foto_imagen;
+        }
+        
 
         $sql = 'UPDATE tb_empleado 
-               SET nombre_empleado = ?, apellido_empleado = ?, "DUI" = ?, direccion_empleado = ?, codigo_empleado = ?, tipo_empleado = ?, foto_empleado = ?
-                WHERE id_empleado = ?';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->direccion_empleado, $this->codigo_empleado, $this->tipo_empleado, $this->foto_empleado, $this->id_empleado);
+                SET nombre_empleado=?, apellido_empleado=?, dui_empleado=?, correo_empleado=?, id_tipoempleado=?, celular_empleado=?, foto_empleado=?
+	            WHERE id_empleado = ?';
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->correo_empleado, $this->tipo_empleado, $this->celular_empleado, $this->foto_empleado, $this->id_empleado);
         return Database::executeRow($sql, $params);
     }
 
