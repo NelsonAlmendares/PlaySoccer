@@ -5,26 +5,26 @@ class Canchas extends Validator
     // Declaración de atributos (propiedades)
 
     private $id_cancha = null;
-    private $numero_cancha = null;
-    private $tamano_cancha = null;
-    private $material_cancha = null;
-    private $costo_cancha = null;
+    private $numero = null;
+    private $tamano = null;
+    private $material = null;
+    private $costo = null;
 
     // Métodos para validar y asignar valores a los atributos
 
-    public function setId($values)
+    public function setId($value)
     {
-        if ($this->validateNaturalNumber($values)) {
-            $this->id_cancha = $values;
+        if ($this->validateNaturalNumber($value)) {
+            $this->id_cancha = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function setNumero($values)
+    public function setNumero($value)
     {
-        if ($this->validateNaturalNumber($values)) {
+        if ($this->validateNaturalNumber($value)) {
             $this->numero_cancha = $value;
             return true;
         } else {
@@ -32,87 +32,108 @@ class Canchas extends Validator
         }
     }
 
-    public function setTamano($values)
+    public function setTamano($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->tamano_cancha = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setMaterial($value)
+    {
+        if ($this->validateAlphabetic($value)) {
+            $this->material_cancha = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCosto($value)
     {
         if ($this->validateNaturalNumber($values)) {
-            $this->tamano_cancha = $values; 
+            $this->costo_cancha = $value;
             return true;
         } else {
             return false;
         }
     }
-
-    public function setMaterial($values)
-    {
-        if ($this->validateAlphabetic($values)) {
-            $this->material_cancha = $values;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setCosto($values)
-    {
-        if ($this->validateNaturalNumber($values)) {
-            $this->costo_cancha = $values;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     /**
      *  Métodos para obtener los valores de los atributos
      */
 
-     public function getId()
-     {
+    public function getId()
+    {
         return $this->id_cancha;
-     }
+    }
 
-     public function getNumero()
-     {
+    public function getNumero()
+    {
         return $this->numero_cancha;
-     }
+    }
 
-     public function getTamano()
-     {
+    public function getTamano()
+    {
         return $this->tamano_cancha;
-     }
+    }
 
-     public function getMaterial()
-     {
+    public function getMaterial()
+    {
         return $this->material_cancha;
-     }
-     public function getCosto()
-     {
+    }
+    public function getCosto()
+    {
         return $this->costo_cancha;
-     }
+    }
 
+    /**
+     *  Métodos para gestionar el registro de canchas
+     */
 
-     /**
-      *  Métodos para gestionar el registro de canchas 
-      */
+    /*-----------------------Método basicos para el Scrud -------------------- */
 
-      /*-----------------------Método para proporcionar el id de la cancha -------------------- */
+    public function createLine()
+    {
+        $sql = 'INSERT INTO public.tb_cancha(
+                numero_cancha, tamano_cancha, material_cancha, costo_cancha)
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->numero, $this->tamano, $this->material, $this->costo);
+        return Database::executeLine($sql, $params);
+    }
 
-      public function checkCourt($numero_cancha)
-      {
-        $sql = 'SELECT id_cancha FROM tb_cancha WHERE numero_cancha = ? ';
-        $params = array($numero_cancha);
-        if ($data = Database::getRow($sql, $params)) {
-            $this->id_cancha = $data['id_cancha'];
-            $this->numero_cancha = $numero_cancha;
-            return true;
-        } else {
-            return false;
-        }
-      }
+    public function readLines()
+    {
+        $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
+                FROM public.tb_cancha
+                WHERE id_cancha = ?
+                ORDER BY numero_cancha';
+        $params = array($this->id);
+        return Database::getLines($sql, $params);
+    }
 
-      
+    public function readAll()
+    {
+        $sql = 'SELECT numero_cancha AS numero, tamano_cancha AS tamano, material_cancha AS material, costo_cancha AS costo
+                FROM tb_cancha
+                ORDER BY id_cancha';
+        $params = null;
+        return Database::getLines($sql, $params);
+    }
+
+    public function searchLines($value)
+    {
+        $sql = 'SELECT numero_cancha AS numero, tamano_cancha AS tamano, material_cancha AS material, costo_cancha AS costo
+                FROM tb_cancha
+                WHERE numero_cancha ILIKE ? OR tamano_cancha ILIKE ? OR material_cancha ILIKE ?
+                ORDER BY id_cancha';
+        $params = array($value);
+        return Database::getLines($sql, $params);
+    }
+
 }
 
-
-
+?>
