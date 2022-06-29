@@ -6,7 +6,7 @@
   --white: #fff;
   --black: #000;
   --navvbar: #243742;
-  --background: #F6F9FF;
+  --background: #F5F7FA;
   --hovers: rgba(132, 232, 90);
 }
 
@@ -230,8 +230,4 @@ li {
 
 .spacing-bottom {
   margin-bottom: 35px;
-}
-
-.card {
-  border: none;
 }
