@@ -25,7 +25,7 @@
                 self::$connection = null;
                 return $state;
             } catch (PDOException $error) {
-                self::setException($error->getCode(), $error->getMessage()); 
+                self::setException($error->getCode(), $error->getMessage());
                 return false;
             }
         }
@@ -68,7 +68,7 @@
     *   Método para obtener un registro de una sentencia SQL tipo SELECT.
     *
     *   Parámetros: $query (sentencia SQL) y $values (arreglo de valores para la sentencia SQL).
-    *   
+    *
     *   Retorno: arreglo asociativo del registro si la sentencia SQL se ejecuta satisfactoriamente o false en caso contrario.
     */
     public static function getRow($query, $values)
