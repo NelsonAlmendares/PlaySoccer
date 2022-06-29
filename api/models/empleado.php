@@ -288,15 +288,15 @@ class Empleados extends Validator
     {   
         //Se asigna una imagen predeterminada        
         $this->foto_empleado = '1.png';
-        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado)
+        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado, celular_empleado)
            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->celular_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado);                
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado, $this->celular_empleado);
         return Database::executeRow($sql, $params);
     }
     /*-------------Método para buscar empleados-----------*/
     public function readAll()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado, celular_empleado
                 FROM tb_empleado
                 ORDER BY id_empleado;';
         $params = null;

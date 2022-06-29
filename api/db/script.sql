@@ -49,7 +49,7 @@ ALTER TABLE IF EXISTS PUBLIC."tb_tipoEmpleado"
 CREATE TABLE PUBLIC."tb_cliente"(
 	id_cliente SERIAL NOT NULL,
 	nombre_cliente CHARACTER VARYING(40) NOT NULL,
-	apelllido_cliente CHARACTER VARYING(40) NOT NULL,
+	apellido_cliente CHARACTER VARYING(40) NOT NULL,
 	DUI_cliente CHARACTER VARYING(10) DEFAULT 'Registro menor de edad' NULL,
 	celular_cliente CHARACTER VARYING(10) NOT NULL,
 	correo_cliente CHARACTER VARYING(100) NOT NULL,
