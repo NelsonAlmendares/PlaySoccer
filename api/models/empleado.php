@@ -15,7 +15,7 @@ class Empleados extends Validator
     private $clave = null;
     private $foto_empleado = null;
     private $tipo_empleado = null;
-    private $ruta = '../imagenes/empleados/';
+    private $ruta = '../imagenes/empleado/';
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -256,35 +256,38 @@ class Empleados extends Validator
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    /*-------------Método para buscar el nombre y apellido de empleado.-------------*/
+    /*-------------Método para buscar el nombre y apellido del empleado.-------------*/
     public function searchRows($value)
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, tipo_empleado, foto_empleado
-                FROM tb_empleado
-                WHERE apellido_empleado ILIKE ? OR nombre_empleado ILIKE ? OR direccion_empleado ILIKE ?';
-        $params = array("%$value%", "%$value%", "%$value%");
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                WHERE apellido_empleado ILIKE ? OR nombre_empleado ILIKE ? OR correo_empleado ILIKE ? OR tipoempleado ILIKE ?';
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
-    /*-------------Método para buscar el coddigo y tipo empleado de empleado.-------------*/
-    public function searchNumbers($value)
+    /*-------------Método para buscar el celular del empleado.-------------*/
+    public function searchCelular($value)
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, tipo_empleado, foto_empleado
-        FROM tb_empleado
-        WHERE codigo_empleado = ? OR tipo_empleado = ?';
-        $params = array("$value", "$value");
-        return Database::getRows($sql, $params);
-    }
-    /*-------------Método para buscar el DUI de empleado.-------------*/
-    public function searchDUIs($value)
-    {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, tipo_empleado, foto_empleado
-                FROM tb_empleado
-                WHERE "DUI" ILIKE ?';
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                WHERE celular_empleado ILIKE ?';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
-    /*----------------Método para crear empleados--------------------*/
-    public function createRow()
+    /*-------------Método para buscar el DUI del empleado.-------------*/
+    public function searchDui($value)
+    {
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                WHERE dui_empleado ILIKE ?';
+        $params = array("%$value%");
+        return Database::getRows($sql, $params);
+    }
+    /*----------------Método para el primer uso--------------------*/
+    public function primerUso()
     {   
         //Se asigna una imagen predeterminada        
         $this->foto_empleado = '1.png';
@@ -293,34 +296,56 @@ class Empleados extends Validator
         $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado, $this->celular_empleado);
         return Database::executeRow($sql, $params);
     }
+    /*----------------Método para crear empleados--------------------*/
+    public function createRow()
+    {           
+        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado)
+           VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->celular_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado);                
+        return Database::executeRow($sql, $params);
+    }
     /*-------------Método para buscar empleados-----------*/
     public function readAll()
     {
+<<<<<<< HEAD
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado, celular_empleado
                 FROM tb_empleado
                 ORDER BY id_empleado;';
+=======
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
+                ORDER BY id_empleado';
+>>>>>>> 1b895594764a83402d065624e8f8049fe882afd5
         $params = null;
         return Database::getRows($sql, $params);
     }
-
+    /*-------------Método para buscar el prefil de un empleado-----------*/
     public function readOne()
     {
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, "DUI", direccion_empleado, codigo_empleado, password_empleado, tipo_empleado, foto_empleado
-                FROM tb_empleado
+        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
+                FROM tb_empleado tb_e
+                INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
                 WHERE id_empleado = ?';
         $params = array($this->id_empleado);
         return Database::getRow($sql, $params);
     }
-
+/*-------------Método para actualizar el prefil de un empleado-----------*/
     public function updateRow($foto_imagen)
     {
-        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
-        ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
+        // Se verifica si la imagen que existe no es la default, para no eliminarla
+        if(!$foto_imagen=='1.png'){
+            // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+            ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
+        }else{
+            $this->foto_empleado = $foto_imagen;
+        }
+        
 
         $sql = 'UPDATE tb_empleado 
-               SET nombre_empleado = ?, apellido_empleado = ?, "DUI" = ?, direccion_empleado = ?, codigo_empleado = ?, tipo_empleado = ?, foto_empleado = ?
-                WHERE id_empleado = ?';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->direccion_empleado, $this->codigo_empleado, $this->tipo_empleado, $this->foto_empleado, $this->id_empleado);
+                SET nombre_empleado=?, apellido_empleado=?, dui_empleado=?, correo_empleado=?, id_tipoempleado=?, celular_empleado=?, foto_empleado=?
+	            WHERE id_empleado = ?';
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->correo_empleado, $this->tipo_empleado, $this->celular_empleado, $this->foto_empleado, $this->id_empleado);
         return Database::executeRow($sql, $params);
     }
 
