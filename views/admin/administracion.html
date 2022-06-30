@@ -33,9 +33,9 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="topNavBar">
-				<form class="d-flex ms-auto my-3 my-lg-0">
+				<form class="d-flex ms-auto my-3 my-lg-0" id="search-form">
 					<div class="input-group">
-						<input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+						<input class="form-control" type="search" placeholder="Search" aria-label="Search" id="buscar" name="buscar"/>
 						<button class="btn btn-primary" type="submit">
 							<i class="bi bi-search"></i>
 						</button>
@@ -163,38 +163,49 @@
 					<div class="row mt-3 mb-3">
 						<div class="container mt-3 mb-3">
 							<h2 class="textos">Administrar categorías</h2>
-							<h6 class="text-muted">Categorias secundarias que se muestran en los demás formulario para el complemeto de las reservaciones</h6>
+							<h6 class="text-muted">Categorias secundarias que se muestran en los demás formulario para
+								el complemeto de las reservaciones</h6>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Modal -->
-			<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="container">
-								<form method="get" class="formulario">
+						<form method="get" class="formulario" id="save-form">
+							<div class="modal-header">
+								<h5 class="modal-title" id="titulo-modal">Modal title</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close" onclick="cleanModal()"></button>
+							</div>
+							<div class="modal-body">
+								<div class="container">
+
 									<div class="col">
 										<div class="row">
 											<div class="mb-3 text-center">
-												<label for="tipoBalon" class="form-label">Tipo de balón</label>
-												<input type="text" class="form-control imput" id="tipoBalon" name="tipoBalon" placeholder="...">
+												<label for="id" class="form-label" id="id-description">Tipo de balón</label>
+												<input type="text" class="form-control imput" id="id"
+													name="tipoBalon" placeholder="1">
+											</div>
+											<div class="mb-3 text-center">
+												<label for="descripcion" class="form-label" id="title-descripcion">Tipo de balón</label>
+												<input type="text" class="form-control imput" id="descripcion"
+													name="descripcion" placeholder="...">
 											</div>
 										</div>
 									</div>
-								</form>
+
+								</div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-outline-success">Agregar</button>
-						</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline-danger"
+									data-bs-dismiss="modal" onclick="cleanModal()">Close</button>
+								<button type="submit" class="btn btn-outline-success" id="btn-accion">Agregar</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -206,15 +217,20 @@
 							<div class="row">
 								<div class="col-md-9">
 									<div class="container-fluid">
-										<h5 class="mt-3"> <i class="fa-solid fa-futbol icon"></i> Administrar balones</h5>
-										<p class="text-muted">Agrega los tipos de balones para los diversos tipos de canchas que se hayan registrado para ofrecer al cliente la mejor experiencia</p>
+										<h5 class="mt-3"> <i class="fa-solid fa-futbol icon"></i> Administrar tamaño de
+											los balones</h5>
+										<p class="text-muted">Agregan los tamaños de los balones que se le ofrecen al
+											cliente</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="container-fluid">
 										<div class="principales mt-3">
-											<button class="btn btn-outline-warning mt-2" ><i class="fa-solid fa-chart-column"></i> Reporte</button>
-											<button class="btn btn-outline-success mt-2" data-bs-toggle="modal" data-bs-target="#agregar"> <i class="fa-solid fa-circle-plus"></i> Agregar</button>
+											<button class="btn btn-outline-warning mt-2"><i
+													class="fa-solid fa-chart-column"></i> Reporte</button>
+											<button class="btn btn-outline-success mt-2" data-bs-toggle="modal"
+												data-bs-target="#agregar" onclick="openCreate()"> <i class="fa-solid fa-circle-plus"></i>
+												Agregar</button>
 										</div>
 									</div>
 								</div>
@@ -236,36 +252,8 @@
 									</div>
 									<div class="col-md-6">
 										<div class="container">
-											<tbody>
-												<tr>
-													<th scope="row">1</th>
-													<td class="text-center">Número 3</td>
-													<td class="text-center">
-														<div class="row">
-															<div class="col">
-																<div class="">
-																	<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-																	<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">2</th>
-													<td class="text-center">Número 4</td>
-													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">3</th>
-													<td class="text-center">Número 5</td>
-													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar </button>
-													</td>
-												</tr>
+											<tbody id="table-tb">
+												
 											</tbody>
 										</div>
 									</div>
@@ -283,15 +271,18 @@
 							<div class="row">
 								<div class="col-md-9">
 									<div class="container-fluid">
-										<h5 class="mt-3"> <i class="fa-solid fa-vest icon"></i> Agregar Talla de chalecos </h5>
+										<h5 class="mt-3"> <i class="fa-solid fa-vest icon"></i> Agregar Talla de
+											chalecos </h5>
 										<p class="text-muted">Ingresa las tallas disponibles para todos los clientes</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="container-fluid">
 										<div class="principales mt-3">
-											<button class="btn btn-outline-warning mt-2"><i class="fa-solid fa-chart-column"></i> Reporte</button>
-											<button class="btn btn-outline-success mt-2"> <i class="fa-solid fa-circle-plus"></i> Agregar</button>
+											<button class="btn btn-outline-warning mt-2"><i
+													class="fa-solid fa-chart-column"></i> Reporte</button>
+											<button class="btn btn-outline-success mt-2"> <i
+													class="fa-solid fa-circle-plus"></i> Agregar</button>
 										</div>
 									</div>
 								</div>
@@ -321,8 +312,12 @@
 														<div class="row">
 															<div class="col">
 																<div class="">
-																	<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-																	<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+																	<button class="btn btn-outline-info"> <i
+																			class="fa-solid fa-pen-to-square"></i>
+																		Editar</button>
+																	<button class="btn btn-outline-danger"> <i
+																			class="fa-solid fa-eraser"></i>
+																		Eliminar</button>
 																</div>
 															</div>
 														</div>
@@ -332,16 +327,20 @@
 													<th scope="row">2</th>
 													<td class="text-center">Talla S</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar</button>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">3</th>
 													<td class="text-center">Talla XL</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar </button>
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar </button>
 													</td>
 												</tr>
 											</tbody>
@@ -361,15 +360,19 @@
 							<div class="row">
 								<div class="col-md-9">
 									<div class="container">
-										<h5 class="mt-3"><i class="fa-solid fa-eye-dropper icon"></i> Agregar Colores </h5>
-										<p class="text-muted">Define los colores con los cuales se pueden agregar los chalecos para ell público</p>
+										<h5 class="mt-3"><i class="fa-solid fa-eye-dropper icon"></i> Agregar Colores
+										</h5>
+										<p class="text-muted">Define los colores con los cuales se pueden agregar los
+											chalecos para el público</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="container-fluid">
 										<div class="principales mt-3">
-											<button class="btn btn-outline-warning mt-2"><i class="fa-solid fa-chart-column"></i> Reporte</button>
-											<button class="btn btn-outline-success mt-2"> <i class="fa-solid fa-circle-plus"></i> Agregar</button>
+											<button class="btn btn-outline-warning mt-2"><i
+													class="fa-solid fa-chart-column"></i> Reporte</button>
+											<button class="btn btn-outline-success mt-2"> <i
+													class="fa-solid fa-circle-plus"></i> Agregar</button>
 										</div>
 									</div>
 								</div>
@@ -399,8 +402,12 @@
 														<div class="row">
 															<div class="col">
 																<div class="">
-																	<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-																	<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+																	<button class="btn btn-outline-info"> <i
+																			class="fa-solid fa-pen-to-square"></i>
+																		Editar</button>
+																	<button class="btn btn-outline-danger"> <i
+																			class="fa-solid fa-eraser"></i>
+																		Eliminar</button>
 																</div>
 															</div>
 													</td>
@@ -409,16 +416,20 @@
 													<th scope="row">2</th>
 													<td class="text-center">Tamaño 4</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar</button>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">3</th>
 													<td class="text-center">Número 5</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar
 														</button>
 													</td>
 												</tr>
@@ -439,15 +450,19 @@
 							<div class="row">
 								<div class="col-md-9">
 									<div class="container">
-										<h5 class="mt-3"> <i class="fa-solid fa-user icon"></i> Agregar Tipo Empleado </h5>
-										<p class="text-muted">Agrega los posibles cargos para los empleadoos de la empresa</p>
+										<h5 class="mt-3"> <i class="fa-solid fa-user icon"></i> Agregar Tipo Empleado
+										</h5>
+										<p class="text-muted">Agrega los posibles cargos para los empleadoos de la
+											empresa</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="container-fluid">
 										<div class="principales mt-3">
-											<button class="btn btn-outline-warning mt-2"><i class="fa-solid fa-chart-column"></i> Reporte</button>
-											<button class="btn btn-outline-success mt-2"> <i class="fa-solid fa-circle-plus"></i> Agregar</button>
+											<button class="btn btn-outline-warning mt-2"><i
+													class="fa-solid fa-chart-column"></i> Reporte</button>
+											<button class="btn btn-outline-success mt-2"> <i
+													class="fa-solid fa-circle-plus"></i> Agregar</button>
 										</div>
 									</div>
 								</div>
@@ -477,8 +492,12 @@
 														<div class="row">
 															<div class="col">
 																<div class="">
-																	<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-																	<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+																	<button class="btn btn-outline-info"> <i
+																			class="fa-solid fa-pen-to-square"></i>
+																		Editar</button>
+																	<button class="btn btn-outline-danger"> <i
+																			class="fa-solid fa-eraser"></i>
+																		Eliminar</button>
 																</div>
 															</div>
 													</td>
@@ -487,16 +506,20 @@
 													<th scope="row">2</th>
 													<td class="text-center">Vendedor</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar</button>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">3</th>
 													<td class="text-center">Seguridad</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar
 														</button>
 													</td>
 												</tr>
@@ -517,15 +540,19 @@
 							<div class="row">
 								<div class="col-md-9">
 									<div class="container">
-										<h5 class="mt-3"><i class="fa-solid fa-calendar-days icon"></i> Agregar Asistencia </h5>
-										<p class="text-muted">Agrega las asistencias para manejar el estado de las canchas por medio de la reservaciones</p>
+										<h5 class="mt-3"><i class="fa-solid fa-calendar-days icon"></i> Agregar
+											Asistencia </h5>
+										<p class="text-muted">Agrega las asistencias para manejar el estado de las
+											canchas por medio de la reservaciones</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="container-fluid">
 										<div class="principales mt-3">
-											<button class="btn btn-outline-warning mt-2"><i class="fa-solid fa-chart-column"></i> Reporte</button>
-											<button class="btn btn-outline-success mt-2"> <i class="fa-solid fa-circle-plus"></i> Agregar</button>
+											<button class="btn btn-outline-warning mt-2"><i
+													class="fa-solid fa-chart-column"></i> Reporte</button>
+											<button class="btn btn-outline-success mt-2"> <i
+													class="fa-solid fa-circle-plus"></i> Agregar</button>
 										</div>
 									</div>
 								</div>
@@ -552,24 +579,30 @@
 													<th scope="row">1</th>
 													<td class="text-center">Ausente</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar</button>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">2</th>
 													<td class="text-center">Confirmado</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar</button>
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar</button>
 													</td>
 												</tr>
 												<tr>
 													<th scope="row">3</th>
 													<td class="text-center">Tardío</td>
 													<td class="text-center">
-														<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> Eliminar
+														<button class="btn btn-outline-info"> <i
+																class="fa-solid fa-pen-to-square"></i> Editar</button>
+														<button class="btn btn-outline-danger"> <i
+																class="fa-solid fa-eraser"></i> Eliminar
 														</button>
 													</td>
 												</tr>
@@ -600,6 +633,7 @@
 	<!--Controladores JS-->
 	<script src="../../controller/components.js"></script>
 	<script src="../../controller/admin/online.js"></script>
+	<script src="../../controller/admin/tamanoBalon.js"></script>
 
 </body>
 
