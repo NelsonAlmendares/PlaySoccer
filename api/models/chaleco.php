@@ -148,7 +148,7 @@ class chalecos extends Validator
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_chaleco
-        EHERE id_chaleco =?';
+        WhERE id_chaleco =?';
         $params = array ($this->id_chaleco);
         return Database::executeRow($sql, $params);
     }
