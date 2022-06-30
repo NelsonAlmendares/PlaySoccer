@@ -332,7 +332,9 @@ class Empleados extends Validator
             // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
             ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
         }elseif($foto_imagen=='1.png'){            
-            
+            $this->foto_empleado = '1.png';
+        }elseif($foto_imagen==null){
+            $this->foto_empleado = '1.png';
         }else{
             $this->foto_empleado = $foto_imagen;
         }

@@ -196,7 +196,7 @@ if (isset($_GET['action'])) {
                 } elseif (!$empleado->setDUI($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
                 } elseif (!$empleado->setCorreo($_POST['email'])) {
-                    $result['exception'] = 'Direccion incorrecto';
+                    $result['exception'] = 'Direccion de correo electronico incorrecto';
                 } elseif (!$empleado->setCelular($_POST['celular'])) {
                     $result['exception'] = 'Codigo incorrecto';
                 } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {

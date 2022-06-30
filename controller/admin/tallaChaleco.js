@@ -1,5 +1,4 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_TAMANOB = SERVER + 'admin/tamanoBalon.php?action=';
 const API_TALLAC = SERVER + 'admin/tallaChaleco.php?action=';
 //Se inicializa el modal de bootstrap
 var modal = new bootstrap.Modal(document.getElementById('modal'), {
@@ -9,7 +8,6 @@ var modal = new bootstrap.Modal(document.getElementById('modal'), {
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_TAMANOB);
     readRows(API_TALLAC);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
@@ -29,14 +27,14 @@ function fillTable(dataset) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `                         
         <tr>
-            <th scope="row">${row.id_tamanobalon}</th>
-            <td class="text-center">${row.tamano_balon}</td>
+            <th scope="row">${row.id_talla}</th>
+            <td class="text-center">${row.talla_chaleco}</td>
             <td class="text-center">
                 <div class="row">
                     <div class="col">
                         <div class="">
-                            <button class="btn btn-outline-info" onclick="openUpdate(${row.id_tamanobalon})"> <i class="fa-solid fa-pen-to-square"></i>Editar</button>
-                            <button class="btn btn-outline-danger" onclick="openDelete(${row.id_tamanobalon})"> <i class="fa-solid fa-eraser"></i>Eliminar</button>
+                            <button class="btn btn-outline-info" onclick="openUpdate(${row.id_talla})"> <i class="fa-solid fa-pen-to-square"></i>Editar</button>
+                            <button class="btn btn-outline-danger" onclick="openDelete(${row.id_talla})"> <i class="fa-solid fa-eraser"></i>Eliminar</button>
                         </div>
                     </div>
             </td>
@@ -44,7 +42,7 @@ function fillTable(dataset) {
         `;
         });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('table-tb').innerHTML = content;
+    document.getElementById('table-tc').innerHTML = content;
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
@@ -52,7 +50,7 @@ document.getElementById('search-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_TAMANOB, 'search-form');
+    searchRows(API_TALLAC, 'search-form');
 });
 
 // Función para preparar el formulario al momento de insertar un registro.
@@ -88,7 +86,7 @@ function openUpdate(id_tamanobalon) {
     const data = new FormData();
     data.append('id_tamanobalon', id_tamanobalon);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_TAMANOB + 'readOne', {
+    fetch(API_TALLAC + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -124,7 +122,7 @@ document.getElementById('save-form').addEventListener('submit', function (event)
         action = 'update';
     }        
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_TAMANOB, action, 'save-form');
+    saveRow(API_TALLAC, action, 'save-form');
     // Se limpia la caja de dialogo (modal) del formulario.  
     cleanModal();
     // Se cierra la caja de dialogo (modal) del formulario.  
@@ -137,7 +135,7 @@ function openDelete(id_tamano) {
     const data = new FormData();
     data.append('id_tamanobalon', id_tamano);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_TAMANOB, data);
+    confirmDelete(API_TALLAC, data);
 }
 
 // Función para limpiar el formulario del modal

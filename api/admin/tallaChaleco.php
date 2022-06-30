@@ -1,14 +1,14 @@
  <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/tamanoBalon.php');
+require_once('../models/tallaChaleco.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $tamano_balon = new Tamano;
+    $talla_chaleco = new Talla;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -16,19 +16,19 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] =  $tamano_balon->readAll()) {
+                if ($result['dataset'] =  $talla_chaleco->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'No hay tamaños de balones registrados';
+                    $result['exception'] = 'No hay tallas de chalecos registrados';
                 }
                 break;
             case 'search':
-                $_POST =  $tamano_balon->validateForm($_POST);
+                $_POST =  $talla_chaleco->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] =  $tamano_balon->searchRows($_POST['buscar'])) {
+                } elseif ($result['dataset'] =  $talla_chaleco->searchRows($_POST['buscar'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -38,36 +38,36 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'create':
-                $_POST =  $tamano_balon->validateForm($_POST);
-                if (! $tamano_balon->setTamano($_POST['descripcion'])) {
-                    $result['exception'] = 'Tamaño balon no aceptado';                
-                } elseif ( $tamano_balon->createRow()) {
+                $_POST =  $talla_chaleco->validateForm($_POST);
+                if (! $talla_chaleco->setTalla($_POST['descripcion'])) {
+                    $result['exception'] = 'Talla de chaleco no aceptada';                
+                } elseif ( $talla_chaleco->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tamaño balon agregado correctamente';                    
+                    $result['message'] = 'Talla de chaleco agregada correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$tamano_balon->setId($_POST['id_tamanobalon'])) {
-                    $result['exception'] = 'Tamaño incorrecto';
-                } elseif ($result['dataset'] =  $tamano_balon->readOne()) {
+                if (!$talla_chaleco->setId($_POST['id_talla'])) {
+                    $result['exception'] = 'Talla de chaleco incorrecta';
+                } elseif ($result['dataset'] =  $talla_chaleco->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Tamaño incorrecto inexistente';
+                    $result['exception'] = 'Talla de chaleco inexistente';
                 }
                 break;
             case 'update':
-                $_POST =  $tamano_balon->validateForm($_POST);
-                if (! $tamano_balon->setId($_POST['id'])) {
+                $_POST =  $talla_chaleco->validateForm($_POST);
+                if (! $talla_chaleco->setId($_POST['id'])) {
                     $result['exception'] = 'Tamaño de balon incorrecto';
-                } elseif (!$data =  $tamano_balon->readOne()) {
+                } elseif (!$data =  $talla_chaleco->readOne()) {
                     $result['exception'] = 'Tamaño de balon inexistente';
-                } elseif (! $tamano_balon->setTamano($_POST['descripcion'])) {
+                } elseif (! $talla_chaleco->setTamano($_POST['descripcion'])) {
                     $result['exception'] = 'Tamaño de balon no aceptado';                
-                } elseif ( $tamano_balon->updateRow()) {
+                } elseif ( $talla_chaleco->updateRow()) {
                         $result['status'] = 1;
                         $result['message'] = 'Tamaño de balon modificado modificado correctamente';
                 } else {
@@ -75,11 +75,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if (! $tamano_balon->setId($_POST['id_tamanobalon'])) {
+                if (! $talla_chaleco->setId($_POST['id_tamanobalon'])) {
                     $result['exception'] = 'Tamaño balon incorrecto';
-                } elseif (!$data =  $tamano_balon->readOne()) {
+                } elseif (!$data =  $talla_chaleco->readOne()) {
                     $result['exception'] = 'Tamaño balon inexistente';
-                } elseif ( $tamano_balon->deleteRow()) {
+                } elseif ( $talla_chaleco->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Tamaño balon eliminado correctamente';                    
                 } else {
