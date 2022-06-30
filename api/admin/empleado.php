@@ -160,18 +160,6 @@ if (isset($_GET['action'])) {
             case 'create':
                 $_POST = $empleado->validateForm($_POST);
                 
-<<<<<<< HEAD
-                if (!$empleado->setNombre($_POST['nombre_empleado'])) {
-                    $result['exception'] = 'Nombre incorrectos';
-                } elseif (!$empleado->setApellido($_POST['apellido_empleado'])) {
-                    $result['exception'] = 'Apellido incorrectos';
-                } elseif (!$empleado->setDUI($_POST['DUI_empleado'])) {
-                    $result['exception'] = 'DUI incorrecto';
-                } elseif (!is_uploaded_file($_FILES['foto_empleado']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$empleado->setFoto($_FILES['foto_empleado'])) {
-                    $result['exception'] = $empleado->getFileError();
-=======
                 if (!$empleado->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrectos';
                 } elseif (!$empleado->setApellido($_POST['apellido'])) {
@@ -182,7 +170,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Celular incorrecto';
                 } elseif (!$empleado->setCorreo($_POST['email'])) {
                     $result['exception'] = 'Correo incorrecto';
->>>>>>> 1b895594764a83402d065624e8f8049fe882afd5
                 } elseif (!isset($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
                 } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {
@@ -191,19 +178,9 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleado->setClave($_POST['clave'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
-<<<<<<< HEAD
-                } elseif ($empleado->createRow()) {
-                    $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['foto_empleado'], $empleado->getRuta(), $empleado->getFoto())) {
-                    $result['message'] = 'El empleado registrado correctamente';
-                    } else {
-                        $result['message'] = 'El empleado se registro pero no se guardó la imagen';
-                    }
-=======
                 } elseif ($empleado->primerUso()) {
                     $result['status'] = 1;                    
                     $result['message'] = 'El empleado registrado correctamente';                    
->>>>>>> 1b895594764a83402d065624e8f8049fe882afd5
                 } elseif (Database::getException()) {                   
                     $result['exception'] = Database::getException();
                 } else {
@@ -239,18 +216,18 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Codigo incorrecto';
                 } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Tipo empleado incorrecto';
-                } elseif (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                } elseif (!is_uploaded_file($_FILES['foto_empleado']['tmp_name'])) {
                     if ($empleado->updateRow($data['foto_empleado'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Empleado modificado correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }
-                } elseif (!$empleado->setFoto($_FILES['foto'])) {
+                } elseif (!$empleado->setFoto($_FILES['foto_empleado'])) {
                     $result['exception'] = $empleado->getFileError();
-                } elseif ($empleado->updateRow($data['foto_empleado'])) {
+                } elseif ($empleado->updateRow($data['foto_empleado'])) {                    
                     $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['foto'], $empleado->getRuta(), $empleado->getFoto())) {
+                    if ($empleado->saveFile($_FILES['foto_empleado'], $empleado->getRuta(), $empleado->getFoto())) {
                         $result['message'] = 'Empleado modificado correctamente';
                     } else {
                         $result['message'] = 'Empleado modificado pero no se guardó la imagen';

@@ -7,11 +7,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/PlaySoccer/api/';
-//Se inicializa el modal de bootstrap
-var modal = new bootstrap.Modal(document.getElementById('modal-empleado'), {
-    keyboard: false
-});
+const SERVER = 'http://localhost/PlaySoccer2/api/';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).

@@ -291,9 +291,9 @@ class Empleados extends Validator
     {   
         //Se asigna una imagen predeterminada        
         $this->foto_empleado = '1.png';
-        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado, celular_empleado)
+        $sql = 'INSERT INTO tb_empleado(nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado)
            VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado, $this->celular_empleado);
+        $params = array($this->nombre_empleado, $this->apellido_empleado, $this->DUI_empleado, $this->celular_empleado, $this->correo_empleado, $this->clave, $this->foto_empleado, $this->tipo_empleado);                
         return Database::executeRow($sql, $params);
     }
     /*----------------Método para crear empleados--------------------*/
@@ -307,16 +307,10 @@ class Empleados extends Validator
     /*-------------Método para buscar empleados-----------*/
     public function readAll()
     {
-<<<<<<< HEAD
-        $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, correo_empleado, contrasena_empleado, foto_empleado, id_tipoempleado, celular_empleado
-                FROM tb_empleado
-                ORDER BY id_empleado;';
-=======
         $sql = 'SELECT id_empleado, nombre_empleado, apellido_empleado, dui_empleado, celular_empleado, correo_empleado, contrasena_empleado, foto_empleado, tb_te.tipoempleado AS tipo_empleado
                 FROM tb_empleado tb_e
                 INNER JOIN "tb_tipoEmpleado" tb_te ON tb_e.id_tipoempleado=tb_te.id_tipoempleado
                 ORDER BY id_empleado';
->>>>>>> 1b895594764a83402d065624e8f8049fe882afd5
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -333,10 +327,12 @@ class Empleados extends Validator
 /*-------------Método para actualizar el prefil de un empleado-----------*/
     public function updateRow($foto_imagen)
     {
-        // Se verifica si la imagen que existe no es la default, para no eliminarla
+        // Se verifica si la imagen que existe no es la default, para no eliminarla o cambiarla
         if(!$foto_imagen=='1.png'){
             // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
             ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
+        }elseif($foto_imagen=='1.png'){            
+            
         }else{
             $this->foto_empleado = $foto_imagen;
         }

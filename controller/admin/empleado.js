@@ -72,6 +72,8 @@ function openCreate() {
     //se ocultan y deshabilitan los campos correspondientes del foto
     document.getElementById('foto').hidden = true;
     document.getElementById('foto').disabled = true;
+    document.getElementById('foto_empleado').hidden = true;
+    document.getElementById('foto_empleado').disabled = true;
     //Se muestran y habilitan los campos correspondientes de confirmación de contraseña  
     document.getElementById('confirmar').hidden = false;
     document.getElementById('confirmar').disabled = false;
@@ -96,6 +98,8 @@ function openUpdate(id_empleado) {
     //Se muestran y habilitan los campos correspondientes del foto
     document.getElementById('foto').hidden = false;
     document.getElementById('foto').disabled = false;
+    document.getElementById('foto_empleado').hidden = false;
+    document.getElementById('foto_empleado').disabled = false;
     //Se oculta y deshabilitan los campos correspondientes de confirmación de contraseña  
     document.getElementById('confirmar').hidden = true;
     document.getElementById('confirmar').disabled = true;
@@ -171,6 +175,7 @@ function cleanModal(){
     $("#dui").val('');
     $("#celular").val('');
     $("#email").val('');
+    $("#foto_empleado").val('');
     $("#clave").val('');
     $("#confirmar").val('');
 }
