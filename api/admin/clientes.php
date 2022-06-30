@@ -42,10 +42,12 @@
 
                 //Caso para leer los datos del perfil
                 case 'readProfile': 
-                    if ('') {
-
+                    if ($result ['dataset'] = $cliente->readProfile()) {
+                        $result ['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result ['exception'] = Database::getException();
                     } else {
-
+                        $result ['exception'] = 'Empleado Inexistente';
                     }
                 break;
 
@@ -148,6 +150,10 @@
                     } else {
                         $result ['exception'] = 'Cliente inexistente';
                     }
+                break;
+
+                case 'update':
+
                 break;
 
                 default:

@@ -127,6 +127,14 @@
             return $this->ruta;
         }
 
+        public function readProfile () {
+            $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, celular_cliente, correo_cliente, contrasena_cliente, foto_cliente
+                FROM tb_cliente
+                WHERE id_cliente = ?';
+            $params = array ($_SESSION ['id'] );
+            return Database::getRow($sql, $params);
+        }
+
         //Opercciones básicas para el CRUD
         public function createRow () {
             $sql = 'INSERT INTO public.tb_cliente(
@@ -134,6 +142,10 @@
 	            VALUES (?, ?, ?, ?, ?, ?, ?)';
             $params = array($this->nombre, $this->apellido, $this->documento, $this->celular, $this->celular, $this->password, $this->foto);
             return Database::executeRow($sql, $params);
+        }
+
+        public function updateRow ($foto) {
+            # code...
         }
 
         public function readOne () {

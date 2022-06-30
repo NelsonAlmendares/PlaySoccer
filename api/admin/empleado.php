@@ -18,11 +18,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
 
-/* 
-*caso para obtener el usuario del empleado 
-*/
-
-
+        /* *caso para obtener el usuario del empleado */
             case 'getUser':
                 if (isset($_SESSION['correo_empleado'])) {
                     $result['status'] = 1;
@@ -36,11 +32,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-
-/* 
-*case para salir de la sesion 
-*/
-
+        /*  *case para salir de la sesion */
 
             case 'logOut':
                 if (session_destroy()) {
@@ -50,12 +42,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
-
-
-/* 
-*case para leer un perfil de empleado 
-*/
-
+        /*  *case para leer un perfil de empleado  */
 
             case 'readProfile':
                 if ($result['dataset'] = $empleado->readProfile()) {
@@ -67,9 +54,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-/* 
-*casos para editar perfil de un empleado
-*/
+        /*  *casos para editar perfil de un empleado  */
 
             case 'editProfile':
                 $_POST = $empleado->validateForm($_POST);
