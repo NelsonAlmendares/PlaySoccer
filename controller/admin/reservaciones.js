@@ -5,7 +5,7 @@ const API_RESERVACION = SERVER + 'admin/reservaciones.php?action=';
 const ENDPOINT_EMPLEADO = SERVER + 'admin/empleado.php?action=readAll';
 const ENDPOINT_ASISTENCIA = SERVER + 'admin/asistencia.php?action=readAll';
 const ENDPOINT_CLIENTE = SERVER + 'admin/clientes.php?action=readAll';
-//const ENDPOINT_T_Balon = SERVER + 'admin/tipoBalon.php?=readAll';
+const ENDPOINT_T_Balon = SERVER + 'admin/tipoBalon.php?action=readAll';
 const ENDPOINT_CANCHA = SERVER + 'admin/canchas.php?action=readAll';
 //Se inicializa el modal de bootstrap
 var modal = new bootstrap.Modal(document.getElementById('agregar'), {
@@ -72,7 +72,7 @@ function openCreate(){
     fillSelect(ENDPOINT_CANCHA, 'cancha', null);
     //fillSelect(ENDPOINT_HORARIO, 'horario', null);
     fillSelect(ENDPOINT_CLIENTE, 'cliente', null);    
-    //fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
+    fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
     //fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
 }
 // Función para preparar el formulario al momento de modificar un registro.
