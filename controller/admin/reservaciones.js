@@ -157,5 +157,7 @@ function cleanModal(){
     $("#cancha").val('');
     $("#horario").val('');
     $("#cliente").val('');
-    $("#horario").val('');
+    $("#asistencia").val('');
+    $("#tipobalon").val('');
+    $("#chaleco").val('');
 }
