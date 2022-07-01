@@ -76,6 +76,10 @@ if (isset($_GET['action'])) {
                 break;
                     /*
                     *Se abre el caso para actualizar un registro
+                    private $id_tipobalon = null;
+    private $costo_balon = null;
+    private $cantidad_balones = null;
+    private $id_tamanobalon = null;
                     */
                 case 'update':
                         $_POST = $chaleco->validateForm($_POST);
