@@ -27,7 +27,13 @@ if (isset($_GET['action'])) {
             case 'search':
                 $_POST =  $tipo_horario->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
+                    if ($result['dataset'] =  $tipo_horario->readAll()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay datos registrados';
+                    }
                 } elseif ($result['dataset'] =  $tipo_horario->searchRows($_POST['buscar'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
