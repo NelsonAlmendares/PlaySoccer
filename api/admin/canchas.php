@@ -41,7 +41,29 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                /**
+                 *  se abre caso para buscar datos 
+                 */
 
+                 case 'search':
+                    $_POST = $cancha->validateForm($_POST);
+                    if($_POST['search'] == '') {
+                        if($result['dataset'] = $cancha->readAll()) {
+                            $result['status'] = 1;
+                        } elseif (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] ='No hay datos registrados';
+                        }
+                    } elseif($result['dataset'] = $cancha->searchRows($_POST['buscar'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Registro encontrado';
+                    } elseif(Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] ='No hay coincidencias';
+                    }
+                    break;
             /**
                  *  se abre caso para registrar o añadir nuevas canchas
                  */
@@ -62,8 +84,46 @@ if (isset($_GET['action'])) {
                 break;
 
                 /**
-                 *  se abre caso para actuaizar un registro
+                 *  se abre caso para leer un registro 
                  */
+                case 'readOne':
+                    if(!$cancha->setId($_POST['id_cancha'])) {
+                        $result['exception'] = 'Identificación de cancha incorrecta';
+                    } elseif($result['dataset'] = $cancha->readOne()) {
+                        $result['status'] = 1;
+                    } elseif(Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Registro de cancga inexistente';
+                    }
+                    break;
+
+                    /**
+                     *  se abre un caso para actualizar registros de canchas
+                     */
+                
+                case 'update':
+                    $_POST = $cancha->validateForm($_POST);
+                    if(!$cancha->setId($_POST['id_cancha'])) {
+                        $result['exception'] = 'Identificación de cancha incorrecto';
+                    } elseif (!$data = $cancha ->readOne()) {
+                        $result['exception'] = 'Registro de cancga inexistente';
+                    } elseif (!$cancha->setTamano($_POST['descripcion'])) {
+                        $result['exception'] = 'El tamaño de la cancha no aceptada';
+                    } elseif ( $cancha->updateRow()){
+                        $result['status'] = 1;
+                        $result['message'] = 'Los datos de la cancha han sido modificados correctamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
+
+                    /**
+                     *  se abre un caso para eliminar un dato
+                     */
+
+                case 'delete':
+                    if(!$cancha)
         }
     }
 }
