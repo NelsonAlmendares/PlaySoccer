@@ -50,10 +50,10 @@ class Tamano extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT t_e."id_tipoEmpleado", t_e."tipoEmpleado" 
-                FROM tipo_empleado t_e
-                WHERE t_e."tipoEmpleado" ILIKE ?
-                ORDER BY t_e."tipoEmpleado"';
+        $sql = 'SELECT id_tamanobalon, tamano_balon 
+                FROM "tb_tamanoBalon"
+                WHERE tamano_balon ILIKE ?
+                ORDER BY tamano_balon';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }

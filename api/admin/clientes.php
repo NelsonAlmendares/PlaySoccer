@@ -75,32 +75,25 @@
                 case 'search':
                     $_POST = $cliente->validateForm($_POST);
                     if ($_POST ['buscar'] == '') {
-                        $result ['exception'] = 'Ingrese un dato para buscar';
-                    } elseif ($cliente->validateAlphabetic($_POST ['buscar'] ,0 ,50)) {
-                        if ($result ['dataset'] = $cliente->searchRows($_POST ['buscar'] )) {
-                            $result ['status'] = 1;
-                            $result ['message'] = 'Datos encontrados';
+                        if ($result ['dataset'] = $cliente->readAll() ) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Todos los datos han sido cargados';
+                        } elseif (Database::getException()) {
+                            $result ['exception'] = Database::getException();
                         } else {
-                            $result ['Exception'] = 'No hay coincidencias';
+                            $result ['exception'] = 'No hay datos cargados';
                         }
-                    } elseif ($cliente->validateAlphabetic($_POST ['buscar'],0 ,50)) {
-                        if ($result ['dataset'] = $cliente->searchRows($_POST ['buscar'] )) {
-                            $result ['status'] = 1;
-                            $result ['message'] = 'Datos encontrados';
+                    } elseif ($cliente->validateAlphabetic($_POST ['buscar'], 0, 50)) {
+                        if ($result['dataset'] = $cliente->searchRows($_POST['buscar'])) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Valor encontrado';
+                        } else if (Database::getException()) {
+                            $result ['exception'] = Database::getException();
                         } else {
-                            $result ['exception'] = 'No hay coincidencias';
+                            $result ['exception'] = 'Valor no encontrado';
                         }
-                    } elseif ($cliente->validateEmail($_POST ['buscar'])){
-                        if ($result ['dataset'] = $cliente->searchRows($_POST ['buscar'])) {
-                            $result ['status'] = 1;
-                            $result ['message'] = 'Datos encontrados';
-                        } else {
-                            $result ['exception'] = 'No hay coincidencias';
-                        }
-                    } elseif (Database::getException()) {
-                        $result ['exception'] = Database::getException();
                     } else {
-                        $result ['exception'] = 'No hay coincidencias';
+
                     }
                 break;
 
@@ -115,23 +108,15 @@
                         $result ['exception'] = 'Dui Incorrecto';
                     } elseif (!$cliente->setCelular ($_POST['celular'] )) {
                         $result ['exception'] = 'Celular Incorrecto';
-                    } elseif (!$cliente->setCorreo ($_POST ['correo'])) {
+                    } elseif (!$cliente->setCorreo ($_POST ['email'])) {
                         $result ['exception'] = 'Correo Incorrecto';
-                    } elseif ($_POST['clave'] != $_POST ['confirmar'] ) {
+                    } elseif ($_POST['password2'] != $_POST ['password2'] ) {
                         $result ['exception'] = 'Las contraseñas deben de ser iguales';
-                    } elseif (!$cliente->setPassword ($_POST ['clave'] )) {
+                    } elseif (!$cliente->setPassword ($_POST ['password'] )) {
                         $result ['exception'] = $cliente->getPasswordError();
-                    } elseif (!$cliente->setFoto ($_FILES ['foto']['tmp_name'] )) {
-                        $result ['exception'] = 'Selecciona una imagen';
-                    } elseif (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
-                        $result ['exception'] = $cliente->getFileError();
-                    } elseif ($cliente->createRow()) {
-                        $result ['status'] = 1;
-                        if ($cliente->saveFile($_FILES['foto'], $cliente->getRuta(), $cliente->getFoto())) {
-                            $result ['message'] = 'El cliente se registró correctamente';
-                        } else {
-                            $result ['message'] = 'El cliente se registró pero no se guardó la imagen ';
-                        }
+                    } elseif ($cliente->primerUso()) {
+                        $result['status'] = 1;                
+                        $result['message'] = 'El empleado registrado correctamente';
                     } elseif(Database::getException()){
                         $result ['exception'] = Database::getException(); 
                     } else {
@@ -153,12 +138,66 @@
                 break;
 
                 case 'update':
+                    $_POST = $cliente->validateForm($_POST);
+                if (!$cliente->setId($_POST['id'])) {
+                    $result['exception'] = 'cliente incorrecto';
+                } elseif (!$data = $cliente->readOne()) {
+                    $result['exception'] = 'cliente inexistente';
+                } elseif (!$cliente->setNombre($_POST['nombre'])) {
+                    $result['exception'] = 'Nombre incorrectos';
+                } elseif (!$cliente->setApellido($_POST['apellido'])) {
+                    $result['exception'] = 'Apellido incorrectos';
+                } elseif (!$cliente->setDocumento($_POST['documento'])) {
+                    $result['exception'] = 'DUI incorrecto';
+                } elseif (!$cliente->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Direccion incorrecto';
+                } elseif (!$cliente->setCelular($_POST['celular'])) {
+                    $result['exception'] = 'Codigo incorrecto';
+                } elseif (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                    if ($cliente->updateRow($data['foto'])) {
+                        $result['status'] = 1;
+                        $result['message'] = 'cliente modificado correctamente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } elseif (!$cliente->setFoto($_FILES['foto'])) {
+                    $result['exception'] = $cliente->getFileError();
+                } elseif ($cliente->updateRow($data['foto'])) {                    
+                    $result['status'] = 1;
+                    if ($cliente->saveFile($_FILES['foto'], $cliente->getRuta(), $cliente->getFoto())) {
+                        $result['message'] = 'cliente modificado correctamente';
+                    } else {
+                        $result['message'] = 'cliente modificado pero no se guardó la imagen';
+                    }
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
 
+                case 'delete':
+                    if (!$cliente->setId($_POST['id'])) {
+                        $result['exception'] = 'Cliente incorrecto';
+                    }  elseif (!$data = $cliente->readOne()) {
+                        $result['exception'] = 'Empleado inexistente';
+                    } elseif ($cliente->deleteRow()) {
+                        $result['status'] = 1;
+                        // Se verifica si la imagen que existe no es la default, para no eliminarla
+                        if(!$data['foto']=='1.png'){
+                            if ($cliente->deleteFile($cliente->getRuta(), $data['foto'])) {
+                                $result['message'] = 'Cliente eliminado correctamente';
+                            }else{
+                                $result['message'] = 'Cliente eliminado pero no se borró la imagen';
+                            }
+                        } else {
+                            $result['message'] = 'Cliente eliminado pero no se borró la imagen';
+                        }                   
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
                 break;
 
                 default:
                     $result ['exception'] = 'Acción no disponible dentro de la sesión';
-                break;
             }
         } else {
             // Se comprueba la acción a realizar cuando el administrador no ha iniciado sesión

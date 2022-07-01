@@ -27,7 +27,13 @@ if (isset($_GET['action'])) {
             case 'search':
                 $_POST =  $tamano_balon->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
+                    if ($result['dataset'] =  $tamano_balon->readAll()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay tamaños de balones registrados';
+                    }
                 } elseif ($result['dataset'] =  $tamano_balon->searchRows($_POST['buscar'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';

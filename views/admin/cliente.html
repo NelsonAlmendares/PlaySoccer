@@ -33,13 +33,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="topNavBar">
-                <form class="d-flex ms-auto my-3 my-lg-0">
+                <form class="d-flex ms-auto my-3 my-lg-0" id="search-form">
                     <div class="input-group">
-                        <form action="" method="post" id="search-form">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-                            <button class="btn btn-primary" type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
+                        <form id="search-form">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="buscar" name="buscar" />
+                                <button class="btn btn-primary" type="submit"> <i class="bi bi-search"></i> </button>
+                            </div>
                         </form>
                     </div>
                 </form>
@@ -52,7 +52,7 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <div class="container-fluid">
                                 <div class="container-fluid">
-                                    <div class="card" style="width: 18rem;" id="info-user">
+                                    <div class="card border border-white" style="width: 18rem;" id="info-user">
                                     </div>
                                 </div>
                             </div>
@@ -181,56 +181,64 @@
             <div class="modal fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-title">Agregar Clientes <i class="fa-solid fa-address-book text-muted"></i></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <form action="" method="post" id="save-form">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3" id="id-cliente">
-                                                <label for="id" class="id" id="id">Id Cliente</label>
-                                                <input type="text" id="id" class="form-control id">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="nombre" class="form-label">Nombre del Cliente </label> <i class="fa-solid fa-pen text-secondary"></i>
-                                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Jhon Doe" max="16" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="apellido" class="form-label">Apellido del Cliente</label> <i class="fa-solid fa-pen text-secondary""></i>
-                                                <input class=" form-control" type="text" id="apellido" name="apellido" placeholder="Jhon Doe" max="16" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="documento" class="form-label">DUI del Cliente</label> <i class="fa-solid fa-address-card text-secondary""></i>
-                                                <input class=" form-control" type="text" id="documento" name="documento" placeholder="Jhon Doe" max="10" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="celular" class="form-label">Celular del Cliente</label> <i class="fa-solid fa-phone text-secondary""></i>
-                                            <div class=" input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">+503</span>
-                                                <input type="text" class="form-control" placeholder="celular" max="8" id="ceular" name="celular" aria-label="Username" aria-describedby="basic-addon1" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">Correo del Cliente</label> <i class="fa-solid fa-at text-secondary""></i>
-                                                <input class=" form-control" type="email" id="email" name="email" placeholder="Jhon Doe" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="foto" class="form-label">Foto del Cliente</label> <i class="fa-solid fa-image text-secondary""></i>
-                                                <input class=" form-control" type="file" id="foto" name="foto" placeholder="Jhon Doe" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                        <form action="" method="post" id="save-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">Agregar Clientes <i class="fa-solid fa-address-book text-muted"></i></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel
-                            <button type="submit" class="btn btn-outline-success"> Agregar <i class="fa-solid fa-person-circle-plus"></i>
-                        </div>
-                    </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3" id="id-cliente">
+                                                    <label for="id" class="form-label">Id Cliente</label>
+                                                    <input type="text" id="id" name="id" class="form-control" placeholder="1">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nombre" class="form-label">Nombre del Cliente </label> <i class="fa-solid fa-pen text-secondary"></i>
+                                                    <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Jhon Doe" max="16" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="apellido" class="form-label">Apellido del Cliente</label> <i class="fa-solid fa-pen text-secondary""></i>
+                                                    <input class=" form-control" type="text" id="apellido" name="apellido" placeholder="Jhon Doe" max="16" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="documento" class="form-label">DUI del Cliente</label> <i class="fa-solid fa-address-card text-secondary""></i>
+                                                    <input class=" form-control" type="text" id="documento" name="documento" placeholder="Jhon Doe" max="10" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="celular" class="form-label">Celular del Cliente</label> <i class="fa-solid fa-phone text-secondary""></i>
+                                                <div class=" input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1">+503</span>
+                                                    <input type="text" class="form-control" placeholder="celular" max="8" id="celular" name="celular" aria-label="Username" aria-describedby="basic-addon1" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Correo del Cliente</label> <i class="fa-solid fa-at text-secondary""></i>
+                                                    <input class=" form-control" type="email" id="email" name="email" placeholder="Jhon Doe" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Contraseña empleado</label> <i class="fa-solid fa-lock text-secondary"></i>
+                                                    <input class=" form-control" type="password" id="password" name="password" required>
+                                                </div>
+                                                <div class="mb-3" id="password2">
+                                                    <label for="password2" class="form-label">Repetir contraseñas</label> <i class="fa-solid fa-lock text-secondary"></i>
+                                                    <input class=" form-control" type="password" id="password2" name="password2">
+                                                </div>
+                                                <div class="mb-3" id="foto_cliente">
+                                                    <label for="foto" class="form-label">Foto del Cliente</label> <i class="fa-solid fa-image text-secondary""></i>
+                                                    <input class=" form-control" type="file" id="foto" name="foto" placeholder="Jhon Doe">
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel
+                                <button type="submit" class="btn btn-outline-success"> Agregar <i class="fa-solid fa-person-circle-plus"></i>
+                            </div>
+                        </div>  
+                    </form>
                 </div>
             </div>
 

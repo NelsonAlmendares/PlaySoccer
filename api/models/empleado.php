@@ -338,8 +338,6 @@ class Empleados extends Validator
         }else{
             $this->foto_empleado = $foto_imagen;
         }
-        
-
         $sql = 'UPDATE tb_empleado 
                 SET nombre_empleado=?, apellido_empleado=?, dui_empleado=?, correo_empleado=?, id_tipoempleado=?, celular_empleado=?, foto_empleado=?
 	            WHERE id_empleado = ?';
