@@ -1,6 +1,5 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_TAMANOB = SERVER + 'admin/tamanoBalon.php?action=';
-const API_TALLAC = SERVER + 'admin/tallaChaleco.php?action=';
 //Se inicializa el modal de bootstrap
 var modal = new bootstrap.Modal(document.getElementById('modal'), {
     keyboard: false
@@ -10,7 +9,6 @@ var modal = new bootstrap.Modal(document.getElementById('modal'), {
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_TAMANOB);
-    readRows(API_TALLAC);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
@@ -79,6 +77,8 @@ function openUpdate(id_tamanobalon) {
     document.getElementById('titulo-modal').textContent = 'Actualizar el tamaño del balon';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Actualizar';
+    // Se asigna el texto al label del id.
+    document.getElementById('id-description').textContent = 'Id del tamaño del balon:';
     // Se asigna el texto al label.
     document.getElementById('title-descripcion').textContent = 'Tamaño del balon:';
     //se muestran y habilitan los campos correspondientes del id

@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'No hay tallas de chalecos registrados';
+                    $result['exception'] = 'No hay tallas de chalecos registradas';
                 }
                 break;
             case 'search':
@@ -62,26 +62,26 @@ if (isset($_GET['action'])) {
             case 'update':
                 $_POST =  $talla_chaleco->validateForm($_POST);
                 if (! $talla_chaleco->setId($_POST['id'])) {
-                    $result['exception'] = 'Tamaño de balon incorrecto';
+                    $result['exception'] = 'Talla de chalecos incorrecto';
                 } elseif (!$data =  $talla_chaleco->readOne()) {
-                    $result['exception'] = 'Tamaño de balon inexistente';
-                } elseif (! $talla_chaleco->setTamano($_POST['descripcion'])) {
-                    $result['exception'] = 'Tamaño de balon no aceptado';                
+                    $result['exception'] = 'Talla de chalecos inexistente';
+                } elseif (! $talla_chaleco->setTalla($_POST['descripcion'])) {
+                    $result['exception'] = 'Talla de chalecos no aceptada';                
                 } elseif ( $talla_chaleco->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Tamaño de balon modificado modificado correctamente';
+                        $result['message'] = 'Talla de chalecos modificada correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (! $talla_chaleco->setId($_POST['id_tamanobalon'])) {
-                    $result['exception'] = 'Tamaño balon incorrecto';
+                if (! $talla_chaleco->setId($_POST['id_talla'])) {
+                    $result['exception'] = 'Talla de chaleco incorrecta';
                 } elseif (!$data =  $talla_chaleco->readOne()) {
-                    $result['exception'] = 'Tamaño balon inexistente';
+                    $result['exception'] = 'Talla de chaleco inexistente';
                 } elseif ( $talla_chaleco->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tamaño balon eliminado correctamente';                    
+                    $result['message'] = 'Talla de chaleco eliminado correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }

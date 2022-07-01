@@ -28,7 +28,7 @@ function fillTable(dataset) {
         content += `                         
         <tr>
             <th scope="row">${row.id_talla}</th>
-            <td class="text-center">${row.talla_chaleco}</td>
+            <td class="text-center">${row.tallachaleco}</td>
             <td class="text-center">
                 <div class="row">
                     <div class="col">
@@ -58,11 +58,11 @@ function openCreate() {
     //Se abre el modal
     modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('titulo-modal').textContent = 'Crear tamaño de balon';
+    document.getElementById('titulo-modal').textContent = 'Crear talla de chalecos';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Agregar';
     // Se asigna el texto al label.
-    document.getElementById('title-descripcion').textContent = 'Tamaño del balon:';
+    document.getElementById('title-descripcion').textContent = 'Talla de chalecos:';
     //se ocultan y deshabilitan los campos correspondientes del id
     document.getElementById('id').hidden = true;
     document.getElementById('id').disabled = true;
@@ -70,21 +70,23 @@ function openCreate() {
 }
 
 // Función para preparar el formulario al momento de modificar un registro.
-function openUpdate(id_tamanobalon) {
+function openUpdate(id_talla) {
     //Se abre el modal
     modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('titulo-modal').textContent = 'Actualizar el tamaño del balon';
+    document.getElementById('titulo-modal').textContent = 'Actualizar la talla de chalecos';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Actualizar';
+    // Se asigna el texto al label del id.
+    document.getElementById('id-description').textContent = 'Id del talla de chalecos:';
     // Se asigna el texto al label.
-    document.getElementById('title-descripcion').textContent = 'Tamaño del balon:';
+    document.getElementById('title-descripcion').textContent = 'Talla la de chalecos:';
     //se muestran y habilitan los campos correspondientes del id
     document.getElementById('id').hidden = false;
     document.getElementById('id').disabled = false;
     document.getElementById('id-description').hidden = false;
     const data = new FormData();
-    data.append('id_tamanobalon', id_tamanobalon);
+    data.append('id_talla', id_talla);
     // Petición para obtener los datos del registro solicitado.
     fetch(API_TALLAC + 'readOne', {
         method: 'post',
@@ -96,8 +98,8 @@ function openUpdate(id_tamanobalon) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = response.dataset.id_tamanobalon;
-                    document.getElementById('descripcion').value = response.dataset.tamano_balon;                                                        
+                    document.getElementById('id').value = response.dataset.id_talla;
+                    document.getElementById('descripcion').value = response.dataset.tallachaleco;                                                        
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -130,10 +132,10 @@ document.getElementById('save-form').addEventListener('submit', function (event)
 });
 
 // Función para establecer el registro a eliminar y abrir una caja de diálogo de confirmación.
-function openDelete(id_tamano) {
+function openDelete(id_talla) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id_tamanobalon', id_tamano);
+    data.append('id_talla', id_talla);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
     confirmDelete(API_TALLAC, data);
 }

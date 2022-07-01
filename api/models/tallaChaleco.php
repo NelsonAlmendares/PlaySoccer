@@ -25,7 +25,7 @@ class Talla extends Validator
     public function setTalla($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->$talla_chaleco = $value;
+            $this->talla_chaleco = $value;
             return true;
         } else {
             return false;
@@ -42,7 +42,7 @@ class Talla extends Validator
 
     public function getTalla()
     {
-        return $this->$talla_chaleco;
+        return $this->talla_chaleco;
     }    
 
     /*
@@ -60,7 +60,7 @@ class Talla extends Validator
     /*-------Función para leer todos los tamaños agregados---------*/
     public function createRow()
     {
-        $sql = 'INSERT INTO "tb_tallaChaleco"(talla_chaleco)
+        $sql = 'INSERT INTO "tb_tallaChaleco"(tallachaleco)
                 VALUES (?)';
         $params = array($this->talla_chaleco);
         return Database::executeRow($sql, $params);
@@ -68,7 +68,7 @@ class Talla extends Validator
     /*-------Función para leer todos los tamaños agregados---------*/
     public function readAll()
     {
-        $sql = 'SELECT id_talla, talla_chaleco 
+        $sql = 'SELECT id_talla, tallachaleco 
                 FROM "tb_tallaChaleco"
                 ORDER BY id_talla';
         $params = null;
@@ -77,7 +77,7 @@ class Talla extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT id_talla, talla_chaleco 
+        $sql = 'SELECT id_talla, tallachaleco 
                 FROM "tb_tallaChaleco"
                 WHERE id_talla = ?';
         $params = array($this->id);
@@ -87,7 +87,7 @@ class Talla extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE "tb_tallaChaleco"
-                SET talla_chaleco=?
+                SET tallachaleco=?
                 WHERE id_talla = ?';
         $params = array($this->talla_chaleco, $this->id);
         return Database::executeRow($sql, $params);
