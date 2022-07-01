@@ -96,60 +96,65 @@ class Canchas extends Validator
 
     /*-----------------------Método basicos para el Scrud -------------------- */
 
-    public function createLine()
-    {
-        $sql = 'INSERT INTO public.tb_cancha(
-                numero_cancha, tamano_cancha, material_cancha, costo_cancha)
-                VALUES(?, ?, ?, ?)';
-        $params = array($this->numero, $this->tamano, $this->material, $this->costo);
-        return Database::executeLine($sql, $params);
-    }
+    // buscar una fila
 
-    public function readLine()
+    public function searchRows($value)
     {
         $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
-                FROM public.tb_cancha
-                WHERE id_cancha = ?
-                ORDER BY numero_cancha';
-        $params = array($this->id);
-        return Database::getLines($sql, $params);
+        FROM tb_cancha
+        where tamano_cancha ILIKE ?
+        ORDER by tamano_cancha';
+        $params = array("%$value%");
+        return Database::getRows($sql, $params);
     }
 
+    // agregar una cancha
+
+    public function createRow()
+    {
+        $sql = 'INSERT INTO tb_cancha (numero_cancha, tamano_cancha, material_cancha, costo_cancha)
+        VALUES(?, ?, ?, ?)';
+        $params = array($this->numero_cancha, $this->tamano_cancha, $this->material_cancha, $this->costo_cancha);
+        return Database::executeRow($sql, $params);
+    }
+
+    // metodo para leer el contenido de la tabla
     public function readAll()
     {
-        $sql = 'SELECT numero_cancha AS numero, tamano_cancha AS tamano, material_cancha AS material, costo_cancha AS costo
-                FROM tb_cancha
-                ORDER BY id_cancha';
+        $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
+        FROM tb_cancha
+        ORDER BY id_cancha';
         $params = null;
-        return Database::getLines($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
-    public function searchLines($value)
+    // metodo para leer un dato
+    public function readOne()
     {
-        $sql = 'SELECT numero_cancha AS numero, tamano_cancha AS tamano, material_cancha AS material, costo_cancha AS costo
-                FROM tb_cancha
-                WHERE numero_cancha ILIKE ? OR tamano_cancha ILIKE ? OR material_cancha ILIKE ?
-                ORDER BY id_cancha';
-        $params = array($value);
-        return Database::getLines($sql, $params);
-    }
-    
-    public function updateLine()
-    {
-        $sql = 'UPDATE tb_cancha SET tamano_cancha = ?, material_cancha = ?, costo_cancha = ?
+        $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
+        FROM tb_cancha
         WHERE id_cancha = ?';
-        $params = array($this->tamano_cancha, $this->material_cancha, $this->costo_cancha);
-        return Database::executeLine($sql, $params);
+        $params = array($this->id_canhca);
+        return Database::getRow($sql, $params);
     }
 
-    public function deleteLine()
+    // metodo para actualizar canchas
+
+    public function updateRow()
     {
-        $sql = 'DELETE FROM tb_cancha
-                WHERE id_cancha = ?';
-        $params = array($this->id_cancha);
-        return Database::executeLine($sql, $params);
+        $sql = 'UPDATE tb_cancha
+        SET numero_cancha = ?, tamano_cancha = ?, material_cancha = ?, costo_cancha = ?
+        WHERE id_cancha = ?';
+        $params = array($this->numero_cancha, $this->tamano_cancha, $this->material_cancha, $this->costo_cancha);
+        return Database::executeRow($sql, $params);
     }
+    // metodo para eliminar una cancha
 
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM tb_cancha 
+        WHERE id_cancha = ?';
+        $params = array($this->id_cancha);
+        return Database::executeRow($sql, $params);
+    }
 }
-
-?>
