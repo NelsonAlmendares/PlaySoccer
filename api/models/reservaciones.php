@@ -226,7 +226,7 @@
             fecha_reserva, balones_alquilados,
             observaciones, chalecos_alquilados, id_empleado, id_cancha, 
             id_horario, id_cliente, id_asistencia, id_tipobalon, id_chalecos)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
             $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistenci, $this->id_tipobalon, $this->id_chalecos);                
             return Database::executeRow($sql, $params);
         }

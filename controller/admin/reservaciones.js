@@ -70,7 +70,7 @@ function openCreate(){
     document.getElementById('id').disabled = true;
     document.getElementById('id-reserva').hidden = true;
     //se llena el select 
-    fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
+    fillSelect(ENDPOINT_CHALECO, 'id_chalecos', null);
 }
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_reserva){
@@ -97,18 +97,18 @@ function openUpdate(id_reserva){
                  // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if(response.status){
                 // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id_reserva').value = response.data.id_empleado;
-                    document.getElementById('fecha_reserva').value = response.data.fecha_reserva;
-                    document.getElementById('balones_alquilados').value = response.data.balones_alquilados;
+                    document.getElementById('id').value = response.data.id_empleado;
+                    document.getElementById('fecha').value = response.data.fecha_reserva;
+                    document.getElementById('balones').value = response.data.balones_alquilados;
                     document.getElementById('observaciones').value = response.data.observaciones;
-                    document.getElementById('chalecos_alquilados').value = response.data.chalecos_alquilados;
-                    document.getElementById('id_empleado').value = response.data.id_empleado;
-                    document.getElementById('id_cancha').value = response.data.id_cancha;
-                    document.getElementById('id_horario').value = response.data.id_horario;
-                    document.getElementById('id_cliente').value = response.data.id_cliente;
-                    document.getElementById('id_asistencia').value = response.data.id_asistencia;
-                    document.getElementById('id_tipobalon').value = response.data.id_tipobalon;
-                    document.getElementById('id_chalecos').value = response.data.id_chalecos;
+                    document.getElementById('cantidadChalecos').value = response.data.chalecos_alquilados;
+                    document.getElementById('empleado').value = response.data.id_empleado;
+                    document.getElementById('cancha').value = response.data.id_cancha;
+                    document.getElementById('horario').value = response.data.id_horario;
+                    document.getElementById('cliente').value = response.data.id_cliente;
+                    document.getElementById('asistencia').value = response.data.id_asistencia;
+                    document.getElementById('tipoBalon').value = response.data.id_tipobalon;
+                    document.getElementById('chalecos').value = response.data.id_chalecos;
                 }else{
                     sweetAlert(2, response.exception, null);
                 }
