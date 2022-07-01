@@ -18,7 +18,7 @@ class chalecos extends Validator
     */
     public function setId($value)
     {
-        if ($this->validateNaturalNumer($value)) {
+        if ($this->validateNaturalNumber($value)) {
             $this->id_chaleco = $value;
             return true;
         }else{
