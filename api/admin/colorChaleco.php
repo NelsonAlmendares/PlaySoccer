@@ -1,14 +1,14 @@
-<?php
+ <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/tipoEmpleado.php');
+require_once('../models/colorChaleco.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $tipo_empleado = new Templeado;
+    $color_chaleco = new Color;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -16,19 +16,19 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] =  $tipo_empleado->readAll()) {
+                if ($result['dataset'] =  $color_chaleco->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'No hay datos registrados';
+                    $result['exception'] = 'No hay colores de chalecos registrados';
                 }
                 break;
             case 'search':
-                $_POST =  $tipo_empleado->validateForm($_POST);
+                $_POST =  $color_chaleco->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] =  $tipo_empleado->searchRows($_POST['buscar'])) {
+                } elseif ($result['dataset'] =  $color_chaleco->searchRows($_POST['buscar'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -38,50 +38,50 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'create':
-                $_POST =  $tipo_empleado->validateForm($_POST);
-                if (! $tipo_empleado->setTipo($_POST['descripcion'])) {
-                    $result['exception'] = 'Tipo empleado no aceptado';                
-                } elseif ( $tipo_empleado->createRow()) {
+                $_POST =  $color_chaleco->validateForm($_POST);
+                if (! $color_chaleco->setColor($_POST['descripcion'])) {
+                    $result['exception'] = 'Color de chaleco no aceptado';                
+                } elseif ( $color_chaleco->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tipo empleado creado correctamente';                    
+                    $result['message'] = 'Color de chaleco agregada correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$tipo_empleado->setId($_POST['id_tipoempleado'])) {
-                    $result['exception'] = 'Cargo incorrecto';
-                } elseif ($result['dataset'] =  $tipo_empleado->readOne()) {
+                if (!$color_chaleco->setId($_POST['id_color'])) {
+                    $result['exception'] = 'Color de chaleco incorrecto';
+                } elseif ($result['dataset'] =  $color_chaleco->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Cargo inexistente';
+                    $result['exception'] = 'Color de chaleco inexistente';
                 }
                 break;
             case 'update':
-                $_POST =  $tipo_empleado->validateForm($_POST);
-                if (! $tipo_empleado->setId($_POST['id'])) {
-                    $result['exception'] = 'Cargo empleado incorrecto';
-                } elseif (!$data =  $tipo_empleado->readOne()) {
-                    $result['exception'] = 'Cargo empleado inexistente';
-                } elseif (! $tipo_empleado->setTipo($_POST['descripcion'])) {
-                    $result['exception'] = 'Cargo empleado no aceptado';                
-                } elseif ( $tipo_empleado->updateRow()) {
+                $_POST =  $color_chaleco->validateForm($_POST);
+                if (! $color_chaleco->setId($_POST['id'])) {
+                    $result['exception'] = 'Color de chalecos incorrecto';
+                } elseif (!$data =  $color_chaleco->readOne()) {
+                    $result['exception'] = 'Color de chalecos inexistente';
+                } elseif (! $color_chaleco->setColor($_POST['descripcion'])) {
+                    $result['exception'] = 'Color de chalecos no aceptado';                
+                } elseif ( $color_chaleco->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Cargo empleado modificado correctamente';
+                        $result['message'] = 'Color de chalecos modificada correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (! $tipo_empleado->setId($_POST['id_tipoempleado'])) {
-                    $result['exception'] = 'Cargo empleado incorrecto';
-                } elseif (!$data =  $tipo_empleado->readOne()) {
-                    $result['exception'] = 'Tipo empleado inexistente';
-                } elseif ( $tipo_empleado->deleteRow()) {
+                if (! $color_chaleco->setId($_POST['id_color'])) {
+                    $result['exception'] = 'Color de chaleco incorrecto';
+                } elseif (!$data =  $color_chaleco->readOne()) {
+                    $result['exception'] = 'Color de chaleco inexistente';
+                } elseif ( $color_chaleco->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cargo empleado eliminado correctamente';                    
+                    $result['message'] = 'Color de chaleco eliminado correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }

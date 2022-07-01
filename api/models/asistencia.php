@@ -3,11 +3,11 @@
 *	Clase para manejar la tabla categorias de la base de datos.
 *   Es clase hija de Validator.
 */
-class Templeado extends Validator
+class Color extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
-    private $tipo_empleado = null;    
+    private $color_chaleco = null;    
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -22,10 +22,10 @@ class Templeado extends Validator
         }
     }
 
-    public function setTipo($value)
+    public function setColor($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->tipo_empleado = $value;
+            $this->color_chaleco = $value;
             return true;
         } else {
             return false;
@@ -40,9 +40,9 @@ class Templeado extends Validator
         return $this->id;
     }
 
-    public function getTipo()
+    public function getColor()
     {
-        return $this->tipo_empleado;
+        return $this->color_chaleco;
     }    
 
     /*
@@ -57,45 +57,46 @@ class Templeado extends Validator
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
-
+    /*-------Función para leer todos los tamaños agregados---------*/
     public function createRow()
     {
-        $sql = 'INSERT INTO "tb_tipoEmpleado"(tipoempleado)
+        $sql = 'INSERT INTO "tb_colorChaleco"(colorchaleco)
                 VALUES (?)';
-        $params = array($this->tipo_empleado);
+        $params = array($this->color_chaleco);
         return Database::executeRow($sql, $params);
     }
-
+    /*-------Función para leer todos los tamaños agregados---------*/
     public function readAll()
     {
-        $sql = 'SELECT id_tipoempleado, tipoempleado
-                FROM "tb_tipoEmpleado"';
+        $sql = 'SELECT id_color, colorchaleco 
+                FROM "tb_colorChaleco"
+                ORDER BY id_color';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_tipoempleado, tipoempleado 
-                FROM "tb_tipoEmpleado"
-                WHERE id_tipoempleado = ?';
+        $sql = 'SELECT id_color, colorchaleco 
+                FROM "tb_colorChaleco"
+                WHERE id_color = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateRow()
     {
-        $sql = 'UPDATE "tb_tipoEmpleado"
-                SET tipoempleado=?
-                WHERE id_tipoempleado = ?';
-        $params = array($this->tipo_empleado, $this->id);
+        $sql = 'UPDATE "tb_colorChaleco"
+                SET colorchaleco=?
+                WHERE id_color = ?';
+        $params = array($this->color_chaleco, $this->id);
         return Database::executeRow($sql, $params);
     }
-
+    /*----------Función para eliminar un tamaño agregado-------------*/
     public function deleteRow()
     {
-        $sql = 'DELETE FROM "tb_tipoEmpleado"
-                WHERE id_tipoempleado = ?';
+        $sql = 'DELETE FROM "tb_colorChaleco"
+                WHERE id_color = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
