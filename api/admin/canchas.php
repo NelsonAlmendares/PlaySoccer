@@ -121,9 +121,26 @@ if (isset($_GET['action'])) {
                     /**
                      *  se abre un caso para eliminar un dato
                      */
-
-                case 'delete':
-                    if(!$cancha)
+                    case 'delete':
+                        if(!$cancha->setId($_POST['id_cancha'])) {
+                            $result['exception'] = 'identificacion de cancha incorrecta';
+                        }elseif(!$data = $cancha->readOne()) {
+                            $result['exception'] = 'Registro de cancha inexistente';
+                        }elseif($cancha->deleteRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Registro eliminado correctamente';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        break;
+                    default:
+                        $result['exception'] = 'Acción no disponible dentro de la sesión';
+            }
+            header('content-type: application/json; charset=utf-8');
+        } else {
+            print(json_encode('Acceso denegado'));
         }
+    } else {
+        print(json_encode('Recurso no disponible'));
     }
-}
+    

@@ -33,7 +33,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="topNavBar">
-                <form class="d-flex ms-auto my-3 my-lg-0">
+                <form class="d-flex ms-auto my-3 my-lg-0" id="search-form">
                     <div class="input-group">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
                         <button class="btn btn-primary" type="submit">
@@ -188,7 +188,7 @@
                             <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Agregar cancha <i
+                                        <h5 class="modal-title" id="staticBack">Agregar cancha <i
                                                 class="bi bi-card-heading"></i></h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -196,6 +196,12 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-6">
+                                                <div class="mb-3" id="id-cancha">
+                                                    <label for="id" class="form-label">ID de la cancha </label> <i
+                                                        class="fa-solid fa-pen text-secondary"></i>
+                                                    <input class="form-control" type="text" id="id" name="id"
+                                                        placeholder="1" max="16">
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="EnumCancha" class="form-label">Número de cancha:
                                                     </label> <i class="bi bi-list-ol"></i>
@@ -228,7 +234,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-outline-success">Agregar</button>
+                                        <button type="button" class="btn btn-outline-success" id="btn-save">Agregar</button>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +257,7 @@
                                     <th scope="col" class="text-center"> Acciones </th>
                                 </tr>
                             </thead>
-                            <tbody id="table-0">
+                            <tbody id="table-c">
 
                             </tbody>
                         </table>
