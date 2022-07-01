@@ -102,11 +102,57 @@ function openUpdate(id_cancha) {
                     document.getElementById('id').value = response.dataset.id_cancha;
                     document.getElementById('EnumCancha').value = response.dataset.numero_cancha;
                     document.getElementById('MaterialCancha').value = response.dataset.material_cancha;
-                    document.getElementById('TamañoCancha')
+                    document.getElementById('TamañoCancha').value = response.dataset.tamaño_cancha;
+                    document.getElementById('costo').value = response.dataset.costo_cancha;
+                } else {
+                  sweetAlert(2, response.exception, null);
                 }
-            })
+            });
+         } else {
+            console.log(request.status + ' ' + request.statusText);
          }
-    })
+    });
+}
+
+// Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
+
+document.getElementById('save-form').addEventListener('submit', function (event) {
+
+  // Se evita recargar la página web después de enviar el formulario.
+  event.preventDefault();
+      // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.    
+
+      let action;
+
+      // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.    
+      if (document.getElementById('id').disabled==true){
+        action = 'create';
+      } else if (document.getElementById('id').disabled==false){
+        action = 'update';
+      }
+      // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
+      saveRow(API_CANCHAS, action, 'save-form');
+      // Se limpia la caja de dialogo (modal) del formulario.  
+      cleanModal();
+      // Se cierra la caja de dialogo (modal) del formulario.  
+      modal.hide();
+});
+
+// Función para establecer el registro a eliminar y abrir una caja de diálogo de confirmación.
+
+function openDelete(id_cancha) {
+
+  const data = new FormData();
+  data.append('id_cancha', id_cancha);
+   // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
+   confirmDelete(API_CANCHAS, data);
+}
+
+function cleanModal(){
+  $("#EnumCancha").val('');
+  $("#TamañoCancha").val('');
+  $("#MaterialCancha").val('');
+  $("#costo").val('');
 }
 
 
