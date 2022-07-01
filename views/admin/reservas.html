@@ -184,13 +184,21 @@
 				<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Agregar una Reservación</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<h5 class="modal-title" id="titulo-modal">Agregar Reservaciones <i
+									class="fa-solid fa-address-book text-muted"></i></h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close" onclick="cleanModal()"></button>
 						</div>
 						<div class="modal-body">
 							<div class="container">
 								<div class="row">
 									<div class="col-md-6">
+										<div class="mb-3" id="id-reserva">
+											<label for="id" class="form-label">ID de la reserva </label> <i
+												class="fa-solid fa-pen text-secondary"></i>
+											<input class="form-control" type="text" id="id" name="id"
+												placeholder="1" max="16">
+										</div>
 										<div class="mb-3">
 											<label for="fecha" class="form-label-date"> Fecha: </label> <i class="fa-solid fa-calendar"></i>
 											<input type="date" class="form-control mt-2" id="fecha" name="fecha" placeholder="">
@@ -214,20 +222,17 @@
 									</div>
 									<div class="col-md-6">
 										<div class="mb-3">
-											<label for="email" class="form-label">Asistencia</label> <i class="fa-solid fa-calendar-exclamation"></i>
+											<label for="asistencia" class="form-label">Asistencia</label> <i class="fa-solid fa-calendar-exclamation"></i>
 											<input type="text" class="form-control" id="asistencia" name="asistencia" placeholder="presente">
 										</div>
 										<div class="mb-3">
-											<label for="empleado" class="form-label-balon"> Cancha: </label>
+											<label for="cancha" class="form-label-balon"> Cancha: </label>
 											<input type="number" class="form-control mt-2" id="cancha" name="cancha" placeholder="1">
 										</div>
 										<div class="mb-3">
-											<label for="empleado" class="form-label-horario"> Horario: </label> <i class="fa-solid fa-alarm-plus"></i>
-											<select class="form-select mt-2" aria-label="Default select example">
-												<option selected>Horario</option>
-												<option value="1">Matutino</option>
-												<option value="2">Vespertino</option>
-											</select>
+											<label for="horario" class="form-label-horario"> Horario: </label> <i class="fa-solid fa-alarm-plus"></i>
+											<select class=" form-control" id="id_horario"
+													name="id_horario" required></select>
 										</div>
 										<div class="mb-3">
 											<label for="cliente" class="form-label"> Cliente: </label> <i class="fa-solid fa-person"></i>
@@ -235,27 +240,22 @@
 										</div>
 										<div class="mb-3">
 											<label for="empleado" class="form-label-horario"> Tipo Balón: </label> <i class="fa-solid fa-futbol text-muted"></i>
-											<select class="form-select mt-2" aria-label="Default select example">
-												<option selected> Usos </option>
-												<option value="1">Matutino</option>
-												<option value="2">Vespertino</option>
-											</select>
+											<select class=" form-control" id="empleado"
+											name="empleado" required></select>
 										</div>
 										<div class="mb-3">
 											<label for="id_chalecos" class="form-label"> Color de chalecos: </label> <i class="fa-solid fa-vest text-muted"></i>
-											<select class="form-select mt-2" aria-label="Default select example">
-												<option selected>Horario</option>
-												<option value="1">Matutino</option>
-												<option value="2">Vespertino</option>
-											</select>
+											<select class=" form-control" id="chaleco"
+											name="chaleco" required></select>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-							<button type="button" class="btn btn-outline-success">Agre</button>
+							<button type="button" class="btn btn-outline-danger"
+									data-bs-dismiss="modal" onclick="cleanModal()">Close</button>
+								<button type="submit" class="btn btn-outline-success" id="btn-accion">Agregar</button>
 						</div>
 					</div>
 				</div>
