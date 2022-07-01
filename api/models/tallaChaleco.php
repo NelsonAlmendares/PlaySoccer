@@ -50,10 +50,10 @@ class Talla extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT t_e."id_tipoEmpleado", t_e."tipoEmpleado" 
-                FROM tipo_empleado t_e
-                WHERE t_e."tipoEmpleado" ILIKE ?
-                ORDER BY t_e."tipoEmpleado"';
+        $sql = 'SELECT id_talla, tallachaleco  
+                FROM "tb_tallaChaleco"
+                WHERE tallachaleco ILIKE ?
+                ORDER BY tallachaleco';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }

@@ -27,7 +27,13 @@ if (isset($_GET['action'])) {
             case 'search':
                 $_POST =  $color_chaleco->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
+                    if ($result['dataset'] =  $color_chaleco->readAll()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay colores de chalecos registrados';
+                    }
                 } elseif ($result['dataset'] =  $color_chaleco->searchRows($_POST['buscar'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';

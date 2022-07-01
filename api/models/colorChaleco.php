@@ -50,10 +50,10 @@ class Color extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT t_e."id_tipoEmpleado", t_e."tipoEmpleado" 
-                FROM tipo_empleado t_e
-                WHERE t_e."tipoEmpleado" ILIKE ?
-                ORDER BY t_e."tipoEmpleado"';
+        $sql = 'SELECT id_color, colorchaleco 
+                FROM "tb_colorChaleco"
+                WHERE colorchaleco ILIKE ?
+                ORDER BY colorchaleco';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
