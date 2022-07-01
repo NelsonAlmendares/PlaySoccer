@@ -1,6 +1,6 @@
 <?php
 
-    class Clientes extends Validator{
+    class Clientes extends validator{
         //Declaramos los attributos
         private $id = null;
         private $nombre = null;
@@ -138,27 +138,52 @@
         //Opercciones básicas para el CRUD
         public function createRow () {
             $sql = 'INSERT INTO public.tb_cliente(
-	            nombre_cliente, apellido_cliente, dui_cliente, celular_cliente, correo_cliente, contrasena_cliente, foto_cliente)
+	            nombre_cliente, apellido_cliente, dui_cliente, celular_cliente, correo_cliente, contrasena_cliente)
 	            VALUES (?, ?, ?, ?, ?, ?, ?)';
-            $params = array($this->nombre, $this->apellido, $this->documento, $this->celular, $this->celular, $this->password, $this->foto);
+            $params = array($this->nombre, $this->apellido, $this->documento, $this->celular, $this->celular, $this->password);
             return Database::executeRow($sql, $params);
         }
 
-        public function updateRow ($foto) {
-            # code...
+        function primerUso () {
+            $this->foto = '1.png';
+            $sql = 'INSERT INTO public.tb_cliente(
+                nombre_cliente, apelllido_cliente, dui_cliente, celular_cliente, correo_cliente, contrasena_cliente, foto_cliente)
+                VALUES (?, ?, ?, ?, ?, ?, ?);';
+            $params = array($this->nombre, $this->apellido, $this->documento, $this->celular, $this->correo, $this->password ,$this->foto);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function updateRow ($foto_imagen) {
+            if (!$foto_imagen=='1.png') {
+                ($this->foto) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto = $foto_imagen;
+            } elseif ($foto_imagen=='1.png') {
+
+            } else {
+                $this->foto = $foto_imagen;
+            }
+            $sql = ' UPDATE public.tb_cliente
+                SET nombre_cliente=?, apelllido_cliente=?, dui_cliente=?, celular_cliente=?, correo_cliente=?, foto_cliente=?
+                WHERE id_cliente = ? ';
+            $params = array($this->nombre, $this->apellido, $this->documento, $this->celular,$this->correo, $this->foto);
+        }
+
+        public function deleteRow () {
+            $sql = ' DELETE FROM public.tb_cliente
+	            WHERE id_cliente = ?';
+            $params = array($this->id);
+            return Database::executeRow($sql,$params);
         }
 
         public function readOne () {
-            $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, celular_cliente, correo_cliente, contrasena_cliente, foto_cliente
+            $sql = 'SELECT id_cliente AS id, nombre_cliente AS nombre, apelllido_cliente AS apellido, dui_cliente AS documento, celular_cliente AS celular, correo_cliente AS correo, contrasena_cliente AS password, foto_cliente AS foto
 	            FROM public.tb_cliente
-	            WHERE id_cliente = ?
-	            ORDER BY nombre_cliente';
+	            WHERE id_cliente = ?';
             $params = array($this->id);
             return Database::getRow($sql, $params);
         }
 
         public function readAll () {
-            $sql = 'SELECT foto_cliente AS foto, nombre_cliente AS nombre, apelllido_cliente AS apellido, dui_cliente AS DUI, celular_cliente AS celular, correo_cliente AS correo
+            $sql = 'SELECT id_cliente AS id, foto_cliente AS foto, nombre_cliente AS nombre, apelllido_cliente AS apellido, dui_cliente AS Documento, celular_cliente AS celular, correo_cliente AS correo
                 FROM tb_cliente 
                 ORDER BY id_cliente';
             $params = null;
@@ -166,11 +191,10 @@
         }
 
         public function searchRows ($value) {
-            $sql = 'SELECT foto_cliente AS foto, nombre_cliente AS nombre, apellido_cliente AS apellido, dui_cliente AS DUI, celular_cliente AS celular, correo_cliente AS correo
+            $sql = 'SELECT id_cliente AS id, foto_cliente AS foto, nombre_cliente AS nombre, apelllido_cliente AS apellido, dui_cliente AS Documento, celular_cliente AS celular, correo_cliente AS correo
                 FROM tb_cliente 
-                WHERE nombre_cliente ILIKE ? OR apellido_cliente ILIKE ? OR correo_cliente ILIKE ?
-                ORDER BY id_cliente';
-            $params = array("$value");
+                WHERE nombre_cliente ILIKE ? OR apelllido_cliente ILIKE ? OR correo_cliente ILIKE ?';
+            $params = array("%$value%", "%$value%", "%$value%");
             return Database::getRows($sql, $params);
         }
 
