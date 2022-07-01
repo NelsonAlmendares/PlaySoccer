@@ -79,7 +79,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="administracion.html" class="nav-link px-3 mt-3">
+						<a href="reservas.html" class="nav-link px-3 mt-3">
 							<span class="me-2"><i class="fa-solid fa-book"></i></span>
 							<span>Reservaciones</span>
 						</a>
@@ -220,6 +220,7 @@
 											<input type="text" class="form-control mt-2" id="empleado" name="empleado" placeholder="Jhon Doe">
 										</div>
 									</div>
+
 									<div class="col-md-6">
 										<div class="mb-3">
 											<label for="asistencia" class="form-label">Asistencia</label> <i class="fa-solid fa-calendar-exclamation"></i>
@@ -239,13 +240,13 @@
 											<input type="text" class="form-control" id="cliente" name="cliente" placeholder="Jhon Doe">
 										</div>
 										<div class="mb-3">
-											<label for="empleado" class="form-label-horario"> Tipo Balón: </label> <i class="fa-solid fa-futbol text-muted"></i>
-											<select class=" form-control" id="empleado"
-											name="empleado" required></select>
+											<label for="tipoBalon" class="form-label-horario"> Tipo Balón: </label> <i class="fa-solid fa-futbol text-muted"></i>
+											<select class=" form-control" id="tipoBalon"
+											name="tipoBalon" required></select>
 										</div>
 										<div class="mb-3">
-											<label for="id_chalecos" class="form-label"> Color de chalecos: </label> <i class="fa-solid fa-vest text-muted"></i>
-											<select class=" form-control" id="id_chaleco"
+											<label for="chalecos" class="form-label"> Color de chalecos: </label> <i class="fa-solid fa-vest text-muted"></i>
+											<select class=" form-control" id="chalecoss"
 											name="chalecos" required></select>
 										</div>
 									</div>
@@ -280,7 +281,6 @@
 										<th scope="col" class="text-center"> Asistencia </th>
 										<th scope="col" class="text-center"> Tipo Balón </th>
 										<th scope="col" class="text-center"> Chaleco </th>
-										<th scope="col" class="text-center"> Acciones </th>
 									</tr>
 								</thead>
 								<tbody id="tabla-ad">
