@@ -172,7 +172,7 @@
 			<div class="row">
 				<div class="container">
 					<div class="col actions">
-						<button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
+						<button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal open"
 							data-bs-target="#agregar"> Agregar <i class="fa-solid fa-futbol"></i> </button>
 						<button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
 					</div>
@@ -180,7 +180,7 @@
 			</div>
 
 			<!-- Modal -->
-			<div class="modal fade" id="agregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			<div class="modal open" id="save-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 				aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-xl">
 					<div class="modal-content">
@@ -250,8 +250,8 @@
 										<th scope="col" class="text-center"> Acciones </th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="tbody-rows">
+									<!--<tr>
 										<th scope="row" class="text-center">1</th>
 										<td class="text-center">$ 5.95</td>
 										<td class="text-center"> 20 </td>
@@ -272,7 +272,7 @@
 											<button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> </button>
 											<button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> </button>
 										</td>
-									</tr>
+									</tr>-->
 								</tbody>
 							</table>
 						</div>

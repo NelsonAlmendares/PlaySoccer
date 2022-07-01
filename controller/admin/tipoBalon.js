@@ -57,7 +57,51 @@ function fillTable(dataset) {
    */
     content += `
     <tr>
-    <td></td>
-    `
-  })
+    <td>
+    ${row.id_tipoBalon}
+    </td>
+    <td>
+    ${row.costo_balon}
+    </td>
+    <td>
+    ${row.cantidad_balones}
+    </td>
+    <a onclick="openUpdate(${row.id_tipobalon})"class="btn-floating waves-effect blue tooltipped" data-tooltip="actuslizar"><i class="material-icons">mode_edit</i></a>
+    <a onclick="openDelete(${row.id_tipoBalon})
+    "a class="btn-floating waves-effect red tooltiped" data-toltip="Eliminar"><i class="material-icons">delete</i></a>
+    </td>
+    </tr>
+    `;
+  });
+  /*
+  *se agregan las filas al cuerpo de la tabla mediante su id para mostar los registros
+ */
+  document.getElementById('tbody-row').innerHTML = content;
+  /*
+  *se inicializa el component tool tip para que funcionen las sugerencias textuales 
+ */
+  M.Tooltip.init(document.querySelectorAll('tooltipped'));
+}
+
+/*
+*Metodo manejador de eventos que se ejecuta cuando se envia el formulario de buscar
+*/
+document.getElementById('search-form').addEventListener('submit', function (event) {
+  /*
+  *seevita recargar la pagina despues de enviar el formulario
+  */
+  event.preventDefault();
+  /*
+  *se llama a la funciion que realiza la busqueda, se encuentra en components,. js
+  */
+  searchRows(API_TIPOB, 'search-form');
+});
+/*
+*Funcion para preparar el formulario al momento de guardar un registro
+*/
+function openCreate() {
+  /*
+  *Se abre la caja de dialogo modal que contiene el formulario
+  */
+  M.Modal.getElementById(document.getElementById('save-modal')).open();
 }
