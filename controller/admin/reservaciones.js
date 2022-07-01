@@ -70,7 +70,7 @@ function openCreate(){
     document.getElementById('id').disabled = true;
     document.getElementById('id-reserva').hidden = true;
     //se llena el select 
-    fillSelect(ENDPOINT_CHALECO, 'chaleco', null);
+    fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
 }
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_reserva){
