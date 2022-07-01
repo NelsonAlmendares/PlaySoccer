@@ -295,6 +295,10 @@ function fillSelect(endpoint, select, selected) {
                 document.getElementById(select).innerHTML = content;
             });
         } else {
+            let content='';
+            content += '<option>No carga</option>';            
+                // Se agregan las opciones a la etiqueta select mediante su id.
+            document.getElementById(select).innerHTML = content;
             console.log(request.status + ' ' + request.statusText);
         }
     });

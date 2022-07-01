@@ -1,6 +1,6 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API
 const API_RESERVACION = SERVER + 'admin/reservaciones.php?action=';
-//const ENDPOINT_CHALECO = SERVER + 'admin/chaleco.php?action=readAll';
+const ENDPOINT_CHALECO = SERVER + 'admin/chaleco.php?action=readAll';
 //const ENDPOINT_HORARIO = SERVER + 'admin/horario.php?action=readAll';
 const ENDPOINT_EMPLEADO = SERVER + 'admin/empleado.php?action=readAll';
 const ENDPOINT_ASISTENCIA = SERVER + 'admin/asistencia.php?action=readAll';
@@ -69,11 +69,12 @@ function openCreate(){
     //se llena el select 
     fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
     fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
-    fillSelect(ENDPOINT_CANCHA, 'cancha', null);
+    fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
+    //fillSelect(ENDPOINT_CANCHA, 'cancha', null);
     //fillSelect(ENDPOINT_HORARIO, 'horario', null);
     fillSelect(ENDPOINT_CLIENTE, 'cliente', null);    
     fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
-    //fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
+    
 }
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_reserva){

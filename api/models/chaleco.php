@@ -3,7 +3,7 @@
 *clase para manejar la tabla chalecos de la bd
 *clase hija de validator
 */
-class chalecos extends Validator
+class Chalecos extends Validator
 {
     /*
     *Se declaran loa atributos (propiedades)
@@ -109,27 +109,30 @@ class chalecos extends Validator
         $params = array($this->costo_chaleco, $this->cantidad_chlecos,$this->id_colorchaleco, $this->talla_chaleco);
         return Database::executeRow($sql,$params);
     }
-        /*
-        *Metodo para leer el contendio de la tabla 
-        */
-    public function readAll()
-    {
-        $sql = 'SELECT id_chaleco, costo_chaleco,cantidad_chlecos,colorchaleco,talla_chaleco
-        FROM tb_chaleco INNER JOIN tb_colorChaleco USING(id_categoria)
-        ORDER BY costo_chaleco';
-        $params = null;
-        return Database::getRows($sql, $params);
-    }
+
         /*
         *MEtodo para leer un dato(lo vamos a usar en el metodo de actualizar ya en la API.)
         */
     public function readOne()
     {
-        $sql = 'SELECT id_chaleco, costo_chaleco,cantidad_chlecos,id_colorchaleco,talla_chaleco
-        FROM tb_chaleco
-        WHERE id_chaleco = ?';
+        $sql = 'SELECT id_chaleco, costo_cheleco, cantidad_chlecos, id_colorchaleco, talla_chaleco
+        FROM public."tb_chaleco" tch INNER JOIN public."tb_colorChaleco" tcc ON tch.id_colorchaleco = tcc.id_color
+        INNER JOIN public."tb_tallaChaleco" ttc ON tch.talla_chaleco = ttc.id_talla
+        WHERE id_chaleco = ? ';
         $params = array($this->id_chaleco);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
+    }
+                /*
+        *Metodo para leer el contendio de la tabla 
+        */
+    public function readAll()
+    {
+        $sql = 'SELECT id_chaleco, costo_cheleco, cantidad_chlecos, id_colorchaleco, talla_chaleco
+        FROM public."tb_chaleco" tch INNER JOIN public."tb_colorChaleco" tcc ON tch.id_colorchaleco = tcc.id_color
+        INNER JOIN public."tb_tallaChaleco" ttc ON tch.talla_chaleco = ttc.id_talla
+        ORDER BY id_chaleco';
+        $params = null;
+        return Database::getRows($sql, $params);
     }
         /*
         *Metodo para actualizar chaleco
