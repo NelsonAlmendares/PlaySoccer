@@ -51,7 +51,7 @@
                             <div class="container-fluid">
                                 <div class="container-fluid">
                                     <div class="card" style="width: 18rem;" id="info-user">
-                              
+
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="administracion.html" class="nav-link px-3 mt-3">
+                        <a href="reservas.html" class="nav-link px-3 mt-3">
                             <span class="me-2"><i class="fa-solid fa-book"></i></span>
                             <span>Reservaciones</span>
                         </a>
@@ -170,13 +170,66 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="container">
                                 <div class="col actions">
-                                    <button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
-                                        data-bs-target="#agregar"> Agregar <i class="fa-solid fa-address-book"></i> </button>
-                                    <button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
+                                    <button type="button" class="btn btn-outline-success margin__btn"
+                                        data-bs-toggle="modal" data-bs-target="#agregar"> Agregar <i
+                                            class="fa-solid fa-address-book"></i> </button>
+                                    <button type="button" class="btn btn-warning"> Reporte <i
+                                            class="fa-solid fa-chart-column"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="agregar" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Agregar cancha <i
+                                                class="bi bi-card-heading"></i></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="EnumCancha" class="form-label">Número de cancha:
+                                                    </label> <i class="bi bi-list-ol"></i>
+                                                    <input class="form-control" type="number" id="EnumCancha"
+                                                        name="EnumCancha" placeholder="1" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="material" class="form-label">Tipo de Material: </label>
+                                                    <input type="text" class="form-control" id="MaterialCancha"
+                                                        name="MaterialCancha" placeholder="material de la cancha"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="TamañoCancha" class="form-label">Tamaño de la cancha:
+                                                    </label> <i class="bi bi-aspect-ratio"></i>
+                                                    <input class="form-control" type="text" id="TamañoCancha"
+                                                        name="TamañoCancha" placeholder="0 x 0 m" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="costo" class="form-label">Costo: </label> <i
+                                                        class="fa-solid fa-dollar-sign text-muted"></i>
+                                                    <input class="form-control" type="number" id="costo" name="costo"
+                                                        placeholder="$00.00" max="16" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-outline-success">Agregar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -184,8 +237,8 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="container mt-3">
+            <div class="row mt-3">
+                <div class="container">
                     <div class="col-md-12">
                         <table class="table table-sm table-hover">
                             <thead>
@@ -198,73 +251,16 @@
                                     <th scope="col" class="text-center"> Acciones </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-center">1</th>
-                                    <td class="text-center"> 1</td>
-                                    <td class="text-center"> 12 x 8 metros de diametro </td>
-                                    <td class="text-center"> Grama sintética </td>
-                                    <td class="text-center"> $20.00 </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-center">2</th>
-                                    <td class="text-center"> 2 </td>
-                                    <td class="text-center"> 15 x 11 metros </td>
-                                    <td class="text-center"> Grama Natural </td>
-                                    <td class="text-center"> $25.00 </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                        <button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> </button>
-                                    </td>
-                                </tr>
+                            <tbody id="table-0">
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-			<!-- Modal -->
-			<div class="modal fade" id="agregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-xl">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Agregar cancha <i class="bi bi-card-heading"></i></h5> 
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<label for="EnumCancha" class="form-label">Número de cancha: </label> <i class="bi bi-list-ol"></i>
-										<input class="form-control" type="number" id="EnumCancha" name="EnumCancha" placeholder="1" required>
-									</div>
-									<div class="mb-3">
-										<label for="material" class="form-label">Tipo de Material: </label> 
-                                        <input type="text" class="form-control" id="MaterialCancha" name="MaterialCancha" placeholder="material de la cancha" required> 
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<label for="TamañoCancha" class="form-label">Tamaño de la cancha: </label> <i class="bi bi-aspect-ratio"></i>
-										<input class="form-control" type="text" id="TamañoCancha" name="TamañoCancha" placeholder="0 x 0 m"   required>
-									</div>
-                                    <div class="mb-3">
-                                        <label for="costo" class="form-label">Costo: </label>  <i class="fa-solid fa-dollar-sign text-muted"></i>
-										<input class="form-control" type="number" id="costo" name="costo" placeholder="$00.00" max="16" required>
-                                    </div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-outline-success">Agregar</button>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div class="row">
+                <div class="col-md-6 mb-3"></div>
+            </div>
         </div>
     </main>
 
@@ -277,10 +273,11 @@
     <script src="../../js/plugin/jquery-3.5.1.js"></script>
     <script src="../../js/admin/sc-ript.js"></script>
     <!--Sweet Alert-->
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!--Controladores JS-->
-   <script src="../../controller/components.js"></script>
-   <script src="../../controller/admin/online.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Controladores JS-->
+    <script src="../../controller/components.js"></script>
+    <script src="../../controller/admin/online.js"></script>
+    <script src="../../controller/admin/canchas.js"></script>
 
 </body>
 

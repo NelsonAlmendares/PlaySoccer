@@ -105,7 +105,7 @@ class Canchas extends Validator
         return Database::executeLine($sql, $params);
     }
 
-    public function readLines()
+    public function readLine()
     {
         $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
                 FROM public.tb_cancha
@@ -132,6 +132,22 @@ class Canchas extends Validator
                 ORDER BY id_cancha';
         $params = array($value);
         return Database::getLines($sql, $params);
+    }
+    
+    public function updateLine()
+    {
+        $sql = 'UPDATE tb_cancha SET tamano_cancha = ?, material_cancha = ?, costo_cancha = ?
+        WHERE id_cancha = ?';
+        $params = array($this->tamano_cancha, $this->material_cancha, $this->costo_cancha);
+        return Database::executeLine($sql, $params);
+    }
+
+    public function deleteLine()
+    {
+        $sql = 'DELETE FROM tb_cancha
+                WHERE id_cancha = ?';
+        $params = array($this->id_cancha);
+        return Database::executeLine($sql, $params);
     }
 
 }

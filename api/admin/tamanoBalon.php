@@ -49,39 +49,39 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$tamano_balon->setId_tipoE($_POST['id_tipoE'])) {
-                    $result['exception'] = 'Categoría incorrecta';
+                if (!$tamano_balon->setId($_POST['id_tamanobalon'])) {
+                    $result['exception'] = 'Tamaño incorrecto';
                 } elseif ($result['dataset'] =  $tamano_balon->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Categoría inexistente';
+                    $result['exception'] = 'Tamaño incorrecto inexistente';
                 }
                 break;
             case 'update':
                 $_POST =  $tamano_balon->validateForm($_POST);
-                if (! $tamano_balon->setId_tipoE($_POST['id_tipoE'])) {
-                    $result['exception'] = 'Tipo empleado incorrecto';
+                if (! $tamano_balon->setId($_POST['id'])) {
+                    $result['exception'] = 'Tamaño de balon incorrecto';
                 } elseif (!$data =  $tamano_balon->readOne()) {
-                    $result['exception'] = 'Tipo empleado inexistente';
-                } elseif (! $tamano_balon->setTipo_e($_POST['tipo_empleado'])) {
-                    $result['exception'] = 'Tipo empleado no aceptado';                
+                    $result['exception'] = 'Tamaño de balon inexistente';
+                } elseif (! $tamano_balon->setTamano($_POST['descripcion'])) {
+                    $result['exception'] = 'Tamaño de balon no aceptado';                
                 } elseif ( $tamano_balon->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Tipo empleado modificado correctamente';
+                        $result['message'] = 'Tamaño de balon modificado modificado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
                 if (! $tamano_balon->setId($_POST['id_tamanobalon'])) {
-                    $result['exception'] = 'Tamano balon incorrecto';
+                    $result['exception'] = 'Tamaño balon incorrecto';
                 } elseif (!$data =  $tamano_balon->readOne()) {
-                    $result['exception'] = 'Tamano balon inexistente';
+                    $result['exception'] = 'Tamaño balon inexistente';
                 } elseif ( $tamano_balon->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tamano balon eliminado correctamente';                    
+                    $result['message'] = 'Tamaño balon eliminado correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }

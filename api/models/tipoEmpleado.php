@@ -3,7 +3,7 @@
 *	Clase para manejar la tabla categorias de la base de datos.
 *   Es clase hija de Validator.
 */
-class Tipo_empleado extends Validator
+class Templeado extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
@@ -40,7 +40,7 @@ class Tipo_empleado extends Validator
         return $this->id;
     }
 
-    public function getTipo_E()
+    public function getTipo()
     {
         return $this->tipo_empleado;
     }    
@@ -60,7 +60,7 @@ class Tipo_empleado extends Validator
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tipo_empleado("tipoEmpleado")
+        $sql = 'INSERT INTO "tb_tipoEmpleado"(tipoempleado)
                 VALUES (?)';
         $params = array($this->tipo_empleado);
         return Database::executeRow($sql, $params);
@@ -76,27 +76,27 @@ class Tipo_empleado extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT t_e."id_tipoEmpleado", t_e."tipoEmpleado" 
-                FROM tipo_empleado t_e
-                WHERE t_e."id_tipoEmpleado" = ?';
-        $params = array($this->id_tipoE);
+        $sql = 'SELECT id_tipoempleado, tipoempleado 
+                FROM "tb_tipoEmpleado"
+                WHERE id_tipoempleado = ?';
+        $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateRow()
     {
-        $sql = 'UPDATE tipo_empleado
-                SET "tipoEmpleado"=?
-                WHERE "id_tipoEmpleado" = ?';
-        $params = array($this->tipo_empleado, $this->id_tipoE);
+        $sql = 'UPDATE "tb_tipoEmpleado"
+                SET tipoempleado=?
+                WHERE id_tipoempleado = ?';
+        $params = array($this->tipo_empleado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteRow()
     {
-        $sql = 'DELETE FROM tipo_empleado t_e
-                WHERE t_e."id_tipoEmpleado" = ?';
-        $params = array($this->id_tipoE);
+        $sql = 'DELETE FROM "tb_tipoEmpleado"
+                WHERE id_tipoempleado = ?';
+        $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 }

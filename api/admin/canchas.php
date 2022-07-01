@@ -4,109 +4,82 @@ require_once '../helpers/database.php';
 require_once '../helpers/validator.php';
 require_once '../models/canchas.php';
 
-//comprobamos si existen acciones por realizar
-
 if (isset($_GET['action'])) {
-    //comprobamos si existen sesiones por realizar
+
     session_start();
-    // Instancia correspondiente
-    $cancha = new Canchas;
-    //Inicializamos el arreglos para guardar el resultado de la API
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'exception' => null, 'dataset' => null, 'codigo' => null);
+
+    $cancha = new Cancha;
+
+    $result = array('status' => 0, 'message' => null, 'exception' => null);
 
     if (isset($_SESSION['id_cancha'])) {
-        $result['session'] = 1;
+
         switch ($_GET['action']) {
-
-            //Caso para obtener el numero de la cancha
-            case 'getNumero':
-                if (isset($_SESSION['codigo_cancha'])) {
-                    $result['status'] = 1;
-                    $result['codigo'] = $_SESSION['codigo_cancha'];
-                    $result['numero'] = $_SESSION['numero_cancha'];
-                    $result['tamamo'] = $_SESSION['tamamo_cancha'];
-                    $result['material'] = $_SESSION['material_cancha'];
-                } else {
-                    $result['exception'] = 'No existe ningún registro con esta numeración';
-                }
-                break;
-
-            // Caso para leer los datos del registro
-
-            case 'readLog':
-                if ('') {
-
-                } else {
-
-                }
-                break;
-
-            // Caso para editar el registro
-
-            case 'editLog':
-                if ('') {
-
-                } else {
-
-                }
-                break;
-
-            // Caso para leer todos los datos del registro
-
             case 'readAll':
                 if ($result['dataset'] = $cancha->readAll()) {
                     $result['status'] = 1;
-                } elseif (Database::getException()) {
+                } else if (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
 
-            // Caso para buscar una cancha
-
             case 'search':
-                
-
-            // caso para agregar una cancha
-
-            case 'addCourt':
                 $_POST = $cancha->validateForm($_POST);
-                if (!$cancha->setNumero($_POST['numero'])) {
-                    $result['exception'] = 'Asigne un número valido';
-                } elseif (!$cancha->setTamano($_POST['tamano'])) {
-                    $result['exception'] = 'Formato incorrecto';
-                } elseif (!$cancha->setMaterial($_POST['material'])) {
-                    $result['exception'] = 'El tipo de material es invalido';
-                } elseif (!$cancha->setCosto($_POST['costo'])) {
-                    $result['exception'] = 'Formato incorrecto';
-                } elseif ($cancha->createLine()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'La cancha ha sido agregada exitosamente';
+                if ($_POST['search'] == '') {
+                    $result['exception'] = 'Ingrese un dato para buscar';
+                } elseif ($result['dataset'] = $cancha->searchLines($_POST['search'])) {
+                    $result['dataset'] = 1;
+                    $result['message'] = 'datos encontrados';
                 } elseif (Database::getException()) {
-                    $result ['exception'] = Database::getException();
+                    $result['exception'] = Database::getException();
                 } else {
-                    $result ['exception'] = 'La cancha no se agrego correctamente';
+                    $result['exception'] = 'No hay ningún parecido';
                 }
-            break;
+                break;
 
-            // Caso para leer un dato de la cancha
-
-            case 'readLines':
-                if(!$cancha-setId($_POST['id'])) {
-                    $result['exception'] = 'Cancha incorrecto';
-                } elseif($result['dataset'] = $cancha->readLines()) {
-                    $result['status'] = 1;
-                } elseif(Database::getException()) {
-                    $result['Exception'] = Database::getException();
+            case 'create':
+                $_POST = $cancha->validateFor($_POST);
+                if (!$cancha->setNumero($_POST['numero_cancha'])) {
+                    $result['exception'] = 'numero invalido';
+                } elseif (!$cancha->setTamano($_POST['tamano_cancha'])) {
+                    $result['exception'] = 'tamaño invalido';
+                } elseif (!$cancha->setMaterial($_POST['material_cancha'])) {
+                    $result['exception'] = 'tipo de material incorrecto';
+                } elseif (!$cancha->setCosto($_POST['costo_cancha'])) {
+                    $result['exception'] = 'precio inexistente';
                 } else {
-                    $result['exception'] = 'Registro inexistente';
+                    $result['exception'] = Database::getException();
                 }
-            break;
+                break;
 
-            }
+            case 'update':
+                $_POST = $cancha->validateForm($_POST);
+                if (!$cancha->setId($_POST['id_cancha'])) {
+                    $result['exception'] = 'Registro  de cancha inexistente';
+                } elseif (!$data = $cancha->readLine()) {
+                    $result['exception'] = 'Registro de cancha inexistente';
+                } elseif (!$cancha->setTamano($_POST['tamano_cancha'])) {
+                    $result['exception'] = 'El tamaño de la cancha es invalido';
+                } elseif (!$cancha->setMaterial($_POST['material_cancha'])) {
+                    $result['exception'] = 'el tipo de material es invalido';
+                } elseif (!$cancha->setCosto($_POST['costo_cancha'])) {
+                    $result['exception'] = 'precio inexistente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+
+            default:
+                $result['exception'] = 'Acción no disponible dentro de la sesión';
+                break;
+
         }
     }
+
+} else {
+    print(json_encode('Recurso no disponible'));
 }
 
 ?>

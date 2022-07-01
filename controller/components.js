@@ -7,7 +7,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/PlaySoccer/api/';
+const SERVER = 'http://localhost/Playsoccer/api/';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).

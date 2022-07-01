@@ -3,11 +3,11 @@
 *	Clase para manejar la tabla categorias de la base de datos.
 *   Es clase hija de Validator.
 */
-class Tamano extends Validator
+class Talla extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
-    private $tamano_balon = null;    
+    private $talla_chaleco = null;    
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -22,10 +22,10 @@ class Tamano extends Validator
         }
     }
 
-    public function setTamano($value)
+    public function setTalla($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->tamano_balon = $value;
+            $this->talla_chaleco = $value;
             return true;
         } else {
             return false;
@@ -40,9 +40,9 @@ class Tamano extends Validator
         return $this->id;
     }
 
-    public function getTamano()
+    public function getTalla()
     {
-        return $this->tamano_balon;
+        return $this->talla_chaleco;
     }    
 
     /*
@@ -60,43 +60,43 @@ class Tamano extends Validator
     /*-------Función para leer todos los tamaños agregados---------*/
     public function createRow()
     {
-        $sql = 'INSERT INTO "tb_tamanoBalon"(tamano_balon)
+        $sql = 'INSERT INTO "tb_tallaChaleco"(tallachaleco)
                 VALUES (?)';
-        $params = array($this->tamano_balon);
+        $params = array($this->talla_chaleco);
         return Database::executeRow($sql, $params);
     }
     /*-------Función para leer todos los tamaños agregados---------*/
     public function readAll()
     {
-        $sql = 'SELECT id_tamanobalon, tamano_balon 
-                FROM "tb_tamanoBalon"
-                ORDER BY id_tamanobalon';
+        $sql = 'SELECT id_talla, tallachaleco 
+                FROM "tb_tallaChaleco"
+                ORDER BY id_talla';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_tamanobalon, tamano_balon 
-                FROM "tb_tamanoBalon"
-                WHERE id_tamanobalon = ?';
+        $sql = 'SELECT id_talla, tallachaleco 
+                FROM "tb_tallaChaleco"
+                WHERE id_talla = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateRow()
     {
-        $sql = 'UPDATE "tb_tamanoBalon"
-                SET tamano_balon=?
-                WHERE id_tamanobalon = ?';
-        $params = array($this->tamano_balon, $this->id);
+        $sql = 'UPDATE "tb_tallaChaleco"
+                SET tallachaleco=?
+                WHERE id_talla = ?';
+        $params = array($this->talla_chaleco, $this->id);
         return Database::executeRow($sql, $params);
     }
     /*----------Función para eliminar un tamaño agregado-------------*/
     public function deleteRow()
     {
-        $sql = 'DELETE FROM "tb_tamanoBalon"
-                WHERE id_tamanobalon = ?';
+        $sql = 'DELETE FROM "tb_tallaChaleco"
+                WHERE id_talla = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }

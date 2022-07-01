@@ -1,5 +1,5 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
-const API_TAMANOB = SERVER + 'admin/tamanoBalon.php?action=';
+const API_TIPOH = SERVER + 'admin/tipoHorario.php?action=';
 //Se inicializa el modal de bootstrap
 var modal = new bootstrap.Modal(document.getElementById('modal'), {
     keyboard: false
@@ -8,7 +8,7 @@ var modal = new bootstrap.Modal(document.getElementById('modal'), {
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_TAMANOB);
+    readRows(API_TIPOH);
     // Se define una variable para establecer las opciones del componente Modal.
     let options = {
         dismissible: false,
@@ -27,14 +27,14 @@ function fillTable(dataset) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `                         
         <tr>
-            <th scope="row">${row.id_tamanobalon}</th>
-            <td class="text-center">${row.tamano_balon}</td>
+            <th scope="row">${row.id_tipohorario}</th>
+            <td class="text-center">${row.horario_reservacion}</td>
             <td class="text-center">
                 <div class="row">
                     <div class="col">
                         <div class="">
-                            <button class="btn btn-outline-info" onclick="openUpdate(${row.id_tamanobalon})"> <i class="fa-solid fa-pen-to-square"></i>Editar</button>
-                            <button class="btn btn-outline-danger" onclick="openDelete(${row.id_tamanobalon})"> <i class="fa-solid fa-eraser"></i>Eliminar</button>
+                            <button class="btn btn-outline-info" onclick="openUpdate(${row.id_tipohorario})"> <i class="fa-solid fa-pen-to-square"></i>Editar</button>
+                            <button class="btn btn-outline-danger" onclick="openDelete(${row.id_tipohorario})"> <i class="fa-solid fa-eraser"></i>Eliminar</button>
                         </div>
                     </div>
             </td>
@@ -42,7 +42,7 @@ function fillTable(dataset) {
         `;
         });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('table-tb').innerHTML = content;
+    document.getElementById('table-th').innerHTML = content;    
 }
 
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
@@ -50,7 +50,7 @@ document.getElementById('search-form').addEventListener('submit', function (even
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-    searchRows(API_TAMANOB, 'search-form');
+    searchRows(API_TIPOH, 'search-form');
 });
 
 // Función para preparar el formulario al momento de insertar un registro.
@@ -58,11 +58,11 @@ function openCreate() {
     //Se abre el modal
     modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('titulo-modal').textContent = 'Crear tamaño de balon';
+    document.getElementById('titulo-modal').textContent = 'Crear un tipo de horario';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Agregar';
     // Se asigna el texto al label.
-    document.getElementById('title-descripcion').textContent = 'Tamaño del balon:';
+    document.getElementById('title-descripcion').textContent = 'Tipo de horario:';
     //se ocultan y deshabilitan los campos correspondientes del id
     document.getElementById('id').hidden = true;
     document.getElementById('id').disabled = true;
@@ -70,25 +70,25 @@ function openCreate() {
 }
 
 // Función para preparar el formulario al momento de modificar un registro.
-function openUpdate(id_tamanobalon) {
+function openUpdate(id_tipohorario) {
     //Se abre el modal
     modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('titulo-modal').textContent = 'Actualizar el tamaño del balon';
+    document.getElementById('titulo-modal').textContent = 'Actualizar el tipo de horario';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Actualizar';
     // Se asigna el texto al label del id.
-    document.getElementById('id-description').textContent = 'Id del tamaño del balon:';
+    document.getElementById('id-description').textContent = 'Id del tipo del horario:';
     // Se asigna el texto al label.
-    document.getElementById('title-descripcion').textContent = 'Tamaño del balon:';
+    document.getElementById('title-descripcion').textContent = 'Tipo de horario:';
     //se muestran y habilitan los campos correspondientes del id
     document.getElementById('id').hidden = false;
     document.getElementById('id').disabled = false;
     document.getElementById('id-description').hidden = false;
     const data = new FormData();
-    data.append('id_tamanobalon', id_tamanobalon);
+    data.append('id_tipohorario', id_tipohorario);
     // Petición para obtener los datos del registro solicitado.
-    fetch(API_TAMANOB + 'readOne', {
+    fetch(API_TIPOH + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -98,8 +98,8 @@ function openUpdate(id_tamanobalon) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = response.dataset.id_tamanobalon;
-                    document.getElementById('descripcion').value = response.dataset.tamano_balon;                                                        
+                    document.getElementById('id').value = response.dataset.id_tipohorario;
+                    document.getElementById('descripcion').value = response.dataset.horario_reservacion;                                                        
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -124,7 +124,7 @@ document.getElementById('save-form').addEventListener('submit', function (event)
         action = 'update';
     }        
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    saveRow(API_TAMANOB, action, 'save-form');
+    saveRow(API_TIPOH, action, 'save-form');
     // Se limpia la caja de dialogo (modal) del formulario.  
     cleanModal();
     // Se cierra la caja de dialogo (modal) del formulario.  
@@ -132,12 +132,12 @@ document.getElementById('save-form').addEventListener('submit', function (event)
 });
 
 // Función para establecer el registro a eliminar y abrir una caja de diálogo de confirmación.
-function openDelete(id_tamano) {
+function openDelete(id_tipohorario) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id_tamanobalon', id_tamano);
+    data.append('id_tipohorario', id_tipohorario);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_TAMANOB, data);
+    confirmDelete(API_TIPOH, data);
 }
 
 // Función para limpiar el formulario del modal

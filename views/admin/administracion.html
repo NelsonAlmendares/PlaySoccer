@@ -188,7 +188,7 @@
 											<div class="mb-3 text-center">
 												<label for="id" class="form-label" id="id-description">Tipo de balón</label>
 												<input type="text" class="form-control imput" id="id"
-													name="tipoBalon" placeholder="1">
+													name="id" placeholder="1">
 											</div>
 											<div class="mb-3 text-center">
 												<label for="descripcion" class="form-label" id="title-descripcion">Tipo de balón</label>
@@ -304,45 +304,8 @@
 									</div>
 									<div class="col-md-6">
 										<div class="container">
-											<tbody>
-												<tr>
-													<th scope="row">1</th>
-													<td class="text-center">Talla M</td>
-													<td class="text-center">
-														<div class="row">
-															<div class="col">
-																<div class="">
-																	<button class="btn btn-outline-info"> <i
-																			class="fa-solid fa-pen-to-square"></i>
-																		Editar</button>
-																	<button class="btn btn-outline-danger"> <i
-																			class="fa-solid fa-eraser"></i>
-																		Eliminar</button>
-																</div>
-															</div>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">2</th>
-													<td class="text-center">Talla S</td>
-													<td class="text-center">
-														<button class="btn btn-outline-info"> <i
-																class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i
-																class="fa-solid fa-eraser"></i> Eliminar</button>
-													</td>
-												</tr>
-												<tr>
-													<th scope="row">3</th>
-													<td class="text-center">Talla XL</td>
-													<td class="text-center">
-														<button class="btn btn-outline-info"> <i
-																class="fa-solid fa-pen-to-square"></i> Editar</button>
-														<button class="btn btn-outline-danger"> <i
-																class="fa-solid fa-eraser"></i> Eliminar </button>
-													</td>
-												</tr>
+											<tbody id="table-tc">
+												
 											</tbody>
 										</div>
 									</div>
@@ -634,6 +597,7 @@
 	<script src="../../controller/components.js"></script>
 	<script src="../../controller/admin/online.js"></script>
 	<script src="../../controller/admin/tamanoBalon.js"></script>
+	<!--script src="../../controller/admin/tallaChaleco.js"></script-->
 
 </body>
 

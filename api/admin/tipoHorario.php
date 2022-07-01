@@ -1,14 +1,14 @@
 <?php
 require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
-require_once('../models/tipoEmpleado.php');
+require_once('../models/tipoHorario.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $tipo_empleado = new Templeado;
+    $tipo_horario = new Thorario;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] =  $tipo_empleado->readAll()) {
+                if ($result['dataset'] =  $tipo_horario->readAll()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
@@ -25,10 +25,10 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'search':
-                $_POST =  $tipo_empleado->validateForm($_POST);
+                $_POST =  $tipo_horario->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
                     $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] =  $tipo_empleado->searchRows($_POST['buscar'])) {
+                } elseif ($result['dataset'] =  $tipo_horario->searchRows($_POST['buscar'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Valor encontrado';
                 } elseif (Database::getException()) {
@@ -38,50 +38,50 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'create':
-                $_POST =  $tipo_empleado->validateForm($_POST);
-                if (! $tipo_empleado->setTipo($_POST['descripcion'])) {
-                    $result['exception'] = 'Tipo empleado no aceptado';                
-                } elseif ( $tipo_empleado->createRow()) {
+                $_POST =  $tipo_horario->validateForm($_POST);
+                if (! $tipo_horario->setTipo($_POST['descripcion'])) {
+                    $result['exception'] = 'Tipo horario no aceptado';                
+                } elseif ( $tipo_horario->createRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Tipo empleado creado correctamente';                    
+                    $result['message'] = 'Tipo horario creado correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'readOne':
-                if (!$tipo_empleado->setId($_POST['id_tipoempleado'])) {
-                    $result['exception'] = 'Cargo incorrecto';
-                } elseif ($result['dataset'] =  $tipo_empleado->readOne()) {
+                if (!$tipo_horario->setId($_POST['id_tipohorario'])) {
+                    $result['exception'] = 'Tipo horario incorrecto';
+                } elseif ($result['dataset'] =  $tipo_horario->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Cargo inexistente';
+                    $result['exception'] = 'Tipo horario inexistente';
                 }
                 break;
             case 'update':
-                $_POST =  $tipo_empleado->validateForm($_POST);
-                if (! $tipo_empleado->setId($_POST['id'])) {
-                    $result['exception'] = 'Cargo empleado incorrecto';
-                } elseif (!$data =  $tipo_empleado->readOne()) {
-                    $result['exception'] = 'Cargo empleado inexistente';
-                } elseif (! $tipo_empleado->setTipo($_POST['descripcion'])) {
-                    $result['exception'] = 'Cargo empleado no aceptado';                
-                } elseif ( $tipo_empleado->updateRow()) {
+                $_POST =  $tipo_horario->validateForm($_POST);
+                if (! $tipo_horario->setId($_POST['id'])) {
+                    $result['exception'] = 'Tipo horario incorrecto';
+                } elseif (!$data =  $tipo_horario->readOne()) {
+                    $result['exception'] = 'Tipo horario inexistente';
+                } elseif (! $tipo_horario->setTipo($_POST['descripcion'])) {
+                    $result['exception'] = 'Tipo horario no aceptado';                
+                } elseif ( $tipo_horario->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Cargo empleado modificado correctamente';
+                        $result['message'] = 'Tipo horario modificado correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (! $tipo_empleado->setId($_POST['id_tipoempleado'])) {
-                    $result['exception'] = 'Cargo empleado incorrecto';
-                } elseif (!$data =  $tipo_empleado->readOne()) {
-                    $result['exception'] = 'Tipo empleado inexistente';
-                } elseif ( $tipo_empleado->deleteRow()) {
+                if (! $tipo_horario->setId($_POST['id_tipohorario'])) {
+                    $result['exception'] = 'Tipo horario incorrecto';
+                } elseif (!$data =  $tipo_horario->readOne()) {
+                    $result['exception'] = 'Tipo horario inexistente';
+                } elseif ( $tipo_horario->deleteRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Cargo empleado eliminado correctamente';                    
+                    $result['message'] = 'Tipo horario eliminado correctamente';                    
                 } else {
                     $result['exception'] = Database::getException();
                 }

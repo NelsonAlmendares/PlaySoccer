@@ -3,11 +3,11 @@
 *	Clase para manejar la tabla categorias de la base de datos.
 *   Es clase hija de Validator.
 */
-class Tamano extends Validator
+class Thorario extends Validator
 {
     // Declaración de atributos (propiedades).
     private $id = null;
-    private $tamano_balon = null;    
+    private $tipo_horario = null;    
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -22,10 +22,10 @@ class Tamano extends Validator
         }
     }
 
-    public function setTamano($value)
+    public function setTipo($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->tamano_balon = $value;
+            $this->tipo_horario = $value;
             return true;
         } else {
             return false;
@@ -40,9 +40,9 @@ class Tamano extends Validator
         return $this->id;
     }
 
-    public function getTamano()
+    public function getTipo()
     {
-        return $this->tamano_balon;
+        return $this->tipo_horario;
     }    
 
     /*
@@ -57,46 +57,45 @@ class Tamano extends Validator
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
-    /*-------Función para leer todos los tamaños agregados---------*/
+
     public function createRow()
     {
-        $sql = 'INSERT INTO "tb_tamanoBalon"(tamano_balon)
+        $sql = 'INSERT INTO "tb_tipoHorario"(horario_reservacion)
                 VALUES (?)';
-        $params = array($this->tamano_balon);
+        $params = array($this->tipo_horario);
         return Database::executeRow($sql, $params);
     }
-    /*-------Función para leer todos los tamaños agregados---------*/
+
     public function readAll()
     {
-        $sql = 'SELECT id_tamanobalon, tamano_balon 
-                FROM "tb_tamanoBalon"
-                ORDER BY id_tamanobalon';
+        $sql = 'SELECT id_tipohorario, horario_reservacion
+                FROM "tb_tipoHorario"';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_tamanobalon, tamano_balon 
-                FROM "tb_tamanoBalon"
-                WHERE id_tamanobalon = ?';
+        $sql = 'SELECT id_tipohorario, horario_reservacion 
+                FROM "tb_tipoHorario"
+                WHERE id_tipohorario = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateRow()
     {
-        $sql = 'UPDATE "tb_tamanoBalon"
-                SET tamano_balon=?
-                WHERE id_tamanobalon = ?';
-        $params = array($this->tamano_balon, $this->id);
+        $sql = 'UPDATE "tb_tipoHorario"
+                SET horario_reservacion=?
+                WHERE id_tipohorario = ?';
+        $params = array($this->tipo_horario, $this->id);
         return Database::executeRow($sql, $params);
     }
-    /*----------Función para eliminar un tamaño agregado-------------*/
+
     public function deleteRow()
     {
-        $sql = 'DELETE FROM "tb_tamanoBalon"
-                WHERE id_tamanobalon = ?';
+        $sql = 'DELETE FROM "tb_tipoHorario"
+                WHERE id_tipohorario = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
