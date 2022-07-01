@@ -10,7 +10,7 @@
         private $correo = null;
         private $password = null;
         private $foto = null;
-        private $ruta = '../images/clientes';
+        private $ruta = '../images/clientes/';
 
         /* 
         * Métodos para alidar y asignar valores a los atributos
@@ -183,7 +183,7 @@
         }
 
         public function readAll () {
-            $sql = 'SELECT id_cliente AS id, foto_cliente AS foto, nombre_cliente AS nombre, apelllido_cliente AS apellido, dui_cliente AS Documento, celular_cliente AS celular, correo_cliente AS correo
+            $sql = 'SELECT id_cliente AS id, nombre_cliente AS nombre, foto_cliente AS foto, apelllido_cliente AS apellido, dui_cliente AS Documento, celular_cliente AS celular, correo_cliente AS correo
                 FROM tb_cliente 
                 ORDER BY id_cliente';
             $params = null;

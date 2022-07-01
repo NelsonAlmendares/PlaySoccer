@@ -1,6 +1,12 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API
 const API_RESERVACION = SERVER + 'admin/reservaciones.php?action=';
-const ENDPOINT_CHALECO = SERVER + 'admin/chaleco.php?action=';
+//const ENDPOINT_CHALECO = SERVER + 'admin/chaleco.php?action=readAll';
+//const ENDPOINT_HORARIO = SERVER + 'admin/horario.php?action=readAll';
+const ENDPOINT_EMPLEADO = SERVER + 'admin/empleado.php?action=readAll';
+const ENDPOINT_ASISTENCIA = SERVER + 'admin/asistencia.php?action=readAll';
+const ENDPOINT_CLIENTE = SERVER + 'admin/clientes.php?action=readAll';
+const ENDPOINT_T_Balon = SERVER + 'admin/tipoBalon.php?action=readAll';
+const ENDPOINT_CANCHA = SERVER + 'admin/canchas.php?action=readAll';
 //Se inicializa el modal de bootstrap
 var modal = new bootstrap.Modal(document.getElementById('agregar'), {
     keyboard: false
@@ -10,17 +16,8 @@ var modal = new bootstrap.Modal(document.getElementById('agregar'), {
 document.addEventListener('DOMContentLoaded', function (){
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows(API_RESERVACION);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        oneOpenStar: function(){
-           // Se restauran los elementos del formulario.
-            document.getElementById('save-forms').reset();
-        }
-        // Se inicializa el componente Modal para que funcionen las cajas de diálogo.
-    //M.Modal.init(document.querySelectorAll('.modal'), options);
-    }
 });
+
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
 function fillTable(dataset){
     let content = '';
@@ -37,7 +34,7 @@ function fillTable(dataset){
         <td class="text-center"> ${row.id_empleado} </td>
         <td class="text-center"> ${row.id_cancha} </td>
         <td class="text-center"> ${row.id_horario} </td>
-        <td class="text-center"> ${row.cliente} </td>
+        <td class="text-center"> ${row.id_cliente} </td>
         <td class="text-center"> ${row.id_asistencia} </td>
         <td class="text-center"> ${row.id_tipobalon} </td>
         <td class="text-center"> ${row.id_chalecos} </td>
@@ -52,7 +49,7 @@ function fillTable(dataset){
     document.getElementById('table-ad').innerHTML = content;  
 }
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de buscar.
-document.getElementById('search_form').addEventListener('submit', function(event){
+document.getElementById('search-form').addEventListener('submit', function(event){
     // Se evita recargar la página web después de enviar el formulario.
         event.preventDefault();
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
@@ -61,7 +58,7 @@ document.getElementById('search_form').addEventListener('submit', function(event
 // Función para preparar el formulario al momento de crear un usuario para el empleado.
 function openCreate(){
     modal.show();
-// Se asigna el título para el modal.
+    // Se asigna el título para el modal.
     document.getElementById('titulo-modal').textContent = 'Agregar una nueva reservacion';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Agregar';
@@ -70,7 +67,13 @@ function openCreate(){
     document.getElementById('id').disabled = true;
     document.getElementById('id-reserva').hidden = true;
     //se llena el select 
-    fillSelect(ENDPOINT_CHALECO, 'id_chalecos', null);
+    fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
+    fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
+    fillSelect(ENDPOINT_CANCHA, 'cancha', null);
+    //fillSelect(ENDPOINT_HORARIO, 'horario', null);
+    fillSelect(ENDPOINT_CLIENTE, 'cliente', null);    
+    fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
+    //fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
 }
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_reserva){
@@ -119,7 +122,7 @@ function openUpdate(id_reserva){
     });
 }
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de guardar.
-document.getElementById('save_form').addEventListener('submit', function(event){
+document.getElementById('save-form').addEventListener('submit', function(event){
      // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se define una variable para establecer la acción a realizar en la API.
@@ -148,16 +151,5 @@ function openDelete(id_reserva){
 
 function cleanModal(){
 	//se liempia el input accediendo a su ID
-	$("#fecha").val('');
-    $("#balones").val('');
-    $("#observacion").val('');
-    $("#cantidadChalecos").val('');
-    $("#empleado").val('');
-    $("#asistencia").val('');
-    $("#cancha").val('');
-    $("#horario").val('');
-    $("#cliente").val('');
-    $("#asistencia").val('');
-    $("#tipobalon").val('');
-    $("#chaleco").val('');
+    document.getElementById('save-form').reset();
 }

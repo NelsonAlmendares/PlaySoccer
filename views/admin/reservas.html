@@ -33,14 +33,14 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="topNavBar">
-				<form class="d-flex ms-auto my-3 my-lg-0">
+				<form class="d-flex ms-auto my-3 my-lg-0" id="search-form">
 					<div class="input-group">
-						<input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+						<input class="form-control" type="search" placeholder="Search" aria-label="Search" id="buscar" name="buscar"/>
 						<button class="btn btn-primary" type="submit">
 							<i class="bi bi-search"></i>
 						</button>
 					</div>
-				</form>
+				</form>	
 				<ul class="navbar-nav">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown"
@@ -171,7 +171,7 @@
 			<div class="row">
 				<div class="container">
 					<div class="col actions">
-						<button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
+						<button type="button" class="btn btn-outline-success margin__btn"
 							onclick="openCreate()"> Agregar <i class="fa-solid fa-address-book"></i> </button>
 						<button type="button" class="btn btn-warning"> Reporte <i
 								class="fa-solid fa-chart-column"></i></button>
@@ -183,14 +183,16 @@
 			<div class="modal fade" id="agregar" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
 					<div class="modal-content">
+						<form action="" id="save-form">
 						<div class="modal-header">
 							<h5 class="modal-title" id="titulo-modal">Agregar Reservaciones <i
 									class="fa-solid fa-address-book text-muted"></i></h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"
 								aria-label="Close" onclick="cleanModal()"></button>
-						</div>
+						</div >
 						<div class="modal-body">
 							<div class="container">
+								
 								<div class="row">
 									<div class="col-md-6">
 										<div class="mb-3" id="id-reserva">
@@ -216,28 +218,32 @@
 											<input type="number" class="form-control mt-2" id="cantidadChalecos" name="cantidadChalecos" placeholder="1">
 										</div>
 										<div class="mb-3">
-											<label for="empleado" class="form-label-balon"> Empleado: </label><i class="fa-solid fa-user-large"></i>
-											<input type="text" class="form-control mt-2" id="empleado" name="empleado" placeholder="Jhon Doe">
+											<label for="empleado" class="form-label-emplead"> Empleado: </label><i class="fa-solid fa-user-large"></i>
+											<select class=" form-control" id="empleado"
+											name="empleado" required></select>
 										</div>
 									</div>
 
 									<div class="col-md-6">
 										<div class="mb-3">
-											<label for="asistencia" class="form-label">Asistencia</label> <i class="fa-solid fa-calendar-exclamation"></i>
-											<input type="text" class="form-control" id="asistencia" name="asistencia" placeholder="presente">
+											<label for="empleado" class="form-label-emplead"> Asistencia: </label><i class="fa-solid fa-user-large"></i>
+											<select class=" form-control" id="t_asistencia"
+											name="t_asistencia" required></select>
 										</div>
 										<div class="mb-3">
 											<label for="cancha" class="form-label-balon"> Cancha: </label>
-											<input type="number" class="form-control mt-2" id="cancha" name="cancha" placeholder="1">
+											<select class=" form-control" id="cancha"
+											name="cancha" required></select>
 										</div>
 										<div class="mb-3">
 											<label for="horario" class="form-label-horario"> Horario: </label> <i class="fa-solid fa-alarm-plus"></i>
-											<select class=" form-control" id="id_horario"
-													name="id_horario" required></select>
+											<select class=" form-control" id="horario"
+											name="horario" required></select>
 										</div>
 										<div class="mb-3">
 											<label for="cliente" class="form-label"> Cliente: </label> <i class="fa-solid fa-person"></i>
-											<input type="text" class="form-control" id="cliente" name="cliente" placeholder="Jhon Doe">
+											<select class=" form-control" id="cliente"
+											name="cliente" required></select>
 										</div>
 										<div class="mb-3">
 											<label for="tipoBalon" class="form-label-horario"> Tipo Balón: </label> <i class="fa-solid fa-futbol text-muted"></i>
@@ -245,12 +251,12 @@
 											name="tipoBalon" required></select>
 										</div>
 										<div class="mb-3">
-											<label for="chalecos" class="form-label"> Color de chalecos: </label> <i class="fa-solid fa-vest text-muted"></i>
-											<select class=" form-control" id="chalecoss"
-											name="chalecos" required></select>
+											<label for="chaleco" class="form-label"> Color de chalecos: </label> <i class="fa-solid fa-vest text-muted"></i>
+											<select class=" form-control" id="chaleco"
+											name="chaleco" required></select>
 										</div>
 									</div>
-								</div>
+								</div> 
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -258,6 +264,7 @@
 									data-bs-dismiss="modal" onclick="cleanModal()">Close</button>
 								<button type="submit" class="btn btn-outline-success" id="btn-accion">Agregar</button>
 						</div>
+					</form>
 					</div>
 				</div>
 			</div>
@@ -283,7 +290,7 @@
 										<th scope="col" class="text-center"> Chaleco </th>
 									</tr>
 								</thead>
-								<tbody id="tabla-ad">
+								<tbody id="table-ad">
 									
 									
 								</tbody>
@@ -304,10 +311,8 @@
 	<script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
 
 	<script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
 
 	<script src="../../js/plugin/jquery-3.5.1.js"></script>
-	<script src="../../js/admin/sc-ript.js"></script>
 	<!--Sweet Alert-->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!--Controladores JS-->
