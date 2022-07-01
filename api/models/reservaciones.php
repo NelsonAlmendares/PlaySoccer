@@ -235,15 +235,15 @@
         {
             $sql = 'SELECT id_reserva, fecha_reserva, balones_alquilados, 
             observaciones, chalecos_alquilados, tb_e.id_empleado as id_empleado, tb_ch.id_cancha as id_cancha,
-            tb_hr.id_horario as id_horario , tb_cl.id_cliente as id_cliente, tb_as.id_asistencia as id_asistencia, tb_tb.id_tipobalon as id_tipobalon, tb_chal.id_chalecos as id_chaleco
+            tb_hr.id_horario as id_horario , tb_cl.id_cliente as id_cliente, tb_as.id_asistencia as id_asistencia, tb_tb.id_tipobalon as id_tipobalon, tb_chal.id_chaleco as id_chaleco
             FROM tb_reserva tb_res
             INNER JOIN "tb_empleado" tb_e ON tb_res.id_empleado = tb_e.id_empleado
             INNER JOIN "tb_cancha" tb_ch ON  tb_res.id_cancha = tb_ch.id_cancha
-            INNER JOIN "tb_horario" tb_hr ON tb_res.horario = tb_hr.id_horario
+            INNER JOIN "tb_horario" tb_hr ON tb_res.id_horario = tb_hr.id_horario
             INNER JOIN "tb_cliente" tb_cl ON tb_res.id_cliente = tb_cl.id_cliente
-            INNER JOIN "tb_asistencia" tb_as ON tb_res.id_asistencia = tb_cl.id_asistencia
-            INNER JOIN "tb_tipoBalon" tb_tb ON tb_res.id_tipobalon = tb_cl.id_tipobalon
-            INNER JOIN "tb_chaleco" tb_chal ON tb_res.id_chaleco = tb_cl.id_chaleco
+            INNER JOIN "tb_asistencia" tb_as ON tb_res.id_asistencia = tb_as.id_asistencia
+            INNER JOIN "tb_tipoBalon" tb_tb ON tb_res.id_tipobalon = tb_tb.id_tipobalon
+            INNER JOIN "tb_chaleco" tb_chal ON tb_res.id_chalecos = tb_chal.id_chaleco
             WHERE id_reserva = ?';
             $params = array($this->id_reserva);
             return Database::getRow($sql, $params);
@@ -253,15 +253,15 @@
         {
             $sql = 'SELECT id_reserva, fecha_reserva, balones_alquilados, 
             observaciones, chalecos_alquilados, tb_e.id_empleado as id_empleado, tb_ch.id_cancha as id_cancha,
-            tb_hr.id_horario as id_horario , tb_cl.id_cliente as id_cliente, tb_as.id_asistencia as id_asistencia, tb_tb.id_tipobalon as id_tipobalon, tb_chal.id_chalecos as id_chaleco
+            tb_hr.id_horario as id_horario , tb_cl.id_cliente as id_cliente, tb_as.id_asistencia as id_asistencia, tb_tb.id_tipobalon as id_tipobalon, tb_chal.id_chaleco as id_chaleco
             FROM tb_reserva tb_res
             INNER JOIN "tb_empleado" tb_e ON tb_res.id_empleado = tb_e.id_empleado
             INNER JOIN "tb_cancha" tb_ch ON  tb_res.id_cancha = tb_ch.id_cancha
-            INNER JOIN "tb_horario" tb_hr ON tb_res.horario = tb_hr.id_horario
+            INNER JOIN "tb_horario" tb_hr ON tb_res.id_horario = tb_hr.id_horario
             INNER JOIN "tb_cliente" tb_cl ON tb_res.id_cliente = tb_cl.id_cliente
-            INNER JOIN "tb_asistencia" tb_as ON tb_res.id_asistencia = tb_cl.id_asistencia
-            INNER JOIN "tb_tipoBalon" tb_tb ON tb_res.id_tipobalon = tb_cl.id_tipobalon
-            INNER JOIN "tb_chaleco" tb_chal ON tb_res.id_chaleco = tb_cl.id_chaleco
+            INNER JOIN "tb_asistencia" tb_as ON tb_res.id_asistencia = tb_as.id_asistencia
+            INNER JOIN "tb_tipoBalon" tb_tb ON tb_res.id_tipobalon = tb_tb.id_tipobalon
+            INNER JOIN "tb_chaleco" tb_chal ON tb_res.id_chalecos = tb_chal.id_chaleco
             ORDER BY id_reserva';
             $params = null;
             return Database::getRows($sql, $params);
