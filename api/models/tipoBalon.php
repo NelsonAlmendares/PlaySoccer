@@ -1,5 +1,7 @@
 <?php
-
+/*select costo_balon, cantidadad_balones, tamano_balon 
+*from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
+*/
 class Tipo extends Validator
 {
     private $id_tipobalon = null;
@@ -80,16 +82,16 @@ class Tipo extends Validator
     }
     public function readAll()
     {
-        $sql = 'SELECT id_tipobalon, costo_balon, cantidad_balones,tamano_balon
-        FROM tb_tipoBalon INNER JOIN tb_tamanoBalon USING (id_tamanobalon)
-        ORDER BY tamano_balon';
+        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tamano_balon 
+        from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
+        order by id_tipobalon';
         $params = null;
         return Database::getRows($sql, $params);
     }
     public function readOne()
     {
-        $sql = 'SELECT id_tipobalon, costo_balon,cantidad_balones,id_tamanobalon
-        FROM tb_tipoBalon
+        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tamano_balon 
+        from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
         WHERE id_tipobalon = ?';
         $params = array($this->id_tipobalon);
         return Database::getRow($sql, $params);
