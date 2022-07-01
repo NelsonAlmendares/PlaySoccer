@@ -1,13 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 :root {
   --white: #fff;
   --black: #000;
   --navvbar: #243742;
-  --background: #F6F9FF;
+  --card: #F5F7FB;
   --hovers: rgba(132, 232, 90);
-}
-
-body{
-    background: var(--background);
 }
 
 .actions{
@@ -30,6 +28,28 @@ td,th{
 }
 
 .colorPicker{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-header{
+    background-color: var(--card);
+}
+
+.textos{
+    font-family: 'Roboto', sans-serif;
+}
+
+.principales{
+    vertical-align: middle;
+}
+
+.icon{
+    color: #FD7E14;
+}
+
+.imput{
     display: flex;
     align-items: center;
     justify-content: center;

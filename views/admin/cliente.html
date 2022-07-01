@@ -35,10 +35,12 @@
             <div class="collapse navbar-collapse" id="topNavBar">
                 <form class="d-flex ms-auto my-3 my-lg-0">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
+                        <form action="" method="post" id="search-form">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>
                     </div>
                 </form>
                 <ul class="navbar-nav">
@@ -51,7 +53,6 @@
                             <div class="container-fluid">
                                 <div class="container-fluid">
                                     <div class="card" style="width: 18rem;" id="info-user">
-                              
                                     </div>
                                 </div>
                             </div>
@@ -170,81 +171,68 @@
             <div class="row">
                 <div class="container">
                     <div class="col actions">
-                        <button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
-                            data-bs-target="#agregar"> Agregar <i class="fa-solid fa-address-book"></i> </button>
-                        <button type="button" class="btn btn-warning"> Reporte <i
-                                class="fa-solid fa-chart-column"></i></button>
+                        <button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal" data-bs-target="#" onclick="openCreate()"> Agregar <i class="fa-solid fa-address-book"></i> </button>
+                        <button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
                     </div>
                 </div>
             </div>
 
             <!-- Modal agregar cliente -->
-            <div class="modal fade" id="agregar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Clientes <i
-                                    class="fa-solid fa-address-book text-muted"></i></h5>
+                            <h5 class="modal-title" id="modal-title">Agregar Clientes <i class="fa-solid fa-address-book text-muted"></i></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form action="" method="post">
+                                <form action="" method="post" id="save-form">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="nombre" class="form-label">Nombre del Cliente </label> <i
-                                                    class="fa-solid fa-pen text-secondary"></i>
-                                                <input class="form-control" type="text" id="nombre" name="nombre"
-                                                    placeholder="Jhon Doe" max="16" required>
+                                            <div class="mb-3" id="id-cliente">
+                                                <label for="id" class="id" id="id">Id Cliente</label>
+                                                <input type="text" id="id" class="form-control id">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="apellido" class="form-label">Apellido del Cliente</label> <i
-                                                    class="fa-solid fa-pen text-secondary""></i>
-                                                <input class=" form-control" type="text" id="apellido" name="apellido"
-                                                    placeholder="Jhon Doe" max="16" required>
+                                                <label for="nombre" class="form-label">Nombre del Cliente </label> <i class="fa-solid fa-pen text-secondary"></i>
+                                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Jhon Doe" max="16" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="documento" class="form-label">DUI del Cliente</label> <i
-                                                    class="fa-solid fa-address-card text-secondary""></i>
-                                                <input class=" form-control" type="text" id="documento"
-                                                    name="documento" placeholder="Jhon Doe" max="10" required>
+                                                <label for="apellido" class="form-label">Apellido del Cliente</label> <i class="fa-solid fa-pen text-secondary""></i>
+                                                <input class=" form-control" type="text" id="apellido" name="apellido" placeholder="Jhon Doe" max="16" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="documento" class="form-label">DUI del Cliente</label> <i class="fa-solid fa-address-card text-secondary""></i>
+                                                <input class=" form-control" type="text" id="documento" name="documento" placeholder="Jhon Doe" max="10" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="celular" class="form-label">Celular del Cliente</label> <i
-                                                class="fa-solid fa-phone text-secondary""></i>
+                                            <label for="celular" class="form-label">Celular del Cliente</label> <i class="fa-solid fa-phone text-secondary""></i>
                                             <div class=" input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1">+503</span>
-                                                <input type="text" class="form-control" placeholder="celular" max="8"
-                                                    id="ceular" name="celular" aria-label="Username"
-                                                    aria-describedby="basic-addon1" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="form-label">Correo del Cliente</label> <i
-                                                class="fa-solid fa-at text-secondary""></i>
-                                                <input class=" form-control" type="email" id="email" name="email"
-                                                placeholder="Jhon Doe" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="foto" class="form-label">Foto del Cliente</label> <i
-                                                class="fa-solid fa-image text-secondary""></i>
-                                                <input class=" form-control" type="file" id="foto" name="foto"
-                                                placeholder="Jhon Doe" required>
+                                                <input type="text" class="form-control" placeholder="celular" max="8" id="ceular" name="celular" aria-label="Username" aria-describedby="basic-addon1" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Correo del Cliente</label> <i class="fa-solid fa-at text-secondary""></i>
+                                                <input class=" form-control" type="email" id="email" name="email" placeholder="Jhon Doe" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="foto" class="form-label">Foto del Cliente</label> <i class="fa-solid fa-image text-secondary""></i>
+                                                <input class=" form-control" type="file" id="foto" name="foto" placeholder="Jhon Doe" required>
+                                            </div>
                                         </div>
                                     </div>
+                                </form>
                             </div>
-                            </form>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel
-                        <button type="submit" class="btn btn-outline-success"> Agregar <i class="fa-solid fa-person-circle-plus"></i>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"> Cancel
+                            <button type="submit" class="btn btn-outline-success"> Agregar <i class="fa-solid fa-person-circle-plus"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         <div class="row">
             <div class="container mt-3">
@@ -262,69 +250,31 @@
                                 <th scope="col" class="text-center"> Acciones </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="text-center">1</th>
-                                <td class="text-center"><img src="../../resources/img/profile/profile1.png" class="img-fluid perfiles" alt=""></td>
-                                <td class="text-center">Jennifer</td>
-                                <td class="text-center">Salmeron</td>
-                                <td class="text-center">00800565-9</td>
-                                <td class="text-center"> <b>+530</b> 7489-9512</td>
-                                <td class="text-center">JenniSalmer431@gmail.com</td>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-center">2</th>
-                                <td class="text-center"><img src="../../resources/img/profile/profile2.png" class="img-fluid perfiles" alt=""></td>
-                                <td class="text-center">Claudia</td>
-                                <td class="text-center">Torres</td>
-                                <td class="text-center">02500865-7</td>
-                                <td class="text-center"><b>+530</b> 7287-5968</td>
-                                <td class="text-center">ClaudiadeSamayoa1999@gmail.com</td>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-info"> <i class="fa-solid fa-pen-to-square"></i> </button>
-                                    <button class="btn btn-outline-danger"> <i class="fa-solid fa-eraser"></i> </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-center">3</th>
-                                <td class="text-center"><img src="../../resources/img/profile/profile3.png" class="img-fluid perfiles" alt=""></td>
-                                <td class="text-center">Anthony</td>
-                                <td class="text-center">Brignthon</td>
-                                <td class="text-center">00832578-9</td>
-                                <td class="text-center"><b>+530</b> 7489-9512</td>
-                                <td class="text-center">GrubStudyGroup192@gmail.com</td>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
+
+                        <!-- Se carga desde los eventos del JS -->
+                        <tbody id="table__cliente"></tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row"></div>
-
         </div>
     </main>
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap -->
     <script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="../../js/jQuery/jquery-3.6.0.min.js"></script>
 
-    <script src="../../js/plugin/jquery-3.5.1.js"></script>
-    <script src="../../js/admin/sc-ript.js"></script>
     <!--Sweet Alert-->
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!--Controladores JS-->
-   <script src="../../controller/components.js"></script>
-   <script src="../../controller/admin/online.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--Controladores JS-->
+    <script src="../../controller/components.js"></script>
+    <script src="../../controller/admin/online.js"></script>
+    <script src="../../controller/admin/clientes.js"></script>
 
 </body>
 

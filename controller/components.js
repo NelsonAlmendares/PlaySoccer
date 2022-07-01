@@ -7,8 +7,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/PlaySoccer/api/';
-
+const SERVER = 'http://localhost/Playsoccer/api/';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -89,13 +88,10 @@ function saveRow(api, action, form) {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se cierra la caja de dialogo (modal) del formulario.
-                    //M.Modal.getInstance(document.getElementById(modal)).close();                    
+                if (response.status) {                                 
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
                     readRows(api);
-                    sweetAlert(1, response.message, null);
-                    location.reload();
+                    sweetAlert(1, response.message, null);                    
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -139,7 +135,6 @@ function confirmDelete(api, data) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro y se muestra un mensaje de éxito.
                             
                             sweetAlert(1, response.message, null);
-                            location.reload();
                             readRows(api);
                         } else {
                             sweetAlert(2, response.exception, null);

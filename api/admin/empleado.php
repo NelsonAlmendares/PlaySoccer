@@ -18,11 +18,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
 
-/* 
-*caso para obtener el usuario del empleado 
-*/
-
-
+        /* *caso para obtener el usuario del empleado */
             case 'getUser':
                 if (isset($_SESSION['correo_empleado'])) {
                     $result['status'] = 1;
@@ -36,11 +32,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-
-/* 
-*case para salir de la sesion 
-*/
-
+        /*  *case para salir de la sesion */
 
             case 'logOut':
                 if (session_destroy()) {
@@ -50,12 +42,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
-
-
-/* 
-*case para leer un perfil de empleado 
-*/
-
+        /*  *case para leer un perfil de empleado  */
 
             case 'readProfile':
                 if ($result['dataset'] = $empleado->readProfile()) {
@@ -67,9 +54,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-/* 
-*casos para editar perfil de un empleado
-*/
+        /*  *casos para editar perfil de un empleado  */
 
             case 'editProfile':
                 $_POST = $empleado->validateForm($_POST);
@@ -122,9 +107,16 @@ if (isset($_GET['action'])) {
             case 'search':
                 $_POST = $empleado->validateForm($_POST);
                 if ($_POST['buscar'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($empleado->validateNaturalNumber($_POST['buscar'])) {
-                    if ($result['dataset'] = $empleado->searchNumbers($_POST['buscar'])) {
+                    if ($result['dataset'] = $empleado->readAll()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Todos los datos han sido cargados';
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay datos registrados';
+                    }
+                } elseif ($empleado->validatePhone($_POST['buscar'])) {
+                    if ($result['dataset'] = $empleado->searchCelular($_POST['buscar'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } else{
@@ -138,7 +130,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'No hay coincidencias';
                     }
                 } elseif ($empleado->validateDUI($_POST['buscar'])) {
-                    if ($result['dataset'] = $empleado->searchDUIs($_POST['buscar'])) {
+                    if ($result['dataset'] = $empleado->searchDui($_POST['buscar'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Valor encontrado';
                     } else{
@@ -153,35 +145,27 @@ if (isset($_GET['action'])) {
             case 'create':
                 $_POST = $empleado->validateForm($_POST);
                 
-                if (!$empleado->setNombre_e($_POST['nombre_empleado'])) {
+                if (!$empleado->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrectos';
-                } elseif (!$empleado->setApellido_e($_POST['apellido_empleado'])) {
+                } elseif (!$empleado->setApellido($_POST['apellido'])) {
                     $result['exception'] = 'Apellido incorrectos';
-                } elseif (!$empleado->setDUI_e($_POST['DUI_empleado'])) {
-                    $result['exception'] = 'DUI incorrecto';
-                } elseif (!is_uploaded_file($_FILES['foto_empleado']['tmp_name'])) {
-                    $result['exception'] = 'Seleccione una imagen';
-                } elseif (!$empleado->setFoto_e($_FILES['foto_empleado'])) {
-                    $result['exception'] = $empleado->getFileError();
-                } elseif (!$empleado->setDireccion_e($_POST['direccion_empleado'])) {
-                    $result['exception'] = 'Direccion incorrecto';
-                } elseif (!$empleado->setCodigo_e($_POST['codigo_empleado'])) {
-                    $result['exception'] = 'Codigo incorrecto';
+                } elseif (!$empleado->setDUI($_POST['dui'])) {
+                    $result['exception'] = 'DUI incorrecto';               
+                } elseif (!$empleado->setCelular($_POST['celular'])) {
+                    $result['exception'] = 'Celular incorrecto';
+                } elseif (!$empleado->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Correo incorrecto';
                 } elseif (!isset($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Seleccione un tipo de empleado';
-                } elseif (!$empleado->setTipo_e($_POST['tipo_empleado'])) {
+                } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Tipo empleado incorrecto';
                 } elseif ($_POST['clave'] != $_POST['confirmar']) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleado->setClave($_POST['clave'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
-                } elseif ($empleado->createRow()) {
-                    $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['foto_empleado'], $empleado->getRuta(), $empleado->getFoto_e())) {
-                    $result['message'] = 'El empleado registrado correctamente';
-                    } else {
-                        $result['message'] = 'El empleado se registro pero no se guardó la imagen';
-                    }
+                } elseif ($empleado->primerUso()) {
+                    $result['status'] = 1;                    
+                    $result['message'] = 'El empleado registrado correctamente';                    
                 } elseif (Database::getException()) {                   
                     $result['exception'] = Database::getException();
                 } else {
@@ -189,7 +173,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$empleado->setId_e($_POST['id_empleado'])) {
+                if (!$empleado->setId($_POST['id_empleado'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif ($result['dataset'] = $empleado->readOne()) {
                     $result['status'] = 1;
@@ -201,21 +185,21 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $empleado->validateForm($_POST);
-                if (!$empleado->setId_e($_POST['id_empleado'])) {
+                if (!$empleado->setId($_POST['id'])) {
                     $result['exception'] = 'Empleado incorrecto';
                 } elseif (!$data = $empleado->readOne()) {
                     $result['exception'] = 'Empleado inexistente';
-                } elseif (!$empleado->setNombre_e($_POST['nombre_empleado'])) {
+                } elseif (!$empleado->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrectos';
-                } elseif (!$empleado->setApellido_e($_POST['apellido_empleado'])) {
+                } elseif (!$empleado->setApellido($_POST['apellido'])) {
                     $result['exception'] = 'Apellido incorrectos';
-                } elseif (!$empleado->setDUI_e($_POST['DUI_empleado'])) {
+                } elseif (!$empleado->setDUI($_POST['dui'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$empleado->setDireccion_e($_POST['direccion_empleado'])) {
-                    $result['exception'] = 'Direccion incorrecto';
-                } elseif (!$empleado->setCodigo_e($_POST['codigo_empleado'])) {
+                } elseif (!$empleado->setCorreo($_POST['email'])) {
+                    $result['exception'] = 'Direccion de correo electronico incorrecto';
+                } elseif (!$empleado->setCelular($_POST['celular'])) {
                     $result['exception'] = 'Codigo incorrecto';
-                } elseif (!$empleado->setTipo_e($_POST['tipo_empleado'])) {
+                } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Tipo empleado incorrecto';
                 } elseif (!is_uploaded_file($_FILES['foto_empleado']['tmp_name'])) {
                     if ($empleado->updateRow($data['foto_empleado'])) {
@@ -224,11 +208,11 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['exception'] = Database::getException();
                     }
-                } elseif (!$empleado->setFoto_e($_FILES['foto_empleado'])) {
+                } elseif (!$empleado->setFoto($_FILES['foto_empleado'])) {
                     $result['exception'] = $empleado->getFileError();
-                } elseif ($empleado->updateRow($data['foto_empleado'])) {
+                } elseif ($empleado->updateRow($data['foto_empleado'])) {                    
                     $result['status'] = 1;
-                    if ($empleado->saveFile($_FILES['foto_empleado'], $empleado->getRuta(), $empleado->getFoto_e())) {
+                    if ($empleado->saveFile($_FILES['foto_empleado'], $empleado->getRuta(), $empleado->getFoto())) {
                         $result['message'] = 'Empleado modificado correctamente';
                     } else {
                         $result['message'] = 'Empleado modificado pero no se guardó la imagen';
@@ -240,14 +224,19 @@ if (isset($_GET['action'])) {
             case 'delete':
                 if ($_POST['id_empleado'] == $_SESSION['id_empleado']) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$empleado->setId_e($_POST['id_empleado'])) {
+                } elseif (!$empleado->setId($_POST['id_empleado'])) {
                     $result['exception'] = 'Empleado incorrecto';
                 } elseif (!$data = $empleado->readOne()) {
                     $result['exception'] = 'Empleado inexistente';
                 } elseif ($empleado->deleteRow()) {
                     $result['status'] = 1;
-                    if ($empleado->deleteFile($empleado->getRuta(), $data['foto_empleado'])) {
-                        $result['message'] = 'Empleado eliminado correctamente';
+                    // Se verifica si la imagen que existe no es la default, para no eliminarla
+                    if(!$data['foto_empleado']=='1.png'){
+                        if ($empleado->deleteFile($empleado->getRuta(), $data['foto_empleado'])) {
+                            $result['message'] = 'Empleado eliminado correctamente';
+                        }else{
+                            $result['message'] = 'Empleado eliminado pero no se borró la imagen';
+                        }
                     } else {
                         $result['message'] = 'Empleado eliminado pero no se borró la imagen';
                     }                   
@@ -287,7 +276,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Claves diferentes';
                 } elseif (!$empleado->setClave($_POST['clave'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
-                } elseif ($empleado->createRow()) {
+                } elseif ($empleado->primerUso()) {
                     $result['status'] = 1;                
                     $result['message'] = 'El empleado registrado correctamente';
                 } elseif (Database::getException()) {                   
