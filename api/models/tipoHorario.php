@@ -50,10 +50,10 @@ class Thorario extends Validator
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT t_e."id_tipoEmpleado", t_e."tipoEmpleado" 
-                FROM tipo_empleado t_e
-                WHERE t_e."tipoEmpleado" ILIKE ?
-                ORDER BY t_e."tipoEmpleado"';
+        $sql = 'SELECT id_tipohorario, horario_reservacion 
+                FROM "tb_tipoHorario"
+                WHERE horario_reservacion ILIKE ?
+                ORDER BY horario_reservacion';
         $params = array("%$value%");
         return Database::getRows($sql, $params);
     }

@@ -3,106 +3,105 @@ require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/chaleco.php');
 
-/*
-*Se comprueba si hay una accion a realizar o sino de lo contrario se finaliza el script con un mensaje de error
-*/
+// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
-    /*
-    *se hace una sesion o se reanuda la que ya tenemos abierta para poder usar variables de sesion en el scrip
-    */
+    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
-    /*
-    *Se instancia la clase correspondiente
-    */
-    $chaleco = new Chalecos;
-    /*
-    *Se declara e inicia un arreglo para guardar el resultado que retorna la api
-    */
-    $result = array('status' =>0, 'message' =>null, 'exception' =>null);
-    /*
-    *Se verifica si esta en una sesion como admin de lo contrario se finaliza el scrip con un mensaje de error 
-    */
+    // Se instancia la clase correspondiente.
+    $chalecos = new Chalecos;
+    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
+    $result = array('status' => 0, 'message' => null, 'exception' => null);
+    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['id_empleado'])) {
-        /*
-        *se chequea la accion a realzar cuando un admin esta logueado
-        */
-            /*
-            *se abre caso para leer todos los datos de la tabla
-            */
+        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $chaleco->readAll()) {
-                    $result['status'] = 1;
-                }elseif (Database::getException()) {
+                if ($result['dataset'] =  $chalecos->readAll()) {
+                    $result['status'] = 1;                    
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                }else {
-                    $result['exception']= 'no hay datos registrados';
+                } else {
+                    $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-                    /*
-                    *se abre caso para buscar un dato
-                    */
             case 'search':
-                $_POST = $chaleco->validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'ingrese un dato para buscar';
-                }elseif ($result['dataset'] = $chaleco->searchRows($_POST['search'])) {
-                    $result['status'] =1;
-                    $result['message'] ='dato encontrado crack';
-                }elseif (Database::getException()) {
+                $_POST =  $chalecos->validateForm($_POST);
+                if ($_POST['buscar'] == '') {
+                    if ($result['dataset'] =  $chalecos->readAll()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay datos registrados';
+                    }
+                } elseif ($result['dataset'] =  $chalecos->searchRows($_POST['buscar'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Valor encontrado';
+                } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
-                }else {
-                    $result['exception'] = 'no hay ninguno parecido';
+                } else {
+                    $result['exception'] = 'No hay coincidencias';
                 }
                 break;
-                    /*
-                    *se abre caso para crear un registro de chaleco
-                    */
             case 'create':
-                        $_POST = $chaleco->validateForm($_POST);
-                        if (!$chaleco->setCosto($_POST['costo_chaleco'])) {
-                            $result['exception'] = 'costo incorrecto';
-                        } elseif (!$chaleco->setCantidad($_POST['cantidad_chlecos'])) {
-                            $result['exception'] = 'Cantidad incorrecta';
-                        } elseif (!isset($_POST['id_colorchaleco'])) {
-                            $result['exception'] = 'Seleccione una categoría';
-                        }elseif (!$chaleco->setIdcolorchaleco($_POST['id_colorchaleco'])) {
-                            $result['exception'] = 'seleccione un color';
-                        }  elseif (!$chaleco->setTalla(isset($_POST['talla_chaleco']) ? 1 : 0)) {
-                            $result['exception'] = 'talla incorrecta';
-                        }else {
-                            $result['exception'] = Database::getException();;
-                        }
+                $_POST =  $chalecos->validateForm($_POST);
+                if (! $chalecos->setCantidad($_POST['descripcion'])) {
+                    $result['exception'] = 'Tipo asistencia no aceptada';                
+                } elseif ( $chalecos->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo asistencia creada correctamente';                    
+                } else {
+                    $result['exception'] = Database::getException();
+                }
                 break;
-                    /*
-                    *Se abre el caso para actualizar un registro
-                    */
-                case 'update':
-                        $_POST = $chaleco->validateForm($_POST);
-                        if (!$chaleco->setId($_POST['id_chaleco'])) {
-                            $result['exception'] = 'Producto incorrecto';
-                        } elseif (!$data = $chaleco->readOne()) {
-                            $result['exception'] = 'Producto inexistente';
-                        } elseif (!$chaleco->setCosto($_POST['costo_chaleco'])) {
-                            $result['exception'] = 'Nombre incorrecto';
-                        } elseif (!$chaleco->setCantidad($_POST['cantidad_chlecos'])) {
-                            $result['exception'] = 'Descripción incorrecta';
-                        } elseif (!$chaleco->setIdcolorchaleco($_POST['id_colorchaleco'])) {
-                            $result['exception'] = 'Precio incorrecto';
-                        } elseif (!$chaleco->setTalla($_POST['talla_chaleco'])) {
-                            $result['exception'] = 'Seleccione una categoría';
-                        } else {
-                            $result['exception'] = Database::getException();
-                        }
+            case 'readOne':
+                if (!$chalecos->setId($_POST['id_asistencia'])) {
+                    $result['exception'] = 'Tipo asistencia incorrecta';
+                } elseif ($result['dataset'] =  $chalecos->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Cargo inexistente';
+                }
                 break;
-                        /*
-                        *Se a
-                        */
+            case 'update':
+                $_POST =  $chalecos->validateForm($_POST);
+                if (! $chalecos->setId($_POST['id'])) {
+                    $result['exception'] = 'Tipo asistencia incorrecta';
+                } elseif (!$data =  $chalecos->readOne()) {
+                    $result['exception'] = 'Tipo asistencia inexistente';
+                } elseif (! $chalecos->setCantidad($_POST['descripcion'])) {
+                    $result['exception'] = 'tipo asistencia no aceptada';                
+                } elseif ( $chalecos->updateRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Cargo empleado modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'delete':
+                if (! $chalecos->setId($_POST['id_asistencia'])) {
+                    $result['exception'] = 'Tipo asistencia incorrecta';
+                } elseif (!$data =  $chalecos->readOne()) {
+                    $result['exception'] = 'Tipo asistencia inexistente';
+                } elseif ( $chalecos->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Tipo asistencia eliminada correctamente';                    
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
             default:
-            $result['exception'] = 'Acción no disponible dentro de la sesión';
-                break;
+                $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
+        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+        header('content-type: application/json; charset=utf-8');
+        // Se imprime el resultado en formato JSON y se retorna al controlador.
+        print(json_encode($result));
+    } else {
+        print(json_encode('Acceso denegado'));
     }
-}else {
-    print(json_encode('Recurso no disponible'))
+} else {
+    print(json_encode('Recurso no disponible'));
 }
