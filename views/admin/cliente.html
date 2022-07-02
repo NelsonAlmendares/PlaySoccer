@@ -171,7 +171,7 @@
             <div class="row">
                 <div class="container">
                     <div class="col actions">
-                        <button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal" data-bs-target="#" onclick="openCreate()"> Agregar <i class="fa-solid fa-address-book"></i> </button>
+                        <button type="button" class="btn btn-outline-success margin__btn" data-bs-target="#" onclick="openCreate()"> Agregar <i class="fa-solid fa-address-book"></i> </button>
                         <button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
             <div class="modal fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content">
-                        <form action="" method="post" id="save-form">
+                        <form action="" method="post" id="save-form" enctype="multipart/form-data">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modal-title">Agregar Clientes <i class="fa-solid fa-address-book text-muted"></i></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -272,8 +272,7 @@
     <script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->
-    <script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="../../js/bootsrtap/bootstrap.bundle.js"></script>  
     <script src="../../js/jQuery/jquery-3.6.0.min.js"></script>
 
     <!--Sweet Alert-->

@@ -10,7 +10,7 @@
         private $correo = null;
         private $password = null;
         private $foto = null;
-        private $ruta = '../images/clientes';
+        private $ruta = '../imagenes/clientes/';
 
         /* 
         * Métodos para alidar y asignar valores a los atributos
@@ -154,17 +154,17 @@
         }
 
         public function updateRow ($foto_imagen) {
-            if (!$foto_imagen=='1.png') {
-                ($this->foto) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto = $foto_imagen;
-            } elseif ($foto_imagen=='1.png') {
-
-            } else {
+            if ($foto_imagen == '1.png') {
                 $this->foto = $foto_imagen;
+            } else {
+                ($this->foto) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto = $foto_imagen;
             }
+            
             $sql = ' UPDATE public.tb_cliente
                 SET nombre_cliente=?, apelllido_cliente=?, dui_cliente=?, celular_cliente=?, correo_cliente=?, foto_cliente=?
                 WHERE id_cliente = ? ';
-            $params = array($this->nombre, $this->apellido, $this->documento, $this->celular,$this->correo, $this->foto);
+            $params = array($this->nombre, $this->apellido, $this->documento, $this->celular,$this->correo, $this->foto, $this->id);
+            return Database::executeRow($sql, $params);
         }
 
         public function deleteRow () {

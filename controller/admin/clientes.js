@@ -9,13 +9,6 @@ var modal = new bootstrap.Modal(document.getElementById('modal-cliente'), {
 document.addEventListener('DOMContentLoaded', function () {
    // Llamamos a la función para obtner los registros
    readRows(API_CLIENTES);
-   // Variable para establecer las opciones del modal
-   let options = {
-      dismissible: false,
-      onOpenStart: function () {
-         document.getElementById('save-form').reset();
-      }
-   }
 });
 
 	// Funión para llenar la tabla con los datos de los registros
@@ -26,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
       	content += `
          	<tr>
 				<th scope="row" class="text-center"> ${row.id} </th>
-				<td class="text-center"><img src=" ${SERVER}imagenes/clientes/${row.foto}" class="img-fluid perfiles" alt=""></td>
+				<td class="text-center"><img src="${SERVER}imagenes/clientes/${row.foto}" class="img-fluid perfiles" alt=""></td>
 				<td class="text-center"> ${row.nombre} </td>
 				<td class="text-center"> ${row.apellido} </td>
 				<td class="text-center"> ${row.documento} </td> 

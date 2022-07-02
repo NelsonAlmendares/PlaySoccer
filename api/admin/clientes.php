@@ -139,6 +139,7 @@
 
                 case 'update':
                     $_POST = $cliente->validateForm($_POST);
+                    
                 if (!$cliente->setId($_POST['id'])) {
                     $result['exception'] = 'cliente incorrecto';
                 } elseif (!$data = $cliente->readOne()) {
@@ -165,7 +166,7 @@
                 } elseif ($cliente->updateRow($data['foto'])) {                    
                     $result['status'] = 1;
                     if ($cliente->saveFile($_FILES['foto'], $cliente->getRuta(), $cliente->getFoto())) {
-                        $result['message'] = 'cliente modificado correctamente';
+                        $result['message'] = 'cliente modificado correctamente con foto';
                     } else {
                         $result['message'] = 'cliente modificado pero no se guardó la imagen';
                     }
