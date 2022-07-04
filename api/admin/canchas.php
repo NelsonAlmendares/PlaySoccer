@@ -45,13 +45,13 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST =  $canchas->validateForm($_POST);
-                if (! $canchas->setNumero($_POST['numero_cancha'])) {
+                if (!$canchas->setNumero($_POST['EnumCancha'])) {
                     $result['exception'] = 'valor incorrecto';                
-                }elseif ( $canchas->setTamano($_POST['tamano_cancha'])) {
+                }elseif ( $canchas->setTamano($_POST['TamañoCancha'])) {
                     $result['exception'] = 'tamaño de cancha no valido';                
-                }elseif ( $canchas->setMaterial($_POST['material_cancha'])) {
+                }elseif ( $canchas->setMaterial($_POST['MaterialCancha'])) {
                     $result['exception'] = 'tipo de material de cancha no valido';                 
-                }elseif ( $canchas->setCosto($_POST['costo_cancha'])) {
+                }elseif ( $canchas->setCosto($_POST['costo'])) {
                     $result['exception'] = 'valor monetario de cancha no valido';                 
                 } elseif ( $canchas->createRow()) {
                     $result['status'] = 1;
