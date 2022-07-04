@@ -71,25 +71,23 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El registro que ha solicitado no existe';
                 }
                 break;
-            case 'update':
-                $_POST =  $canchas->validateForm($_POST);
-                if (! $canchas->setId($_POST['id'])) {
-                    $result['exception'] = 'Identificación de cancha desconocida';
-                } elseif (!$data =  $canchas->readOne()) {
-                    $result['exception'] = 'El registro solicitado no existe';
-                } elseif (! $canchas->setNumero($_POST['numero_cancha'])) {
-                    $result['exception'] = 'El valor no es valido';                
-                } elseif (! $canchas->setTamano($_POST['tamano_cancha'])) {
-                    $result['exception'] = 'las dimensiones no son validas';                
-                } elseif (! $canchas->setCosto($_POST['descripcion'])) {
-                    $result['exception'] = 'valor monetario no aceptado';                
-                } elseif ( $canchas->updateRow()) {
+                case 'update':
+                    $_POST =  $canchas->validateForm($_POST);
+                    if (!$canchas->setNumero($_POST['EnumCancha'])) {
+                        $result['exception'] = 'valor incorrecto';                
+                    }elseif ( $canchas->setTamano($_POST['TamañoCancha'])) {
+                        $result['exception'] = 'tamaño de cancha no valido';                
+                    }elseif ( $canchas->setMaterial($_POST['MaterialCancha'])) {
+                        $result['exception'] = 'tipo de material de cancha no valido';                 
+                    }elseif ( $canchas->setCosto($_POST['costo'])) {
+                        $result['exception'] = 'valor monetario de cancha no valido';                 
+                    } elseif ( $canchas->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Los datos de la cancha han sido modificados correctamente';
-                } else {
-                    $result['exception'] = Database::getException();
-                }
-                break;
+                        $result['message'] = 'La cancha se ha modificado exitosamente';                    
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
             case 'delete':
                 if (! $canchas->setId($_POST['id_cancha'])) {
                     $result['exception'] = 'Identificacion de cancha desconocida';
