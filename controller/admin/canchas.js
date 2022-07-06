@@ -57,7 +57,7 @@ function openCreate() {
     // se abre el modal
     modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('staticBack').textContent = 'Agregar Cancha'
+    document.getElementById('titulo-modal').textContent = 'Agregar Cancha'
     // se asigna el texto al boton 
     document.getElementById('btn-accion').textContent = 'Agregar';
     //se ocultan y deshabilitan los campos correspondientes del id
@@ -71,7 +71,7 @@ function openUpdate(id_cancha) {
   //Se abre el modal
   modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('staticBack').textContent = 'Actualizar Registro';
+    document.getElementById('titulo-modal').textContent = 'Actualizar Registro';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Actualizar';
     //Se muestran y habilitan los campos correspondientes del id
@@ -95,7 +95,7 @@ function openUpdate(id_cancha) {
                     document.getElementById('id').value = response.dataset.id_cancha;
                     document.getElementById('EnumCancha').value = response.dataset.numero_cancha;
                     document.getElementById('MaterialCancha').value = response.dataset.material_cancha;
-                    document.getElementById('TamañoCancha').value = response.dataset.tamaño_cancha;
+                    document.getElementById('TamañoCancha').value = response.dataset.tamano_cancha;
                     document.getElementById('costo').value = response.dataset.costo_cancha;                                                   
                 } else {
                     sweetAlert(2, response.exception, null);

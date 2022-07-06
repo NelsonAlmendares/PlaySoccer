@@ -34,7 +34,7 @@ class Canchas extends Validator
 
     public function setTamano($value)
     {
-        if ($this->validateNaturalNumber($value)) {
+        if ($this->validateAlphabetic($value)) {
             $this->tamano_cancha = $value;
             return true;
         } else {
