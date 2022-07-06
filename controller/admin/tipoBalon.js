@@ -25,7 +25,6 @@ function fillTable(dataset) {
 			<td class="text-center">${row.cantidadad_balones}</td>
 			<td class="text-center">${row.tamano_balon}</td>
             <td class="text-center">
-                <div class="row">
                     <div class="col">
                         <div class="">
                             <button class="btn btn-outline-info" onclick="openUpdate(${row.id_tipobalon})"> <i class="fa-solid fa-pen-to-square"></i>Editar</button>

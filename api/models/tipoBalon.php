@@ -68,10 +68,11 @@ class Tipo extends Validator
 
     public function searchRows($value)
     {
-        $sql = 'SELECT id_tipobalon, costo_balon,cantidad_balones,tamano_balon
-        FROM tb_tipoBalon INNER JOIN tb_tamanoBalon USING (id_tamanobalon)
-        where costo_balon ILIKE ? OR cantidad_balones ILIKE ? ORDER BY costo_balon';
-        $params = array("%$value%", "%$value%");
+        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tm.tamano_balon AS tamano_balon
+        from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
+        where tamano_balon ILIKE ? 
+        ORDER BY costo_balon';
+        $params = array("%$value%");
         return Database::getRows($sql, $params);
     }
     public function createRow()
@@ -83,7 +84,7 @@ class Tipo extends Validator
     }
     public function readAll()
     {
-        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tb.id_tamanobalon AS tamano_balon
+        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tm.tamano_balon AS tamano_balon
         from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
         order by id_tipobalon';
         $params = null;
@@ -91,7 +92,7 @@ class Tipo extends Validator
     }
     public function readOne()
     {
-        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tamano_balon 
+        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tm.tamano_balon AS tamano_balon
         from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
         WHERE id_tipobalon = ?';
         $params = array($this->id_tipobalon);

@@ -102,9 +102,9 @@ class Canchas extends Validator
     {
         $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
         FROM tb_cancha
-        where tamano_cancha ILIKE ?
+        where tamano_cancha ILIKE ? OR material_cancha ILIKE ?
         ORDER by tamano_cancha';
-        $params = array("%$value%");
+        $params = array("%$value%","%$value%");
         return Database::getRows($sql, $params);
     }
 
