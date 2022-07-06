@@ -10,7 +10,7 @@ class Chalecos extends Validator
     */
     private $id_chaleco = null;
     private $costo_chaleco = null;
-    private $cantidad_chlecos = null;
+    private $cantidad_chalecos = null;
     private $id_colorchaleco = null;
     private $talla_chaleco = null;
     /*
@@ -28,7 +28,7 @@ class Chalecos extends Validator
     public function setCosto($value)
     {
        if ($this->validateMoney($value)) {
-        $this->costo_chaleco = null;
+        $this->costo_chaleco = $value;
         return true;
       }else{
          return false;  
@@ -37,16 +37,16 @@ class Chalecos extends Validator
     public function setCantidad($value)
     {
        if ($this->validateNaturalNumber($value)) {
-        $this->cantidad_chlecos = null;
+        $this->cantidad_chalecos = $value;
         return true;
       }else{
          return false;  
      }
     }
-    public function setIdcolorchaleco($value)
+    public function setColor($value)
     {
        if ($this->validateNaturalNumber($value)) {
-        $this->id_colorchaleco = null;
+        $this->id_colorchaleco = $value;
         return true;
       }else{
          return false;  
@@ -55,7 +55,7 @@ class Chalecos extends Validator
     public function setTalla($value)
     {
        if ($this->validateNaturalNumber($value)) {
-        $this->talla_chaleco = null;
+        $this->talla_chaleco = $value;
         return true;
       }else{
          return false;  
@@ -74,9 +74,9 @@ class Chalecos extends Validator
     }
     public function getCantidad()
     {
-        return $this->cantidad_chlecos;
+        return $this->cantidad_chalecos;
     }
-    public function getIdcolorchaleco()
+    public function getColor()
     {
         return $this->id_colorchaleco;
     }
@@ -92,7 +92,7 @@ class Chalecos extends Validator
         */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_chaleco, costo_chaleco,cantidad_chlecos,colorchaleco,talla_chaleco
+        $sql = 'SELECT id_chaleco, costo_cheleco,cantidad_chlecos,colorchaleco,talla_chaleco
         FROM tb_chaleco INNER JOIN tb_colorChaleco USING(id_categoria)
         where costo_chaleco ILIKE ? OR talla_chaleco ILIKE ?
         ORDER BY costo_chaleco';
@@ -104,10 +104,10 @@ class Chalecos extends Validator
         */
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_chaleco(costo_chaleco,cantidad_chlecos,id_colorchaleco, talla_chaleco)
-        VALUES(?,?,?,?)';
-        $params = array($this->costo_chaleco, $this->cantidad_chlecos,$this->id_colorchaleco, $this->talla_chaleco);
-        return Database::executeRow($sql,$params);
+        $sql = 'INSERT INTO tb_chaleco(costo_cheleco,cantidad_chlecos,id_colorchaleco, talla_chaleco)
+        VALUES (?,?,?,?)';
+        $params = array($this->costo_chaleco, $this->cantidad_chalecos,$this->id_colorchaleco, $this->talla_chaleco);
+        return Database::executeRow($sql, $params);
     }
 
         /*
@@ -115,19 +115,19 @@ class Chalecos extends Validator
         */
     public function readOne()
     {
-        $sql = 'SELECT id_chaleco, costo_cheleco, cantidad_chlecos, id_colorchaleco, talla_chaleco
+        $sql = 'SELECT id_chaleco, costo_cheleco, cantidad_chlecos, tcc.colorchaleco AS colorchaleco, ttc.tallachaleco AS tallachaleco
         FROM public."tb_chaleco" tch INNER JOIN public."tb_colorChaleco" tcc ON tch.id_colorchaleco = tcc.id_color
         INNER JOIN public."tb_tallaChaleco" ttc ON tch.talla_chaleco = ttc.id_talla
         WHERE id_chaleco = ? ';
         $params = array($this->id_chaleco);
-        return Database::getRows($sql, $params);
+        return Database::getRow($sql, $params);
     }
                 /*
         *Metodo para leer el contendio de la tabla 
         */
     public function readAll()
     {
-        $sql = 'SELECT id_chaleco, costo_cheleco, cantidad_chlecos, id_colorchaleco, talla_chaleco
+        $sql = 'SELECT id_chaleco, costo_cheleco, cantidad_chlecos, tcc.colorchaleco AS colorchaleco, ttc.tallachaleco AS tallachaleco
         FROM public."tb_chaleco" tch INNER JOIN public."tb_colorChaleco" tcc ON tch.id_colorchaleco = tcc.id_color
         INNER JOIN public."tb_tallaChaleco" ttc ON tch.talla_chaleco = ttc.id_talla
         ORDER BY id_chaleco';
@@ -140,9 +140,9 @@ class Chalecos extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE tb_chaleco
-        SET costo_chaleco = ?, cantidad_chlecos = ?, id_colorchaleco = ?, talla_chaleco = ?
+        SET costo_cheleco = ?, cantidad_chlecos = ?, id_colorchaleco = ?, talla_chaleco = ?
         WHERE id_chaleco = ?';
-        $params = array($this->costo_chaleco, $this->cantidad_chlecos, $this->id_colorchaleco,$this->talla_chaleco,$this->id_chaleco);
+        $params = array($this->costo_chaleco, $this->cantidad_chalecos, $this->id_colorchaleco,$this->talla_chaleco,$this->id_chaleco);
         return Database::executeRow($sql, $params);
     }
         /*
