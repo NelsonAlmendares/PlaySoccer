@@ -36,9 +36,6 @@ h2 {
     height: 200px; } }
 
 .half .contents {
-  background: #f6f7fc; }
-
-.half .contents {
   width: 80%; }
 
 .half .bg {
@@ -151,3 +148,20 @@ h2 {
 .control--checkbox input:disabled:checked ~ .control__indicator {
   background-color: #7e0cf5;
   opacity: .2; }
+
+.logo{
+  width: 40px;
+}
+
+.input-file input{
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #F6F7FC;
+  border: 1px solid #F6F7FC;
+  padding: 8px;
+}
+
+input .input-file-button{
+  color: #fb771a;
+}

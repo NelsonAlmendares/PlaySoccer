@@ -260,21 +260,21 @@ if (isset($_GET['action'])) {
                 break;
             case 'register':
                 $_POST = $empleado->validateForm($_POST);
-                if (!$empleado->setNombre($_POST['nombre_empleado'])) {
-                    $result['exception'] = 'Nombre incorrectos';
-                } elseif (!$empleado->setApellido($_POST['apellido_empleado'])) {
+                if (!$empleado->setNombre($_POST['nombre'])) {
+                    $result['exception'] = 'Nombre incorrecto';
+                } elseif (!$empleado->setApellido($_POST['apellido'])) {
                     $result['exception'] = 'Apellido incorrectos';
-                } elseif (!$empleado->setDUI($_POST['dui_empleado'])) {
+                } elseif (!$empleado->setDUI($_POST['documento'])) {
                     $result['exception'] = 'DUI incorrecto';
-                } elseif (!$empleado->setCelular($_POST['celular_empleado'])) {
+                } elseif (!$empleado->setCelular($_POST['telefono'])) {
                     $result['exception'] = 'Celular incorrecto';                                
-                } elseif (!$empleado->setCorreo($_POST['correo_empleado'])) {
+                } elseif (!$empleado->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Codigo incorrecto';
                 } elseif (!$empleado->setTipo(1)) {
                     $result['exception'] = 'Tipo empleado incorrecto';
-                } elseif ($_POST['clave'] != $_POST['confirmar']) {
+                } elseif ($_POST['password'] != $_POST['password2']) {
                     $result['exception'] = 'Claves diferentes';
-                } elseif (!$empleado->setClave($_POST['clave'])) {
+                } elseif (!$empleado->setClave($_POST['password'])) {
                     $result['exception'] = $empleado->getPasswordError();                    
                 } elseif ($empleado->primerUso()) {
                     $result['status'] = 1;                

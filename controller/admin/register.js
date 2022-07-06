@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 // Método manejador de eventos que se ejecuta cuando se envía el formulario de registrar.
-document.getElementById('registrarse').addEventListener('submit', function (event) {
+document.getElementById('formulario').addEventListener('submit', function (event) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Petición para registrar el primer usuario del sitio privado.
     fetch(API_USUARIOS + 'register', {
         method: 'post',
-        body: new FormData(document.getElementById('registrarse'))
+        body: new FormData(document.getElementById('formulario'))
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
         if (request.ok) {
