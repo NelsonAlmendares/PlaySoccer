@@ -44,16 +44,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'create':
-                $_POST =  $canchas->validateForm($_POST);
+                $_POST =  $canchas->validateForm($_POST);                
                 if (!$canchas->setNumero($_POST['EnumCancha'])) {
                     $result['exception'] = 'valor incorrecto';                
-                }elseif ( $canchas->setTamano($_POST['TamañoCancha'])) {
+                }elseif (!$canchas->setTamano($_POST['TamañoCancha'])) {
                     $result['exception'] = 'tamaño de cancha no valido';                
-                }elseif ( $canchas->setMaterial($_POST['MaterialCancha'])) {
+                }elseif (!$canchas->setMaterial($_POST['MaterialCancha'])) {
                     $result['exception'] = 'tipo de material de cancha no valido';                 
-                }elseif ( $canchas->setCosto($_POST['costo'])) {
+                }elseif (!$canchas->setCosto($_POST['costo'])) {
                     $result['exception'] = 'valor monetario de cancha no valido';                 
-                } elseif ( $canchas->createRow()) {
+                } elseif ($canchas->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'La cancha se ha registrado exitosamente';                    
                 } else {
@@ -72,16 +72,20 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 case 'update':
-                    $_POST =  $canchas->validateForm($_POST);
-                    if (!$canchas->setNumero($_POST['EnumCancha'])) {
+                    $_POST = $canchas->validateForm($_POST);
+                    if (!$canchas->setId($_POST['id'])) {
+                        $result['exception'] = 'Cancha incorrecto';
+                    } elseif (!$data = $canchas->readOne()) {
+                    $result['exception'] = 'Cancha inexistente';
+                    }elseif (!$canchas->setNumero($_POST['EnumCancha'])) {
                         $result['exception'] = 'valor incorrecto';                
-                    }elseif ( $canchas->setTamano($_POST['TamañoCancha'])) {
+                    }elseif (!$canchas->setTamano($_POST['TamañoCancha'])) {
                         $result['exception'] = 'tamaño de cancha no valido';                
-                    }elseif ( $canchas->setMaterial($_POST['MaterialCancha'])) {
+                    }elseif (!$canchas->setMaterial($_POST['MaterialCancha'])) {
                         $result['exception'] = 'tipo de material de cancha no valido';                 
-                    }elseif ( $canchas->setCosto($_POST['costo'])) {
+                    }elseif (!$canchas->setCosto($_POST['costo'])) {
                         $result['exception'] = 'valor monetario de cancha no valido';                 
-                    } elseif ( $canchas->updateRow()) {
+                    } elseif ($canchas->updateRow()) {
                         $result['status'] = 1;
                         $result['message'] = 'La cancha se ha modificado exitosamente';                    
                     } else {
@@ -89,11 +93,11 @@ if (isset($_GET['action'])) {
                     }
                     break;
             case 'delete':
-                if (! $canchas->setId($_POST['id_cancha'])) {
+                if (!$canchas->setId($_POST['id_cancha'])) {
                     $result['exception'] = 'Identificacion de cancha desconocida';
                 } elseif (!$data =  $canchas->readOne()) {
                     $result['exception'] = 'Registro inexistente';
-                } elseif ( $canchas->deleteRow()) {
+                } elseif ($canchas->deleteRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Registro de cancha eliminada correctamente';                    
                 } else {

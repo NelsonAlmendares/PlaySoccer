@@ -34,7 +34,7 @@ class Canchas extends Validator
 
     public function setTamano($value)
     {
-        if ($this->validateAlphabetic($value)) {
+        if ($this->validateAlphanumeric($value, 1, 100)) {
             $this->tamano_cancha = $value;
             return true;
         } else {
@@ -44,7 +44,7 @@ class Canchas extends Validator
 
     public function setMaterial($value)
     {
-        if ($this->validateAlphabetic($value)) {
+        if ($this->validateAlphabetic($value, 1, 100)) {
             $this->material_cancha = $value;
             return true;
         } else {
@@ -54,7 +54,7 @@ class Canchas extends Validator
 
     public function setCosto($value)
     {
-        if ($this->validateNaturalNumber($values)) {
+        if ($this->validateMoney($value)) {
             $this->costo_cancha = $value;
             return true;
         } else {
@@ -134,7 +134,7 @@ class Canchas extends Validator
         $sql = 'SELECT id_cancha, numero_cancha, tamano_cancha, material_cancha, costo_cancha
         FROM tb_cancha
         WHERE id_cancha = ?';
-        $params = array($this->id_canhca);
+        $params = array($this->id_cancha);
         return Database::getRow($sql, $params);
     }
 
@@ -145,7 +145,7 @@ class Canchas extends Validator
         $sql = 'UPDATE tb_cancha
         SET numero_cancha = ?, tamano_cancha = ?, material_cancha = ?, costo_cancha = ?
         WHERE id_cancha = ?';
-        $params = array($this->numero_cancha, $this->tamano_cancha, $this->material_cancha, $this->costo_cancha);
+        $params = array($this->numero_cancha, $this->tamano_cancha, $this->material_cancha, $this->costo_cancha, $this->id_cancha);
         return Database::executeRow($sql, $params);
     }
     // metodo para eliminar una cancha

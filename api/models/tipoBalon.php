@@ -39,7 +39,7 @@ class Tipo extends Validator
         }
     }
 
-    public function setIdtamano($value)
+    public function setTamano($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->id_tamanobalon = $value;
@@ -61,10 +61,11 @@ class Tipo extends Validator
     {
         return $this->cantidad_balones;
     }
-    public function getIdtamano()
+    public function getTamano()
     {
         return $this->id_tamanobalon;
     }
+
     public function searchRows($value)
     {
         $sql = 'SELECT id_tipobalon, costo_balon,cantidad_balones,tamano_balon
@@ -75,14 +76,14 @@ class Tipo extends Validator
     }
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_tipoBalon (costo_balon,cantidad_balones, id_tamanobalon)
+        $sql = 'INSERT INTO "tb_tipoBalon"(costo_balon,cantidadad_balones, id_tamanobalon)
         VALUES(?,?,?)';
         $params = array($this->costo_balon, $this->cantidad_balones,$this->id_tamanobalon);
         return Database::executeRow($sql, $params);
     }
     public function readAll()
     {
-        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tamano_balon 
+        $sql = 'SELECT id_tipobalon, costo_balon, cantidadad_balones, tb.id_tamanobalon AS tamano_balon
         from public."tb_tipoBalon" tb INNER JOIN public."tb_tamanoBalon" tm ON tb.id_tamanoBalon = tm.id_tamanoBalon
         order by id_tipobalon';
         $params = null;
@@ -98,13 +99,13 @@ class Tipo extends Validator
     }
     public function updateRow()
     {
-        $sql = 'UPDATE tb_tipoBalon SET costo_balon = ?, cantidad_balones = ?, id_tamanobalon = ? WHERE id_tipobalon = ?';
+        $sql = 'UPDATE "tb_tipoBalon" SET costo_balon = ?, cantidad_balones = ?, id_tamanobalon = ? WHERE id_tipobalon = ?';
         $params = array($this->costo_balon, $this->cantidad_balones, $this->id_tamanobalon, $this->id_tipobalon);
         return Database::executeRow($sql, $params);
     }
     public function deleteRow()
     {
-        $sql = 'DELETE FROM tb_tipoBalon where id_tipobalon = ?';
+        $sql = 'DELETE FROM "tb_tipoBalon" where id_tipobalon = ?';
         $params = array($this->id_tipobalon);
         return Database::executeRow($sql, $params);
     }
