@@ -9,11 +9,7 @@
             $server = 'localhost';
             $database = 'PlaySoccer';
             $username = 'postgres';
-<<<<<<< HEAD
-            $password = 'AdminUser';
-=======
-            $password = '12DIAZ12';
->>>>>>> 3878d2463d5c431d9055ce969aa647abfed88619
+            $password = '1234';
 
 
             self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432' , $username, $password);
