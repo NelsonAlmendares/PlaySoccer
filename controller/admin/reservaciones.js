@@ -80,13 +80,21 @@ function openCreate(){
 function openUpdate(id_reserva){
     modal.show();
     // Se asigna el título para el modal.
-        document.getElementById('titulo-modal').textContent = 'Agregar una nueva reservacion';
-        // Se asigna el texto al boton.
-        document.getElementById('btn-accion').textContent = 'Agregar';
-        //se ocultan y deshabilitan los campos correspondientes del id
-        document.getElementById('id').hidden = true;
-        document.getElementById('id').disabled = true;
-        document.getElementById('id-reserva').hidden = true;
+    document.getElementById('titulo-modal').textContent = 'Agregar una nueva reservacion';
+    // Se asigna el texto al boton.
+    document.getElementById('btn-accion').textContent = 'Agregar';
+    //se ocultan y deshabilitan los campos correspondientes del id
+    document.getElementById('id').hidden = true;
+    document.getElementById('id').disabled = true;
+    document.getElementById('id-reserva').hidden = true;
+    //se llena el select 
+    fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
+    fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
+    fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
+    fillSelect(ENDPOINT_CANCHA, 'cancha', null);
+    fillSelect(ENDPOINT_HORARIO, 'horario', null);
+    fillSelect(ENDPOINT_CLIENTE, 'cliente', null);    
+    fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('id_reserva', id_reserva);
