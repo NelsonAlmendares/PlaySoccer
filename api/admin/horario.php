@@ -1,8 +1,8 @@
 <?php
-    require_once('../models/horario.php');
     require_once('../helpers/database.php');
     require_once('../helpers/validator.php');
-
+    require_once('../models/horario.php');
+    
     if (isset($_GET['action'])) {
         session_start();
 

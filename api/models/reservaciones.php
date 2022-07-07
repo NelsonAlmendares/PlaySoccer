@@ -133,7 +133,7 @@
         public function setIdchale($value)
         {
             if ($this->validateNaturalNumber($value)) {
-                $this->id_chaleco = $value;
+                $this->id_chalecos = $value;
                 return true;
             } else {
                 return false;
@@ -201,7 +201,7 @@
     
         public function getIdchale()
         {
-            return $this->id_chaleco;
+            return $this->id_chalecos;
         }
     
         /*
@@ -227,7 +227,7 @@
             observaciones, chalecos_alquilados, id_empleado, id_cancha, 
             id_horario, id_cliente, id_asistencia, id_tipobalon, id_chalecos)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistenci, $this->id_tipobalon, $this->id_chalecos);                
+            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones,$this -> chalecos_alquilados, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos);                
             return Database::executeRow($sql, $params);
         }
     
@@ -272,7 +272,7 @@
             $sql = 'UPDATE public.tb_reserva
             SET fecha_reserva=?, balones_alquilados=?, observaciones=?, chalecos_alquilados=?, id_empleado=?, id_cancha=?, id_horario=?, id_cliente=?, id_asistencia=?, id_tipobalon=?, id_chalecos=?
             WHERE id_reserva = ?';
-            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos);
+            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones,$this -> chalecos_alquilados, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos);
             return Database::executeRow($sql, $params);
         }
     

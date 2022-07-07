@@ -39,8 +39,8 @@ function fillTable(dataset){
         <td class="text-center"> ${row.id_tipobalon} </td>
         <td class="text-center"> ${row.id_chalecos} </td>
         <td class="text-center">
-            <button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
+        <button class="btn btn-outline-info" onclick="openUpdate(${row.id_reserva})"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button class="btn btn-outline-danger" onclick="openDelete(${row.id_reserva})"><i class="fa-solid fa-eraser"></i></button>
         </td>
     </tr>     
         ` 
@@ -57,6 +57,8 @@ document.getElementById('search-form').addEventListener('submit', function(event
     });
 // Función para preparar el formulario al momento de crear un usuario para el empleado.
 function openCreate(){
+    // Se limpia la caja de dialogo (modal) del formulario.  
+    cleanModal();
     modal.show();
     // Se asigna el título para el modal.
     document.getElementById('titulo-modal').textContent = 'Agregar una nueva reservacion';
@@ -78,6 +80,8 @@ function openCreate(){
 }
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_reserva){
+    // Se limpia la caja de dialogo (modal) del formulario.  
+    cleanModal();
     modal.show();
     // Se asigna el título para el modal.
     document.getElementById('titulo-modal').textContent = 'Agregar una nueva reservacion';
@@ -109,7 +113,7 @@ function openUpdate(id_reserva){
                  // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if(response.status){
                 // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = response.data.id_empleado;
+                    document.getElementById('id').value = response.data.id_reserva;
                     document.getElementById('fecha').value = response.data.fecha_reserva;
                     document.getElementById('balones').value = response.data.balones_alquilados;
                     document.getElementById('observaciones').value = response.data.observaciones;
@@ -143,11 +147,9 @@ document.getElementById('save-form').addEventListener('submit', function(event){
         action = 'update';
     }
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
-    seveRow(API_RESERVACION, action, 'save-form');
-    // Se limpia la caja de dialogo (modal) del formulario.  
-    clearModal();
+    saveRow(API_RESERVACION, action, 'save-form', modal);
      // Se cierra la caja de dialogo (modal) del formulario.  
-    modal.hibe();
+    // modal.hide();
 });
 // Función para establecer el registro a eliminar y abrir una caja de diálogo de confirmación.
 function openDelete(id_reserva){
