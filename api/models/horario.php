@@ -92,7 +92,7 @@
         public function readOne () {
             $sql = 'SELECT id_horario AS id, hora_inicio AS inicio, hora_fin AS fin, horario_reservacion 
                 FROM PUBLIC.tb_horario th INNER JOIN PUBLIC."tb_tipoHorario" tph ON th.id_tipoHorario =  tph.id_tipoHorario
-                WHERE id_horario ILILE ?';
+                WHERE id_horario = ?';
             $params = array ($this->id);
             return Database::getRow($sql, $params);
         }
