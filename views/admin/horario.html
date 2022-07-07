@@ -33,12 +33,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="topNavBar">
-                <form class="d-flex ms-auto my-3 my-lg-0">
+                <form method="post" id="search-form" class="d-flex ms-auto my-3 my-lg-0">
                     <div class="input-group">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
+                        <button type="submit" class="btn btn-primary"> <i class="bi bi-search"></i> </button>
                     </div>
                 </form>
                 <ul class="navbar-nav">
@@ -125,12 +123,6 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- <li>
-                  <a href="#" class="nav-link px-3">
-                     <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                     <span>Pages</span>
-                  </a>
-               </li> -->
                     <li class="my-4">
                         <hr class="dropdown-divider bg-light" />
                     </li>
@@ -177,50 +169,57 @@
 			<div class="row">
 				<div class="container">
 					<div class="col actions">
-						<button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal"
-							data-bs-target="#agregar"> Agregar <i class="fa-solid fa-address-book"></i> </button>
+						<button type="button" class="btn btn-outline-success margin__btn" data-bs-toggle="modal" data-bs-target="#agregar" onclick="openCreate()"> Agregar <i class="fa-solid fa-address-book"></i> </button>
 						<button type="button" class="btn btn-warning"> Reporte <i class="fa-solid fa-chart-column"></i></button>
 					</div>
 				</div>
 			</div>
 
 			<!-- Modal -->
-			<div class="modal fade" id="agregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-xl">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Asignación de Horario <i class="bi bi-alarm"></i></h5> 
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="mb-3">
-										<label for="hora" class="form-label">Hora de Inicio: </label> <i class="bi bi-alarm"></i>
-										<input class="form-control" type="time" id="hora" name="hora"  required>
-									</div>
-									<div class="mb-3">
-										<label for="exampleColorInput" class="form-label">Tipo de Horario</label> <i class="bi bi-hourglass-bottom"></i>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Asigne el tipo de Horario</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                        </select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="mb-3">
-										<label for="hora" class="form-label">Hora de Finalización: </label> <i class="bi bi-alarm"></i>
-										<input class="form-control" type="time" id="hora" name="hora"   required>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-outline-success">Agregar</button>
-						</div>
-					</div>
+			<div class="modal fade" id="modal-horario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<form action="" method="post" id="modal_horario">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Asignación de Horario <i class="bi bi-alarm"></i></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3" id="id_horario">
+                                                <label for="id" class="form-label">ID</label>
+                                                <input type="number" class="form-control" id="id">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="hora" class="form-label">Hora de Inicio: </label> <i class="bi bi-alarm"></i>
+                                                <input class="form-control" type="time" id="hora" name="hora" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleColorInput" class="form-label">Tipo de Horario</label> <i
+                                                    class="bi bi-hourglass-bottom"></i>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected disabled>Asigne el tipo de Horario</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="hora" class="form-label">Hora de Finalización: </label> <i class="bi bi-alarm"></i>
+                                                <input class="form-control" type="time" id="hora" name="hora" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-outline-success">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 				</div>
 			</div>
 
@@ -236,33 +235,11 @@
 									<th scope="col" class="text-center"> Tipo Horario</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th scope="row" class="text-center">1</th>
-									<td class="text-center">10:20 a.m</td>
-									<td class="text-center">12:40 a.m</td>
-									<td class="text-center">Diurno<td>
-									<td class="text-center">
-										<button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-										<button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
-									</td>
-								</tr>
-                                <tr>
-									<th scope="row" class="text-center">2</th>
-									<td class="text-center">8:20 p.m</td>
-									<td class="text-center">9:40 p.m</td>
-									<td class="text-center">Nocturno<td>
-									<td class="text-center">
-										<button class="btn btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button>
-										<button class="btn btn-outline-danger"><i class="fa-solid fa-eraser"></i></button>
-									</td>
-								</tr>
-							</tbody>
+							<tbody id="table_horario"></tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-			<div class="row"></div>
 
 		</div>
 	</main>
@@ -272,14 +249,14 @@
 
     <script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="../../js/plugin/components/jquery-3.6.0.min.js"></script>
 
-    <script src="../../js/plugin/jquery-3.5.1.js"></script>
-    <script src="../../js/admin/sc-ript.js"></script>
     <!--Sweet Alert-->
    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <!--Controladores JS-->
    <script src="../../controller/components.js"></script>
    <script src="../../controller/admin/online.js"></script>
+   <script src="../../controller/admin/horario.js"></script>
 
 </body>
 

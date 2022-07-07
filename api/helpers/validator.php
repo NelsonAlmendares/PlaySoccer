@@ -171,6 +171,17 @@
         }
     }
 
+    /* Metodo para validar las fechas de los formularios */
+    public function validateTime($value){
+        $pattern="/^([0-1][0-9]|[2][0-3])[\:]([0-5][0-9])[\:]([0-5][0-9])$/";
+        
+        if(preg_match($pattern,$value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /* Metodo para validar la ubicacion de un archivo antes de subirlo al servidor */
     public function saveFile($file, $path, $name)
     {
