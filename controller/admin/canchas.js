@@ -8,15 +8,7 @@ var modal = new bootstrap.Modal(document.getElementById('modal-canchas'), {
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
-    readRows(API_CANCHAS);
-    // Se define una variable para establecer las opciones del componente Modal.
-    let options = {
-        dismissible: false,
-        onOpenStart: function () {
-            // Se restauran los elementos del formulario.
-            document.getElementById('save-form').reset();
-        }
-    }
+    readRows(API_CANCHAS);      
 });
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -31,7 +23,7 @@ function fillTable(dataset) {
             <td class="text-center"> ${row.numero_cancha} </td>
             <td class="text-center"> ${row.tamano_cancha} </td>
             <td class="text-center"> ${row.material_cancha} </td>
-            <td class="text-center"> ${row.costo_cancha} </td>
+            <td class="text-center"> $${row.costo_cancha} </td>
             <td class="text-center">
             <button class="btn btn-outline-info" onclick="openUpdate(${row.id_cancha})"><i class="fa-solid fa-pen-to-square"></i></button>
             <button class="btn btn-outline-danger" onclick="openDelete(${row.id_cancha})"><i class="fa-solid fa-eraser"></i></button>
@@ -53,7 +45,6 @@ document.getElementById('search-form').addEventListener('submit', function (even
 
 // Función para preparar el formulario al momento de insertar un registro.
 function openCreate() {
-    //Se abre el modal
     // se abre el modal
     modal.show();
     // Se asigna el título para el modal.
@@ -75,7 +66,6 @@ function openUpdate(id_cancha) {
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Actualizar';
     //Se muestran y habilitan los campos correspondientes del id
-    document.getElementById('id_cancha').textContent = 'id_cancha';
     document.getElementById('id').hidden = false;
     document.getElementById('id').disabled = false;
     document.getElementById('id_cancha').hidden = false;
@@ -132,7 +122,7 @@ document.getElementById('save-form').addEventListener('submit', function (event)
 function openDelete(id_cancha) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id_color', id_cancha);
+    data.append('id_cancha', id_cancha);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
     confirmDelete(API_CANCHAS, data);
 }
@@ -144,5 +134,5 @@ function cleanModal(){
     $("#EnumCancha").val('');    
     $("#MaterialCancha").val(''); 
     $("#TamañoCancha").val('');
-    $("costo").val('');
+    $("#costo").val('');
 }

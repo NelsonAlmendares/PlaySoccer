@@ -3,117 +3,111 @@ require_once('../helpers/database.php');
 require_once('../helpers/validator.php');
 require_once('../models/tipoBalon.php');
 
-/*
-*Se comprueba si hay una accion a realizar o sino de lo contrario se finaliza el script con un mensaje de error
-*/
-if (isset($_GET['action'])){
-    /*
-    *se hace una sesion o se reanuda la que ya tenemos abierta para poder usar variables de sesion en el scrip
-    */
+// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
+if (isset($_GET['action'])) {
+    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
-    /*
-    *Se instancia la clase correspondiente
-    */
-    $tipoBalon = new Tipo;
-   /*
-    *Se declara e inicia un arreglo para guardar el resultado que retorna la api
-    */
+    // Se instancia la clase correspondiente.
+    $tipo_balon = new Tipo;
+    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
-   /*
-    *Se verifica si esta en una sesion como admin de lo contrario se finaliza el scrip con un mensaje de error 
-    */
+    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['id_empleado'])) {
-      /*
-        *se chequea la accion a realzar cuando un admin esta logueado
-        */
-            /*
-            *se abre caso para leer todos los datos de la tabla
-            */
-            switch ($_GET['action']) {
-      case 'readAll':
-        if ($result['dataset'] = $tipoBalon->readAll()) {
-          $result['status'] = 1;
-        } elseif (Database::getException()) {
-          $result['exception'] = Database::getException();
-        } else {
-          $result['exception'] = 'no hay datos registrados';
+        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+        switch ($_GET['action']) {
+            case 'readAll':
+                if ($result['dataset'] =  $tipo_balon->readAll()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay balones registrados';
+                }
+                break;
+            case 'search':
+                $_POST =  $tipo_balon->validateForm($_POST);
+                if ($_POST['buscar'] == '') {
+                    if ($result['dataset'] =  $tipo_balon->readAll()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay balones registrados';
+                    }
+                } elseif ($result['dataset'] =  $tipo_balon->searchRows($_POST['buscar'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Valor encontrado';
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'No hay coincidencias';
+                }
+                break;
+            case 'create':
+                $_POST =  $tipo_balon->validateForm($_POST);
+                if (!$tipo_balon->setCosto($_POST['costo'])) {
+                    $result['exception'] = 'Costo de balon no aceptado';                
+                }elseif (!$tipo_balon->setCantidad($_POST['cantidad'])) {
+                  $result['exception'] = 'Cantidad de balon no aceptada';                
+                } elseif (!isset($_POST['tamanoBalon'])) {
+                  $result['exception'] = 'Seleccione el tamaño del balon';
+              } elseif (!$tipo_balon->setTamano($_POST['tamanoBalon'])) {
+                  $result['exception'] = 'Tamaño incorrecto';                
+                }elseif ( $tipo_balon->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Balon agregado correctamente';                    
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'readOne':
+                if (!$tipo_balon->setId($_POST['id_tipobalon'])) {
+                    $result['exception'] = 'Balon incorrecto';
+                } elseif ($result['dataset'] =  $tipo_balon->readOne()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Balon incorrecto inexistente';
+                }
+                break;
+            case 'update':
+                $_POST =  $tipo_balon->validateForm($_POST);
+                if (! $tipo_balon->setId($_POST['id'])) {
+                    $result['exception'] = 'Tamaño de balon incorrecto';
+                } elseif (!$data =  $tipo_balon->readOne()) {
+                    $result['exception'] = 'Tamaño de balon inexistente';
+                } elseif (! $tipo_balon->setTamano($_POST['descripcion'])) {
+                    $result['exception'] = 'Tamaño de balon no aceptado';                
+                } elseif ( $tipo_balon->updateRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Tamaño de balon modificado modificado correctamente';
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            case 'delete':
+                if (! $tipo_balon->setId($_POST['id_tipobalon'])) {
+                    $result['exception'] = 'Balon incorrecto';
+                } elseif (!$data =  $tipo_balon->readOne()) {
+                    $result['exception'] = 'Balon inexistente';
+                } elseif ( $tipo_balon->deleteRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Balon eliminado correctamente';                    
+                } else {
+                    $result['exception'] = Database::getException();
+                }
+                break;
+            default:
+                $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
-        break;
-        /*
-        *se abre caso para buscar un dato
-        */
-      case 'search':
-        $_POST = $tipoBalon->validateForm($_POST);
-        if ($_POST['search'] == '') {
-          $result['exception'] = 'ingrese un dato para buscar';
-        } elseif ($result['dataset'] = $tipoBalon->searchRows($_POST['search'])) {
-          $result['status'] = 1;
-          $result['message'] = 'dato encontrado';
-        } elseif (Database::getException()) {
-          $result['exception'] = Database::getException();
-        } else {
-          $result['exception'] = 'no hay ninguno parecido';
-        }
-        break;
-        /*
-        *se abre caso para crear un registro
-        */
-      case 'create':
-        $_POST = $tipoBalon->validateForm($_POST);
-        if (!$tipoBalon->setCosto($_POST['costo_balon'])) {
-          $result['exception'] = 'costo incorrecto';
-        } elseif (!$tipoBalon->setCantidad($_POST['cantidad_balones'])) {
-          $result['exception'] = 'Cantidad incorrecta';
-        } elseif (!isset($_POST['id_tamanobalon'])) {
-          $result['exception'] = 'Seleccione un tamaño de balon';
-        } elseif (!$tipoBalon->setIdtamano($_POST['id_tamanobalon'])) {
-          $result['exception'] = 'seleccione un tamaño balon';
-        } else {
-          $result['exception'] = Database::getException();;
-        }
-        break;
-        /*
-        *Se abre el caso para actualizar un registro
-        */
-      case 'update':
-        $_POST = $tipoBalon->validateForm($_POST);
-        if (!$tamano_balon->setId($_POST['id_tipobalon'])) {
-          $result['exception'] = 'Producto incorrecto';
-        } elseif (!$data = $tipoBalon->readOne()) {
-          $result['exception'] = 'Producto inexistente';
-        } elseif (!$tipoBalon->setCosto($_POST['costo_balon'])) {
-          $result['exception'] = 'Costo incorrecto';
-        } elseif (!$tipoBalon->setCantidad($_POST['cantidad_balones'])) {
-          $result['exception'] = 'Cantidad incorrecta';
-        } elseif (!$tipoBalon->setIdtamano($_POST['id_tamanobalon'])) {
-          $result['exception'] = 'Tamaño incorrecto';
-        }else {
-          $result['exception'] = Database::getException();
-        }
-        break;
-        /*
-        *se crea el caso de eliminar
-        */
-      case 'delete':
-        if (!$tipoBalon->setId($_POST['id_tipobalon'])) {
-          $result['exception'] = 'Tipo balon incorrecto incorrect';
-        } elseif (!$data =  $tipoBalon->readOne()) {
-          $result['exception'] = 'tipo balon inexistente';
-        } elseif ($tipoBalon->deleteRow()) {
-          $result['status'] = 1;
-          $result['message'] = 'Tipo balon eliminado correctamente';
-        } else {
-          $result['exception'] = Database::getException();
-        }
-        break;
-            }
-    // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-    header('content-type: application/json; charset=utf-8');
-    // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
-  } else {
-    print(json_encode('Acceso denegado'));
-  }
+        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+        header('content-type: application/json; charset=utf-8');
+        // Se imprime el resultado en formato JSON y se retorna al controlador.
+        print(json_encode($result));
+    } else {
+        print(json_encode('Acceso denegado'));
+    }
 } else {
-  print(json_encode('Recurso no disponible'));
+    print(json_encode('Recurso no disponible'));
 }

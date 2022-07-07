@@ -35,7 +35,8 @@
             <div class="collapse navbar-collapse" id="topNavBar">
                 <form class="d-flex ms-auto my-3 my-lg-0" id="search-form">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="buscar"
+                            name="buscar" />
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -151,6 +152,74 @@
                             <span>Clientes</span>
                         </a>
                     </li>
+                    <!--Dropdown de administrar-->
+                    <li class="my-4">
+                        <hr class="dropdown-divider bg-light" />
+                    </li>
+                    <li>
+                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#administrar">
+                            <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+                            <span>Administración</span>
+                            <span class="ms-auto">
+                                <span class="right-icon">
+                                    <i class="bi bi-chevron-down"></i>
+                                </span>
+                            </span>
+                        </a>
+                        <div class="collapse" id="administrar">
+                            <ul class="navbar-nav ps-3">
+                                <li>
+                                    <a href="tamanoBalon.html" class="nav-link px-3 mt-3">
+                                        <span class="me-2"><i class="fa-duotone fa-goal-net"></i></span>
+                                        <span>Tamaño de balones</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ps-3">
+                                <li>
+                                    <a href="tallaChalecos.html" class="nav-link px-3 mt-3">
+                                        <span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+                                        <span>Talla de chalecos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ps-3">
+                                <li>
+                                    <a href="colores.html" class="nav-link px-3 mt-3">
+                                        <span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+                                        <span>Colores de chalecos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ps-3">
+                                <li>
+                                    <a href="tipoEmpleado.html" class="nav-link px-3 mt-3">
+                                        <span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+                                        <span>Tipo empleado</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ps-3">
+                                <li>
+                                    <a href="asistencia.html" class="nav-link px-3 mt-3">
+                                        <span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+                                        <span>Tipo de asistencias</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ps-3">
+                                <li>
+                                    <a href="tipoHorario.html" class="nav-link px-3 mt-3">
+                                        <span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+                                        <span>Tipo de horario</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="my-4">
+                        <hr class="dropdown-divider bg-light" />
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -231,7 +300,7 @@
                                             <label for="costo" class="form-label">Costo: </label> <i
                                                 class="fa-solid fa-dollar-sign text-muted"></i>
                                             <input class="form-control" type="number" id="costo" name="costo"
-                                                placeholder="$00.00" step="00.01" max="160" required>
+                                                step="0.01" min="0.00" class="validate" placeholder="0.00" required>
                                         </div>
                                     </div>
                                 </div>
@@ -268,11 +337,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3"></div>
-                <div class="col-md-6 mb-3"></div>
-            </div>
+            </div>            
         </div>
     </main>
 

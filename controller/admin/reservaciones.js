@@ -70,7 +70,7 @@ function openCreate(){
     fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
     fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
     fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
-    //fillSelect(ENDPOINT_CANCHA, 'cancha', null);
+    fillSelect(ENDPOINT_CANCHA, 'cancha', null);
     //fillSelect(ENDPOINT_HORARIO, 'horario', null);
     fillSelect(ENDPOINT_CLIENTE, 'cliente', null);    
     fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
