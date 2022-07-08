@@ -33,11 +33,13 @@ function fillTable(dataset){
         <td class="text-center"> ${row.chalecos_alquilados} </td>
         <td class="text-center"> ${row.id_empleado} </td>
         <td class="text-center"> ${row.id_cancha} </td>
-        <td class="text-center"> ${row.id_horario} </td>
-        <td class="text-center"> ${row.id_cliente} </td>
-        <td class="text-center"> ${row.id_asistencia} </td>
-        <td class="text-center"> ${row.id_tipobalon} </td>
-        <td class="text-center"> ${row.id_chalecos} </td>
+        <td class="text-center"> ${row.hora_inicio} </td>
+        <td class="text-center"> ${row.horafin} </td>
+        <td class="text-center"> ${row.nombre} </td>
+        <td class="text-center"> ${row.apellido} </td>
+        <td class="text-center"> ${row.descripcion} </td>
+        <td class="text-center"> ${row.costo} </td>
+        <td class="text-center"> ${row.costo_chaleco} </td>
         <td class="text-center">
         <button class="btn btn-outline-info" onclick="openUpdate(${row.id_reserva})"><i class="fa-solid fa-pen-to-square"></i></button>
         <button class="btn btn-outline-danger" onclick="openDelete(${row.id_reserva})"><i class="fa-solid fa-eraser"></i></button>
@@ -81,16 +83,15 @@ function openCreate(){
 // Función para preparar el formulario al momento de modificar un registro.
 function openUpdate(id_reserva){
     // Se limpia la caja de dialogo (modal) del formulario.  
-    cleanModal();
     modal.show();
     // Se asigna el título para el modal.
-    document.getElementById('titulo-modal').textContent = 'Agregar una nueva reservacion';
+    document.getElementById('titulo-modal').textContent = 'Modificar la reserva';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Agregar';
     //se ocultan y deshabilitan los campos correspondientes del id
-    document.getElementById('id').hidden = true;
-    document.getElementById('id').disabled = true;
-    document.getElementById('id-reserva').hidden = true;
+    document.getElementById('id').hidden = false;
+    document.getElementById('id').disabled = false;
+    document.getElementById('id-reserva').hidden = false;
     //se llena el select 
     fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
     fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
@@ -101,7 +102,7 @@ function openUpdate(id_reserva){
     fillSelect(ENDPOINT_T_Balon, 'tipoBalon', null);
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('id_reserva', id_reserva);
+    data.append('id_reservas', id_reserva);
     // Petición para obtener los datos del registro solicitado
     fetch(API_RESERVACION + 'readOne',{
     method: 'post',
@@ -113,18 +114,18 @@ function openUpdate(id_reserva){
                  // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if(response.status){
                 // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('id').value = response.data.id_reserva;
-                    document.getElementById('fecha').value = response.data.fecha_reserva;
-                    document.getElementById('balones').value = response.data.balones_alquilados;
-                    document.getElementById('observaciones').value = response.data.observaciones;
-                    document.getElementById('cantidadChalecos').value = response.data.chalecos_alquilados;
-                    document.getElementById('empleado').value = response.data.id_empleado;
-                    document.getElementById('cancha').value = response.data.id_cancha;
-                    document.getElementById('horario').value = response.data.id_horario;
-                    document.getElementById('cliente').value = response.data.id_cliente;
-                    document.getElementById('asistencia').value = response.data.id_asistencia;
-                    document.getElementById('tipoBalon').value = response.data.id_tipobalon;
-                    document.getElementById('chalecos').value = response.data.id_chalecos;
+                    document.getElementById('id').value = response.dataset.id_reserva;
+                    document.getElementById('fecha').value = response.dataset.fecha_reserva;
+                    document.getElementById('balones').value = response.dataset.balones_alquilados;
+                    document.getElementById('observaciones').value = response.dataset.observaciones;
+                    document.getElementById('cantidadChalecos').value = response.dataset.chalecos_alquilados;
+                    fillSelect(ENDPOINT_EMPLEADO, 'empleado', response.dataset.id_empleado);
+                    fillSelect(ENDPOINT_CANCHA, 'cancha',response.dataset.id_cancha);
+                    fillSelect(ENDPOINT_HORARIO, 'horario',response.dataset.id_horario);
+                    fillSelect(ENDPOINT_CLIENTE, 'cliente', response.dataset.id_cliente);
+                    fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', response.dataset.id_asistencia);
+                    fillSelect(ENDPOINT_T_Balon, 'tipoBalon', response.dataset.id_tipobalon);
+                    fillSelect(ENDPOINT_CHALECO, 'chalecos', response.dataset.id_chaleco);
                 }else{
                     sweetAlert(2, response.exception, null);
                 }
@@ -149,7 +150,7 @@ document.getElementById('save-form').addEventListener('submit', function(event){
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js
     saveRow(API_RESERVACION, action, 'save-form', modal);
      // Se cierra la caja de dialogo (modal) del formulario.  
-    // modal.hide();
+     modal.hide();
 });
 // Función para establecer el registro a eliminar y abrir una caja de diálogo de confirmación.
 function openDelete(id_reserva){
@@ -157,7 +158,7 @@ function openDelete(id_reserva){
     const data = new FormData();
     data.append('id_reserva', id_reserva);
     // Se llama a la función que elimina un registro. Se encuentra en el archivo components.js
-    confirmDelete(API_RESERVACION);
+    confirmDelete(API_RESERVACION, data);
 }
 
 function cleanModal(){

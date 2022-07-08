@@ -252,8 +252,8 @@
         public function readAll()
         {
             $sql = 'SELECT id_reserva, fecha_reserva, balones_alquilados, 
-            observaciones, chalecos_alquilados, tb_e.id_empleado as id_empleado, tb_ch.id_cancha as id_cancha,
-            tb_hr.id_horario as id_horario , tb_cl.id_cliente as id_cliente, tb_as.id_asistencia as id_asistencia, tb_tb.id_tipobalon as id_tipobalon, tb_chal.id_chaleco as id_chaleco
+            observaciones, chalecos_alquilados, tb_e.nombre_empleado as id_empleado, tb_ch.numero_cancha as id_cancha,
+            tb_hr.hora_inicio as hora_inicio,tb_hr.hora_fin as horafin , tb_cl.nombre_cliente as nombre, tb_cl.apelllido_cliente as apellido, tb_as.descripcion_asistencia as descripcion, tb_tb.costo_balon as costo, tb_chal.costo_cheleco as costo_chaleco
             FROM tb_reserva tb_res
             INNER JOIN "tb_empleado" tb_e ON tb_res.id_empleado = tb_e.id_empleado
             INNER JOIN "tb_cancha" tb_ch ON  tb_res.id_cancha = tb_ch.id_cancha
@@ -272,7 +272,7 @@
             $sql = 'UPDATE public.tb_reserva
             SET fecha_reserva=?, balones_alquilados=?, observaciones=?, chalecos_alquilados=?, id_empleado=?, id_cancha=?, id_horario=?, id_cliente=?, id_asistencia=?, id_tipobalon=?, id_chalecos=?
             WHERE id_reserva = ?';
-            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones,$this -> chalecos_alquilados, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos);
+            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones,$this -> chalecos_alquilados, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos, $this-> id_reserva);   
             return Database::executeRow($sql, $params);
         }
     

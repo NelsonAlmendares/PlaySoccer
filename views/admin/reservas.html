@@ -221,11 +221,12 @@
                           placeholder="1" />
                       </div>
                       <div class="mb-3">
-                        <label for="observacion" class="form-label-observacion">
+                        <label for="observaciones" class="form-label-observacion">
                           Observaciones:
                         </label>
                         <i class="fa-solid fa-calendar-lines-pen"></i>
-                        <textarea class="form-control mt-2" id="observacion" name="observacion" rows="2"></textarea>
+                        <input type="text" class="form-control mt-2" id="observaciones" name="observaciones"
+                          min="1" placeholder="Grama" />
                       </div>
                       <div class="mb-3">
                         <label for="cantidadChalecos" class="form-label-cantidad">
@@ -315,11 +316,13 @@
                     </th>
                     <th scope="col" class="text-center">Empleado</th>
                     <th scope="col" class="text-center">Cancha</th>
-                    <th scope="col" class="text-center">Horario</th>
-                    <th scope="col" class="text-center">Cliente</th>
+                    <th scope="col" class="text-center">Horario inicio</th>
+                    <th scope="col" class="text-center">Horario fin</th>
+                    <th scope="col" class="text-center">Nombre Cliente</th>
+                    <th scope="col" class="text-center">Apellido Cliente</th>
                     <th scope="col" class="text-center">Asistencia</th>
-                    <th scope="col" class="text-center">Tipo Balón</th>
-                    <th scope="col" class="text-center">Chaleco</th>
+                    <th scope="col" class="text-center">Costo Balón</th>
+                    <th scope="col" class="text-center">Costo Chaleco</th>
                   </tr>
                 </thead>
                 <tbody id="table-ad"></tbody>
