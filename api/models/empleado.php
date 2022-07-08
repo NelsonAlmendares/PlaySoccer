@@ -336,7 +336,7 @@ class Empleados extends Validator
         }elseif($foto_imagen==null){
             $this->foto_empleado = '1.png';
         }else{
-            $this->foto_empleado = $foto_imagen;
+            ($this->foto_empleado) ? $this->deleteFile($this->getRuta(), $foto_imagen) : $this->foto_empleado = $foto_imagen;
         }
         $sql = 'UPDATE tb_empleado 
                 SET nombre_empleado=?, apellido_empleado=?, dui_empleado=?, correo_empleado=?, id_tipoempleado=?, celular_empleado=?, foto_empleado=?

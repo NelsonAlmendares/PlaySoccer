@@ -199,6 +199,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Direccion de correo electronico incorrecto';
                 } elseif (!$empleado->setCelular($_POST['celular'])) {
                     $result['exception'] = 'Codigo incorrecto';
+                } elseif (!isset($_POST['tipo_empleado'])) {
+                    $result['exception'] = 'Seleccione un tipo de empleado';                
                 } elseif (!$empleado->setTipo($_POST['tipo_empleado'])) {
                     $result['exception'] = 'Tipo empleado incorrecto';
                 } elseif (!is_uploaded_file($_FILES['foto_empleado']['tmp_name'])) {

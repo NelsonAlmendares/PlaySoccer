@@ -6,20 +6,12 @@ class Database
     private static $statement = null;
     private static $error = null;
 
-<<<<<<< HEAD
     public static function connect()
     {
         $server = 'localhost';
         $database = 'PlaySoccer';
         $username = 'postgres';
-        $password = 'AdminUser';
-=======
-        public static function connect(){
-            $server = 'localhost';
-            $database = 'PlaySoccer';
-            $username = 'postgres';
-            $password = '12DIAZ12';
->>>>>>> 0c501aee087f31076a0e0080f442a7da0def8137
+        $password = '1234';
 
 
         self::$connection = new PDO('pgsql:host=' . $server . ';dbname=' . $database . ';port=5432', $username, $password);

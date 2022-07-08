@@ -91,7 +91,7 @@
 					<li>
 						<a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
 							<span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-							<span>Administrar</span>
+							<span>Registros</span>
 							<span class="ms-auto">
 								<span class="right-icon">
 									<i class="bi bi-chevron-down"></i>
@@ -152,6 +152,74 @@
 							<span>Clientes</span>
 						</a>
 					</li>
+					<!--Dropdown de administrar-->
+					<li class="my-4">
+						<hr class="dropdown-divider bg-light" />
+					 </li>
+					 <li>
+						<a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#administrar">
+						   <span class="me-2"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+						   <span>Administración</span>
+						   <span class="ms-auto">
+							  <span class="right-icon">
+								 <i class="bi bi-chevron-down"></i>
+							  </span>
+						   </span>
+						</a>
+						<div class="collapse" id="administrar">
+						   <ul class="navbar-nav ps-3">
+							  <li>
+								 <a href="tamanoBalon.html" class="nav-link px-3 mt-3">
+									<span class="me-2"><i class="fa-duotone fa-goal-net"></i></span>
+									<span>Tamaño de balones</span>
+								 </a>
+							  </li>
+						   </ul>
+						   <ul class="navbar-nav ps-3">
+							  <li>
+								 <a href="tallaChalecos.html" class="nav-link px-3 mt-3">
+									<span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+									<span>Talla de chalecos</span>
+								 </a>
+							  </li>
+						   </ul>
+						   <ul class="navbar-nav ps-3">
+							  <li>
+								 <a href="colores.html" class="nav-link px-3 mt-3">
+									<span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+									<span>Colores de chalecos</span>
+								 </a>
+							  </li>
+						   </ul>
+						   <ul class="navbar-nav ps-3">
+							  <li>
+								 <a href="tipoEmpleado.html" class="nav-link px-3 mt-3">
+									<span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+									<span>Tipo empleado</span>
+								 </a>
+							  </li>
+						   </ul>
+						   <ul class="navbar-nav ps-3">
+							  <li>
+								 <a href="asistencia.html" class="nav-link px-3 mt-3">
+									<span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+									<span>Tipo de asistencias</span>
+								 </a>
+							  </li>
+						   </ul>
+						   <ul class="navbar-nav ps-3">
+							  <li>
+								 <a href="tipoHorario.html" class="nav-link px-3 mt-3">
+									<span class="me-2"><i class="fa-solid fa-calendar-clock"></i></span>
+									<span>Tipo de horario</span>
+								 </a>
+							  </li>
+						   </ul>
+						</div>
+					 </li>
+					 <li class="my-4">
+						<hr class="dropdown-divider bg-light" />
+					 </li>
 				</ul>
 			</nav>
 		</div>
@@ -183,7 +251,7 @@
 				aria-hidden="true">
 				<div class="modal-dialog modal-xl modal-dialog-centered">
 					<div class="modal-content">
-						<form action="" method="post" id="save-form">
+						<form action="" method="post" id="save-form" enctype="multipart/form-data">
 							<div class="modal-header">
 								<h5 class="modal-title" id="titulo-modal">Agregar Empleados <i
 										class="fa-solid fa-address-book text-muted"></i></h5>

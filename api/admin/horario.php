@@ -2,18 +2,14 @@
     require_once('../helpers/database.php');
     require_once('../helpers/validator.php');
     require_once('../models/horario.php');
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 0c501aee087f31076a0e0080f442a7da0def8137
-    if (isset($_GET['action'])) {
-        session_start();
+if (isset($_GET['action'])) {
+    session_start();
 
-        $horario = new Horario;
-        $result = array ('status' => 0, 'message' => null, 'exception' => null);
+    $horario = new Horario;
+    $result = array ('status' => 0, 'message' => null, 'exception' => null);
 
-        if (isset($_SESSION ['id_empleado'])) {
+    if (isset($_SESSION ['id_empleado'])) {
             switch ($_GET['action']) {
                 case 'readAll':
                     if ($result ['dataset'] = $horario -> readAll()) {
@@ -53,7 +49,9 @@
                         $result ['exception'] = 'Valor inicio incorrecto';
                     } elseif (!$horario->setHoraFin($_POST['hora_fin'])) {
                         $result ['exception'] = 'Valor final incorrecto';
-                    } elseif (!$horario->setTipoHorario($_POST['tipo_horario'])) {
+                    } elseif (!isset($_POST['tipo_horario'])) {
+                        $result ['exception'] = 'Seleccione el tipo de horario';
+                    }elseif (!$horario->setTipoHorario($_POST['tipo_horario'])) {
                         $result ['exception'] = 'Id de cancha incorrecto';
                     } elseif ( $horario->createRow() ) {
                         $result ['status'] = 1;
