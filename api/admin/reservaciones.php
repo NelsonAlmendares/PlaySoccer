@@ -37,15 +37,15 @@
                     break;
                 case 'search':
                     $_POST = $reserva->validateForm($_POST);
-                    if ($_POST ['buscar'] = '') {
+                    if ($_POST ['buscar'] == '') {
                         if ($result ['dataset'] = $reserva->readAll()) {
                             $result ['status'] = 1;
                         } elseif (Database::getException()) {
                             $result ['exception'] = Database::getException();
                         } else {
-                            $result ['exception'] = 'No hay reservacion registradas';
+                            $result ['exception'] = 'No hay datos registradas';
                         }
-                    } elseif ($result ['dataset'] = $reserva->searchRows($_POST['buscar'])) {
+                    } elseif ($result ['dataset'] = $reserva -> search($_POST['buscar'])) {
                         $result ['status'] = 1;
                         $result ['message'] = 'Valor encontrado';
                     } elseif (Database::getException()) {

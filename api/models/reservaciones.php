@@ -208,14 +208,21 @@
         *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
         */
         /*-------------Método para buscar el Fecha reserva.-------------*/
-        public function searchFecha($value)
+        public function search($value)
         {
             $sql = 'SELECT id_reserva, fecha_reserva, balones_alquilados, 
-            observaciones, chalecos_alquilados, id_empleado, id_cancha, 
-            id_horario, id_cliente, id_asistencia, id_tipobalon, id_chalecos
-            FROM public.tb_reserva
-            WHERE fecha_reserva ILIKE ?';
-            $params = array("%$value%");
+            observaciones, chalecos_alquilados, tb_e.nombre_empleado as id_empleado, tb_ch.numero_cancha as id_cancha,
+            tb_hr.hora_inicio as hora_inicio,tb_hr.hora_fin as horafin , tb_cl.nombre_cliente as nombre, tb_cl.apelllido_cliente as apellido, tb_as.descripcion_asistencia as descripcion, tb_tb.costo_balon as costo, tb_chal.costo_cheleco as costo_chaleco
+            FROM tb_reserva tb_res
+            INNER JOIN "tb_empleado" tb_e ON tb_res.id_empleado = tb_e.id_empleado
+            INNER JOIN "tb_cancha" tb_ch ON  tb_res.id_cancha = tb_ch.id_cancha
+            INNER JOIN "tb_horario" tb_hr ON tb_res.id_horario = tb_hr.id_horario
+            INNER JOIN "tb_cliente" tb_cl ON tb_res.id_cliente = tb_cl.id_cliente
+            INNER JOIN "tb_asistencia" tb_as ON tb_res.id_asistencia = tb_as.id_asistencia
+            INNER JOIN "tb_tipoBalon" tb_tb ON tb_res.id_tipobalon = tb_tb.id_tipobalon
+            INNER JOIN "tb_chaleco" tb_chal ON tb_res.id_chalecos = tb_chal.id_chaleco
+            WHERE nombre_empleado ILIKE ? or nombre_cliente ILIKE ? or apelllido_cliente ILIKE ?';
+            $params = array("%$value%","%$value%","%$value%");
             return Database::getRows($sql, $params);
         }
     

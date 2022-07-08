@@ -55,7 +55,7 @@ document.getElementById('search-form').addEventListener('submit', function(event
     // Se evita recargar la página web después de enviar el formulario.
         event.preventDefault();
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
-        searcRows(API_RESERVACION, 'search-fom');
+    searchRows(API_RESERVACION, 'search-form');
     });
 // Función para preparar el formulario al momento de crear un usuario para el empleado.
 function openCreate(){
