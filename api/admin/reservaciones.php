@@ -69,8 +69,8 @@
                         $result['exception'] = 'Observacion incorrecta'; 
                     }elseif (!$reserva -> setChaleAl($_POST['cantidadChalecos'])){
                         $result ['exception'] = 'Cantidad incorrecta';
-                    }elseif (!$reserva -> setIdemple($_POST['empleado'])){
-                        $result ['exception'] = 'Nombre de empleado incorrecto';
+                    /*}elseif (!$reserva -> setIdemple($_POST['empleado'])){
+                        $result ['exception'] = 'Nombre de empleado incorrecto';*/
                     }elseif (!$reserva -> setIdcan($_POST['cancha'])){
                         $result ['exception'] = 'Cancha incorrecta';
                     }elseif (!$reserva -> setIdhora($_POST['horario'])){
@@ -102,9 +102,7 @@
                     }elseif (!$reserva -> setObse($_POST['observaciones'])){
                         $result['exception'] = 'Observacion incorrecta'; 
                     }elseif (!$reserva -> setChaleAl($_POST['cantidadChalecos'])){
-                        $result ['exception'] = 'Cantidad incorrecta';
-                    }elseif (!$reserva -> setIdemple($_POST['empleado'])){
-                        $result ['exception'] = 'Nombre de empleado incorrecto';
+                        $result ['exception'] = 'Cantidad incorrecta';                    
                     }elseif (!$reserva -> setIdcan($_POST['cancha'])){
                         $result ['exception'] = 'Cancha incorrecta';
                     }elseif (!$reserva -> setIdhora($_POST['horario'])){

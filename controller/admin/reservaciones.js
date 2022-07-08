@@ -70,8 +70,11 @@ function openCreate(){
     document.getElementById('id').hidden = true;
     document.getElementById('id').disabled = true;
     document.getElementById('id-reserva').hidden = true;
+    //se ocultan y deshabilitan los campos del empleado
+    document.getElementById('empleado').disabled= true;
+    document.getElementById('empleado').hidden= true;
+    document.getElementById('desc-empleado').hidden= true;
     //se llena el select 
-    fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
     fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
     fillSelect(ENDPOINT_CHALECO, 'chalecos', null);
     fillSelect(ENDPOINT_CANCHA, 'cancha', null);
@@ -92,6 +95,10 @@ function openUpdate(id_reserva){
     document.getElementById('id').hidden = false;
     document.getElementById('id').disabled = false;
     document.getElementById('id-reserva').hidden = false;
+    //se muestran y habilitan los campos del empleado
+    document.getElementById('empleado').disabled= true;
+    document.getElementById('empleado').hidden= false;
+    document.getElementById('desc-empleado').hidden= false;
     //se llena el select 
     fillSelect(ENDPOINT_EMPLEADO, 'empleado', null);
     fillSelect(ENDPOINT_ASISTENCIA, 't_asistencia', null);
