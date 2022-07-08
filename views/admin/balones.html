@@ -272,29 +272,23 @@
                                         <div class="row">
                                             <div class="col-md-6">
 												<div class="mb-3" id="id-description">
-													<label for="id" class="form-label">ID del balon </label> <i
-														class="fa-solid fa-pen text-secondary"></i>
-													<input class="form-control" type="number" id="id" name="id" placeholder="1"
-														min="1">
+													<label id="id_label" class="form-label"> ID </label>
+													<input id="id" name="id" class="form-control" type="number" placeholder="1" min="1">
 												</div>
 												<div class="mb-3">
-													<label for="costo" class="form-label">Costo: </label> <i
-														class="fa-solid fa-dollar-sign text-muted"></i>
-													<input class="form-control" type="number" id="costo" name="costo"
-														step="0.01" min="0.00" class="validate" placeholder="0.00" required>
+													<label for="costo" class="form-label">Costo: </label> <i class="fa-solid fa-dollar-sign text-muted"></i>
+													<input class="form-control" type="number" id="costo" name="costo" step="0.01" min="0.00" class="validate" placeholder="0.00" required>
 												</div>																							
 											</div>
 											<div class="col-md-6">
 												<div class="mb-3">
 													<label for="cantidad" class="form-label">Cantidad del balon:
 													</label> <i class="bi bi-list-ol"></i>
-													<input class="form-control" type="number" id="cantidad" name="cantidad"
-														placeholder="1" required>
+													<input class="form-control" type="number" id="cantidad" name="cantidad" placeholder="1" required>
 												</div>
 												<div class="mb-3">
 													<label for="tipoBalon" class="form-label-horario"> Tamaño del balón: </label> <i class="fa-solid fa-futbol text-muted"></i>
-													<select class=" form-control" id="tamanoBalon"
-													name="tamanoBalon" required></select>
+													<select class=" form-control" id="tamanoBalon" name="tamanoBalon" required></select>
 												</div>
 											</div>
                                         </div>
@@ -339,7 +333,6 @@
     <script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
 
     <script src="../../js/bootsrtap/bootstrap.bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="../../js/bootsrtap/popper.min.js"></script>
 
     <script src="../../js/plugin/jquery-3.5.1.js"></script>

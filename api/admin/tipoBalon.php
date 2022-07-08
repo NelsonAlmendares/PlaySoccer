@@ -72,12 +72,16 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'update':
-                $_POST =  $tipo_balon->validateForm($_POST);
-                if (! $tipo_balon->setId($_POST['id'])) {
+                $_POST = $tipo_balon->validateForm($_POST);
+                if (!$tipo_balon->setId($_POST['id'])) {
                     $result['exception'] = 'Tamaño de balon incorrecto';
                 } elseif (!$data =  $tipo_balon->readOne()) {
                     $result['exception'] = 'Tamaño de balon inexistente';
-                } elseif (! $tipo_balon->setTamano($_POST['descripcion'])) {
+                } elseif (!$tipo_balon->setCosto($_POST['costo'])){
+                    $result['exception'] = 'Costo incorrecto';
+                } elseif (!$tipo_balon->setCantidad($_POST['cantidad'])){
+                    $result ['exception'] = 'Cantidad incorrecta';
+                } elseif (!$tipo_balon->setTamano($_POST['tamanoBalon'])) {
                     $result['exception'] = 'Tamaño de balon no aceptado';                
                 } elseif ( $tipo_balon->updateRow()) {
                         $result['status'] = 1;

@@ -1,5 +1,7 @@
 /* importando tipos de letras */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mingzat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 
 /*declarando variables*/
 :root {
@@ -101,6 +103,16 @@ a {
 }
 
 /* css parte del inicio*/
+.header-text{
+  font-family: 'Mingzat', sans-serif;
+}
+
+.text-paragraph{
+  font-family: 'PT Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+}
+
 .icon-user {
   width: 40px;
   height: 40px;
@@ -108,8 +120,9 @@ a {
 }
 
 .icons {
-  width: 100px;
-  padding: 15px;
+  width: 50px;
+  height: 50px;
+  
 }
 
 .offcanvas-header {

@@ -56,7 +56,7 @@ function openCreate() {
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Agregar';
     //se ocultan y deshabilitan los campos correspondientes del id
-    document.getElementById('id').hidden = true;
+    document.getElementById('id_label').hidden = true;
     document.getElementById('id').disabled = true;
     document.getElementById('id-description').hidden = true;  
 	//se llena el select 
@@ -71,12 +71,11 @@ function openUpdate(id_tipobalon) {
     document.getElementById('titulo-modal').textContent = 'Actualizar el tamaño del balon';
     // Se asigna el texto al boton.
     document.getElementById('btn-accion').textContent = 'Actualizar';
-    // Se asigna el texto al label del id.
-    document.getElementById('id-description').textContent = 'Id de balon:';
     //se muestran y habilitan los campos correspondientes del id
-    document.getElementById('id').hidden = false;
+    document.getElementById('id_label').hidden = false;
     document.getElementById('id').disabled = false;
     document.getElementById('id-description').hidden = false;
+
     const data = new FormData();
     data.append('id_tipobalon', id_tipobalon);
     // Petición para obtener los datos del registro solicitado.
@@ -112,9 +111,9 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     let action; 
     
     // Se comprueba si el campo oculto del formulario esta seteado para actualizar, de lo contrario será para crear.    
-    if (document.getElementById('id').disabled==true){
+    if (document.getElementById('id').disabled == true){
         action = 'create';
-    } else if (document.getElementById('id').disabled==false){
+    } else if (document.getElementById('id').disabled == false){
         action = 'update';
     }        
     // Se llama a la función para guardar el registro. Se encuentra en el archivo components.js

@@ -100,7 +100,9 @@ class Tipo extends Validator
     }
     public function updateRow()
     {
-        $sql = 'UPDATE "tb_tipoBalon" SET costo_balon = ?, cantidad_balones = ?, id_tamanobalon = ? WHERE id_tipobalon = ?';
+        $sql = 'UPDATE public."tb_tipoBalon"
+	        SET costo_balon=?, cantidadad_balones=?, id_tamanobalon=?
+            WHERE id_tipobalon = ?';
         $params = array($this->costo_balon, $this->cantidad_balones, $this->id_tamanobalon, $this->id_tipobalon);
         return Database::executeRow($sql, $params);
     }

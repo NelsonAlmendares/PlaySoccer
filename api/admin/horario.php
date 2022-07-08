@@ -1,12 +1,12 @@
 <?php
-    require_once('../models/horario.php');
     require_once('../helpers/database.php');
     require_once('../helpers/validator.php');
+    require_once('../models/horario.php');
 
     if (isset($_GET['action'])) {
         session_start();
 
-        $horario = new horario;
+        $horario = new Horario;
         $result = array ('status' => 0, 'message' => null, 'exception' => null);
 
         if (isset($_SESSION ['id_empleado'])) {
@@ -26,28 +26,30 @@
                     if ($_POST ['buscar'] = '') {
                         if ($result ['dataset'] = $horario->readAll()) {
                             $result ['status'] = 1;
+                            $result ['message'] = 'Todos los datos han sido cargados';
                         } elseif (Database::getException()) {
                             $result ['exception'] = Database::getException();
                         } else {
                             $result ['exception'] = 'No hay canchas registradas';
                         }
-                    } elseif ($result ['dataset'] = $horario->searchRows($_POST['buscar'])) {
-                        $result ['status'] = 1;
-                        $result ['message'] = 'Valor encontrado';
-                    } elseif (Database::getException()) {
-                        $result ['exception'] = Database::getException();
-                    } else {
-                        $result ['exception'] = 'No hay conincidencias';
+                    } elseif ($horario->validateTime($_POST['buscar'])) {
+                        if ($result ['dataset'] = $horario->searchHora($_POST['buscar'])) {
+                            $result ['status'] = 1;
+                            $result['message'] = 'Valor encontrado';
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
                     }
                 break;
                     
                 case 'create':
                     $_POST = $horario->validateForm($_POST);
+
                     if (!$horario->setHoraInicio($_POST['hora_inicio'])) {
-                        $result ['exception'] = 'Valor incorrecto';
+                        $result ['exception'] = 'Valor inicio incorrecto';
                     } elseif (!$horario->setHoraFin($_POST['hora_fin'])) {
-                        $result ['exception'] = 'Valor incorrecto';
-                    } elseif (!$horario->setTipoHorario($_POST['tipoHorario'])) {
+                        $result ['exception'] = 'Valor final incorrecto';
+                    } elseif (!$horario->setTipoHorario($_POST['tipo_horario'])) {
                         $result ['exception'] = 'Id de cancha incorrecto';
                     } elseif ( $horario->createRow() ) {
                         $result ['status'] = 1;
@@ -58,9 +60,9 @@
                 break;
 
                 case 'readOne':
-                    if (!$horario->setId($_POST['id_horario'])) {
+                    if (!$horario->setId($_POST['id'])) {
                         $result ['exception'] = 'Identificación de horario desconocida';
-                    } elseif (!$horario ['dataset'] = $horario->readOne()) {
+                    } elseif ($result ['dataset'] = $horario->readOne()) {
                         $result ['status'] = 1;
                     } elseif (Database::getException()) {
                         $result ['exception'] = Database::getException();
@@ -71,11 +73,13 @@
 
                 case 'update':
                     $_POST = $horario->validateForm($_POST);
-                    if (!$horario->setHoraInicio($_POST['hora_inicio'])) {
+                    if (!$horario->setId($_POST['id'])){
+                        $result ['exception'] = 'Horario incorrecto';
+                    } elseif (!$horario->setHoraInicio($_POST['hora_inicio'])) {
                         $result ['execption'] = 'Valor de inicio incorrecto';
                     } elseif (!$horario->setHoraFin($_POST['hora_fin'])){
                         $result ['exception'] = 'Valor de fin incorrecto';
-                    } elseif (!$horario->setTipoHorario($_POST['tipoHorario'])) {
+                    } elseif (!$horario->setTipoHorario($_POST['tipo_horario'])) {
                         $result ['exceotion'] = 'Valor de tipo horario incorrecto';
                     } elseif ($horario->updateRow()) {
                         $result ['status'] = 1;
@@ -86,7 +90,7 @@
                     break;
 
                 case 'delete':
-                    if (!$horario->setId($_POST['id_horario'])) {
+                    if (!$horario->setId($_POST['id'])) {
                         $result ['exception'] = 'Identificación de Horario desconocida';
                     } elseif (!$horario->readOne()) {
                         $result ['exception'] = 'Registro inexistente';
@@ -112,5 +116,3 @@
     } else {
         print(json_encode('Recurso no disponible'));
     }
-
-?>

@@ -50,10 +50,8 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                      <div class="container-fluid">
-                        <div class="container-fluid">
-                           <div class="card" style="width: 18rem;" id="info-user">
-
-                           </div>
+                        <div class="container-fluid ">
+                           <div class="card border border-white" style="width: 18rem;" id="info-user"></div>
                         </div>
                      </div>
                   </ul>
@@ -232,8 +230,8 @@
                <div class="row">
 
                   <div class="col-md-6">
-                     <h2 class="mt-3 font-bold">Dashboard Play Soccer</h2>
-                     <p>La manera más eficiente para reservas canchas </p>
+                     <h2 class="mt-3 font-bold header-text">Dashboard Play Soccer</h2>
+                     <p class="text-paragraph text-muted">La manera más eficiente para reservas canchas </p>
                      <div class="lado-A">
                         <div class="row">
                            <div class="col-md-4">
@@ -342,48 +340,56 @@
             </div>
          </div>
 
-         <div class="row"></div>
-
-         <div class="row">
-            <div class="col-md-6 mb-3">
-               <div class="card h-100">
-                  <div class="card-header">
-                     <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                     Area Chart Example
-                  </div>
-                  <div class="card-body">
-
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-6 mb-3">
-               <div class="card h-100">
-                  <div class="card-header">
-                     <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                     Area Chart Example
-                  </div>
-                  <div class="card-body">
-
-                  </div>
-               </div>
-            </div>
-         </div>
-
-         <div class="row">
-            <div class="col-md-12 mb-3">
-               <div class="card">
-                  <div class="card-header">
-                     <span><i class="bi bi-table me-2"></i></span> Data Table
-                  </div>
-                  <div class="card-body">
-
-                  </div>
+         <div class="row mt-3">
+            <div class="container mt-3">
+               <div class="col-md-12">
+                  <table id="example" class="display" style="width:100%">
+                     <thead>
+                        <tr>
+                           <th>Name</th>
+                           <th>Position</th>
+                           <th>Office</th>
+                           <th>Age</th>
+                           <th>Start date</th>
+                           <th>Salary</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>Tiger Nixon</td>
+                           <td>System Architect</td>
+                           <td>Edinburgh</td>
+                           <td>61</td>
+                           <td>2011-04-25</td>
+                           <td>$320,800</td>
+                        </tr>
+                        <tr>
+                           <td>Garrett Winters</td>
+                           <td>Accountant</td>
+                           <td>Tokyo</td>
+                           <td>63</td>
+                           <td>2011-07-25</td>
+                           <td>$170,750</td>
+                        </tr>
+                        <tr>
+                           <td>Ashton Cox</td>
+                           <td>Junior Technical Author</td>
+                           <td>San Francisco</td>
+                           <td>66</td>
+                           <td>2009-01-12</td>
+                           <td>$86,000</td>
+                        </tr>
+                  </table>
                </div>
             </div>
          </div>
 
       </div>
    </main>
+
+   <link rel="stylesheet" href="../../css/plugins/jquery.dataTables.min.css">
+   <script src="../../js/plugin/jquery.dataTables.min.js"></script>
+   <script src="../../js/plugin/dataTable.js"></script>
 
    <!-- Font Awesome -->
    <script src="https://kit.fontawesome.com/7cef28abfd.js" crossorigin="anonymous"></script>
@@ -393,13 +399,14 @@
 
    <!-- Jquery -->
    <script src="../../js/plugin/jquery-3.5.1.js"></script>
-   <script src="../../js/admin/sc-ript.js"></script>
 
    <!-- Chart  -->
    <script src="../../js/plugin/chart/chart.js" type="module"></script>
    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+
    <!--Sweet Alert-->
    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
    <!--Controladores JS-->
    <script src="../../controller/components.js"></script>
    <script src="../../controller/admin/online.js"></script>

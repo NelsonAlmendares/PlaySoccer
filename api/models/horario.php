@@ -1,6 +1,5 @@
 <?php
-
-    class horario extends validator {
+    class Horario extends Validator {
         
         private $id = null;
         private $hora_inicio = null;
@@ -73,8 +72,9 @@
         }
 
         public function readAll () {
-            $sql = 'SELECT id_horario AS id, hora_inicio AS inicio, hora_fin AS fin, horario_reservacion 
-                FROM PUBLIC.tb_horario th INNER JOIN PUBLIC."tb_tipoHorario" tph ON th.id_tipoHorario =  tph.id_tipoHorario
+            $sql = 'SELECT id_horario AS id, hora_inicio AS inicio, hora_fin AS fin, horario_reservacion AS reservacion
+                FROM PUBLIC.tb_horario th 
+                INNER JOIN PUBLIC."tb_tipoHorario" tph ON th.id_tipoHorario =  tph.id_tipoHorario
                 ORDER BY id_horario';
             $params = null;
             return Database::getRows($sql, $params);
@@ -82,15 +82,22 @@
 
         public function searchRows ($value) {
             $sql = 'SELECT id_horario AS id, hora_inicio AS inicio, hora_fin AS fin, horario_reservacion 
-                FROM PUBLIC.tb_horario th INNER JOIN PUBLIC."tb_tipoHorario" tph ON th.id_tipoHorario =  tph.id_tipoHorario
+                FROM PUBLIC.tb_horario th 
+                INNER JOIN PUBLIC."tb_tipoHorario" tph ON th.id_tipoHorario =  tph.id_tipoHorario
                 WHERE hora_incio ILIKE ?
                 ORDER BY id_horario';
             $params = array("%$value%");
             return Database::getRows($sql, $params);
         }
 
+        public function searchHora () {
+            $sql = '';
+            $params = array ();
+            return Database::getRows($sql, $params);
+        }
+
         public function readOne () {
-            $sql = 'SELECT id_horario AS id, hora_inicio AS inicio, hora_fin AS fin, horario_reservacion 
+            $sql = 'SELECT id_horario AS id, hora_inicio AS inicio, hora_fin AS fin, horario_reservacion AS reservacion
                 FROM PUBLIC.tb_horario th INNER JOIN PUBLIC."tb_tipoHorario" tph ON th.id_tipoHorario =  tph.id_tipoHorario
                 WHERE id_horario = ?';
             $params = array ($this->id);
@@ -101,7 +108,7 @@
             $sql = 'UPDATE public.tb_horario
 	            SET hora_inicio=?, hora_fin=?, id_tipohorario=?
 	            WHERE id_horario = ?';
-            $params = array ($this->hora_inicio, $this->hora_fin, $this->tipoHorario);
+            $params = array ($this->hora_inicio, $this->hora_fin, $this->tipoHorario, $this->id);
             return Database::executeRow($sql, $params);
         }
 
@@ -112,5 +119,3 @@
             return Database::executeRow($sql, $params);
         }
     }
-
-?>

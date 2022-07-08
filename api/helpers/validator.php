@@ -180,11 +180,12 @@
         }
     }
 
-    /* Metodo para validar las fechas de los formularios */
+    /* Metodo para validar las horas de los formularios */
     public function validateTime($value){
-        $pattern="/^([0-1][0-9]|[2][0-3])[\:]([0-5][0-9])[\:]([0-5][0-9])$/";
-        
-        if(preg_match($pattern,$value)) {
+        $time = explode(':', $value);
+        if ($time[0] < 0 && $time[0] > 23) {
+            return false;
+        } elseif ($time[1] >= 0 && $time[1] <= 59) {
             return true;
         } else {
             return false;
