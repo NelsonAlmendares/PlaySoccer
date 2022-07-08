@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (response.session) {
           location.href = 'main.html';
         } else if (response.status) {
-          sweetAlert(4, 'Debe autenticarse para ingresar', null);          
+          Toast(4, 'Debe autenticarse para ingresar', null);          
         } else {
           sweetAlert(3, response.exception, 'registro.html');
         }
@@ -41,7 +41,7 @@ document.getElementById('inicio-sesion').addEventListener('submit', function (ev
           if (response.status) {
             sweetAlert(1, response.message, 'main.html');
           } else {
-            sweetAlert(2, response.exception, null);
+            Toast(2, response.exception, null);
           }
         });
       } else {
