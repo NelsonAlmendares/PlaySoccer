@@ -133,7 +133,7 @@
         public function setIdchale($value)
         {
             if ($this->validateNaturalNumber($value)) {
-                $this->id_chaleco = $value;
+                $this->id_chalecos = $value;
                 return true;
             } else {
                 return false;
@@ -201,21 +201,28 @@
     
         public function getIdchale()
         {
-            return $this->id_chaleco;
+            return $this->id_chalecos;
         }
     
         /*
         *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
         */
         /*-------------Método para buscar el Fecha reserva.-------------*/
-        public function searchFecha($value)
+        public function search($value)
         {
             $sql = 'SELECT id_reserva, fecha_reserva, balones_alquilados, 
-            observaciones, chalecos_alquilados, id_empleado, id_cancha, 
-            id_horario, id_cliente, id_asistencia, id_tipobalon, id_chalecos
-            FROM public.tb_reserva
-            WHERE fecha_reserva ILIKE ?';
-            $params = array("%$value%");
+            observaciones, chalecos_alquilados, tb_e.nombre_empleado as id_empleado, tb_ch.numero_cancha as id_cancha,
+            tb_hr.hora_inicio as hora_inicio,tb_hr.hora_fin as horafin , tb_cl.nombre_cliente as nombre, tb_cl.apelllido_cliente as apellido, tb_as.descripcion_asistencia as descripcion, tb_tb.costo_balon as costo, tb_chal.costo_cheleco as costo_chaleco
+            FROM tb_reserva tb_res
+            INNER JOIN "tb_empleado" tb_e ON tb_res.id_empleado = tb_e.id_empleado
+            INNER JOIN "tb_cancha" tb_ch ON  tb_res.id_cancha = tb_ch.id_cancha
+            INNER JOIN "tb_horario" tb_hr ON tb_res.id_horario = tb_hr.id_horario
+            INNER JOIN "tb_cliente" tb_cl ON tb_res.id_cliente = tb_cl.id_cliente
+            INNER JOIN "tb_asistencia" tb_as ON tb_res.id_asistencia = tb_as.id_asistencia
+            INNER JOIN "tb_tipoBalon" tb_tb ON tb_res.id_tipobalon = tb_tb.id_tipobalon
+            INNER JOIN "tb_chaleco" tb_chal ON tb_res.id_chalecos = tb_chal.id_chaleco
+            WHERE nombre_empleado ILIKE ? or nombre_cliente ILIKE ? or apelllido_cliente ILIKE ?';
+            $params = array("%$value%","%$value%","%$value%");
             return Database::getRows($sql, $params);
         }
     
@@ -227,7 +234,7 @@
             observaciones, chalecos_alquilados, id_empleado, id_cancha, 
             id_horario, id_cliente, id_asistencia, id_tipobalon, id_chalecos)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistenci, $this->id_tipobalon, $this->id_chalecos);                
+            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones,$this -> chalecos_alquilados, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos);                
             return Database::executeRow($sql, $params);
         }
     
@@ -252,8 +259,8 @@
         public function readAll()
         {
             $sql = 'SELECT id_reserva, fecha_reserva, balones_alquilados, 
-            observaciones, chalecos_alquilados, tb_e.id_empleado as id_empleado, tb_ch.id_cancha as id_cancha,
-            tb_hr.id_horario as id_horario , tb_cl.id_cliente as id_cliente, tb_as.id_asistencia as id_asistencia, tb_tb.id_tipobalon as id_tipobalon, tb_chal.id_chaleco as id_chaleco
+            observaciones, chalecos_alquilados, tb_e.nombre_empleado as id_empleado, tb_ch.numero_cancha as id_cancha,
+            tb_hr.hora_inicio as hora_inicio,tb_hr.hora_fin as horafin , tb_cl.nombre_cliente as nombre, tb_cl.apelllido_cliente as apellido, tb_as.descripcion_asistencia as descripcion, tb_tb.costo_balon as costo, tb_chal.costo_cheleco as costo_chaleco
             FROM tb_reserva tb_res
             INNER JOIN "tb_empleado" tb_e ON tb_res.id_empleado = tb_e.id_empleado
             INNER JOIN "tb_cancha" tb_ch ON  tb_res.id_cancha = tb_ch.id_cancha
@@ -272,7 +279,7 @@
             $sql = 'UPDATE public.tb_reserva
             SET fecha_reserva=?, balones_alquilados=?, observaciones=?, chalecos_alquilados=?, id_empleado=?, id_cancha=?, id_horario=?, id_cliente=?, id_asistencia=?, id_tipobalon=?, id_chalecos=?
             WHERE id_reserva = ?';
-            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos);
+            $params = array($this->fecha_reserva, $this->balones_alquilados, $this->observaciones,$this -> chalecos_alquilados, $this->id_empleado, $this->id_cancha, $this->id_horario, $this->id_cliente, $this->id_asistencia, $this->id_tipobalon, $this->id_chalecos, $this-> id_reserva);   
             return Database::executeRow($sql, $params);
         }
     

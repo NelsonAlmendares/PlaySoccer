@@ -78,7 +78,7 @@ function searchRows(api, form) {
 *
 *   Retorno: ninguno.
 */
-function saveRow(api, action, form) {
+function saveRow(api, action, form, modal) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -88,7 +88,7 @@ function saveRow(api, action, form) {
             // Se obtiene la respuesta en formato JSON.
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {                                 
+                if (response.status) {                                
                     // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
                     readRows(api);
                     sweetAlert(1, response.message, null);                    

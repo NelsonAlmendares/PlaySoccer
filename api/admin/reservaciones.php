@@ -25,7 +25,7 @@
                     }
                     break;
                 case 'readOne':
-                    if(!$reserva ->setId($_POST['id_reserva'])){
+                    if(!$reserva ->setId($_POST['id_reservas'])){
                         $result['exception'] = 'Reserva incorrecta';
                     }elseif ($result['dataset'] = $reserva -> readOne()){
                         $result['status'] = 1;
@@ -36,38 +36,56 @@
                     }
                     break;
                 case 'search':
+                    $_POST = $reserva->validateForm($_POST);
+                    if ($_POST ['buscar'] == '') {
+                        if ($result ['dataset'] = $reserva->readAll()) {
+                            $result ['status'] = 1;
+                        } elseif (Database::getException()) {
+                            $result ['exception'] = Database::getException();
+                        } else {
+                            $result ['exception'] = 'No hay datos registradas';
+                        }
+                    } elseif ($result ['dataset'] = $reserva -> search($_POST['buscar'])) {
+                        $result ['status'] = 1;
+                        $result ['message'] = 'Valor encontrado';
+                    } elseif (Database::getException()) {
+                        $result ['exception'] = Database::getException();
+                    } else {
+                        $result ['exception'] = 'No hay conincidencias';
+                    }
                 break;
                 
                 case 'update':
                     $_POST = $reserva -> validateForm($_POST);
-                    if (!$reserva -> setId($_POST['id_reserva'])){
+                    if (!$reserva -> setId($_POST['id'])){
                         $result['exception'] = 'Reserva Incorrecta';
                     }elseif (!$data = $reserva -> readOne()){
                         $result['exception'] = 'Reserva inexistente';
-                    }elseif(!$reserva -> setFec($_POST['fecha_reserva'])){
+                    }elseif(!$reserva -> setFec($_POST['fecha'])){
                         $result['exception'] = 'Fecha incorrecta';
-                    }elseif (!$reservas -> setBalAl($_POST['balones_alquilados'])){
+                    }elseif (!$reserva -> setBalAl($_POST['balones'])){
                         $result ['exception'] = "Cantidad incorrecta";
-                    }elseif (!$reserva -> setObse($_POST['onbservaciones'])){
+                    }elseif (!$reserva -> setObse($_POST['observaciones'])){
                         $result['exception'] = 'Observacion incorrecta'; 
-                    }elseif (!$reserva -> setChaleAl($_POST['chalecos_alquilados'])){
+                    }elseif (!$reserva -> setChaleAl($_POST['cantidadChalecos'])){
                         $result ['exception'] = 'Cantidad incorrecta';
-                    }elseif (!$reserva -> setIdemple($_POST['id_empleado'])){
+                    }elseif (!$reserva -> setIdemple($_POST['empleado'])){
                         $result ['exception'] = 'Nombre de empleado incorrecto';
-                    }elseif (!$reserva -> setIdcan($_POST['id_cancha'])){
+                    }elseif (!$reserva -> setIdcan($_POST['cancha'])){
                         $result ['exception'] = 'Cancha incorrecta';
-                    }elseif (!$reserva -> setIdhora($_POST['id_horario'])){
+                    }elseif (!$reserva -> setIdhora($_POST['horario'])){
                         $result ['exception'] = 'Horario incorrecto';
-                    }elseif (!$reserva -> setIdclien($_POST['id_cliente'])){
+                    }elseif (!$reserva -> setIdclien($_POST['cliente'])){
                         $result ['exception'] = 'Nombre del cliente incorrecto';
-                    }elseif (!$reserva -> setIdasi($_POST['id_asistemcoa'])){
+                    }elseif (!$reserva -> setIdasi($_POST['t_asistencia'])){
                         $result ['exception'] = 'Tipo de asistencia incorrecto';
-                    }elseif (!$reserva -> setIdtibo($_POST['id_tipobalon'])){
+                    }elseif (!$reserva -> setIdtibo($_POST['tipoBalon'])){
                         $result ['exception'] = 'Tipo de balon incorrecto';
-                    }elseif (!$reserva -> setIdchale($_POST['id_chaleco'])){
+                    }elseif (!$reserva -> setIdchale($_POST['chalecos'])){
                         $result ['exception'] = 'Chalecos incorrectos';
-                    }elseif ($result['dataset'] =  $reserva->readOne()) {
+                    }elseif ($result['dataset'] =  $reserva->updateRow()) {
                         $result['status'] = 1;
+                        $result['message'] = 'Reserva modificado correctamente';
                     }elseif (Database::getException()) {
                         $result['exception'] = Database::getException();
                     } else {
@@ -77,29 +95,29 @@
                 case 'create':
                     $_POST = $reserva -> validateForm($_POST);
     
-                    if (!$reserva->setFec($_POST['Fecha_reserva'])){
+                    if (!$reserva -> setFec($_POST['fecha'])){
                         $result['exception'] = 'Fecha Incorrecta';
-                    }elseif (!$reservas -> setBalAl($_POST['balones_alquilados'])){
+                    }elseif (!$reserva -> setBalAl($_POST['balones'])){
                         $result ['exception'] = "Cantidad incorrecta";
-                    }elseif (!$reserva -> setObse($_POST['onbservaciones'])){
+                    }elseif (!$reserva -> setObse($_POST['observaciones'])){
                         $result['exception'] = 'Observacion incorrecta'; 
-                    }elseif (!$reserva -> setChaleAl($_POST['chalecos_alquilados'])){
+                    }elseif (!$reserva -> setChaleAl($_POST['cantidadChalecos'])){
                         $result ['exception'] = 'Cantidad incorrecta';
-                    }elseif (!$reserva -> setIdemple($_POST['id_empleado'])){
+                    }elseif (!$reserva -> setIdemple($_POST['empleado'])){
                         $result ['exception'] = 'Nombre de empleado incorrecto';
-                    }elseif (!$reserva -> setIdcan($_POST['id_cancha'])){
+                    }elseif (!$reserva -> setIdcan($_POST['cancha'])){
                         $result ['exception'] = 'Cancha incorrecta';
-                    }elseif (!$reserva -> setIdhora($_POST['id_horario'])){
+                    }elseif (!$reserva -> setIdhora($_POST['horario'])){
                         $result ['exception'] = 'Horario incorrecto';
-                    }elseif (!$reserva -> setIdclien($_POST['id_cliente'])){
+                    }elseif (!$reserva -> setIdclien($_POST['cliente'])){
                         $result ['exception'] = 'Nombre del cliente incorrecto';
-                    }elseif (!$reserva -> setIdasi($_POST['id_asistemcoa'])){
+                    }elseif (!$reserva -> setIdasi($_POST['t_asistencia'])){
                         $result ['exception'] = 'Tipo de asistencia incorrecto';
-                    }elseif (!$reserva -> setIdtibo($_POST['id_tipobalon'])){
+                    }elseif (!$reserva -> setIdtibo($_POST['tipoBalon'])){
                         $result ['exception'] = 'Tipo de balon incorrecto';
-                    }elseif (!$reserva -> setIdchale($_POST['id_chaleco'])){
+                    }elseif (!$reserva -> setIdchale($_POST['chalecos'])){
                         $result ['exception'] = 'Chalecos incorrectos';
-                    }elseif(!$reserva -> createRow()){
+                    }elseif($reserva -> createRow()){
                         $result ['status'] = 1;
                         $result ['message'] = 'Reservacion creada correctamente';
                     }else{
@@ -107,15 +125,15 @@
                     }
                     break;
                     case 'delete':
-                        if(!$reserva -> setId($_POST['id_reserva'])){
-                            $result ['exception'] = 'Reservacion incorrecta';
-                        }elseif (!$data = $reserva -> readOne()){
-                            $result ['exception'] = 'Reservacion incorrecta';
-                        }elseif ($reserva -> deleteRow()){
-                            $result['status'] = 1;
-                            $result['message'] = 'Reservacion eleminada correctamente';
-                        }else{
-                            $result['exception'] = Database::getException();
+                        if (!$reserva -> setId($_POST['id_reserva'])) {
+                            $result ['exception'] = 'Identificación de Horario desconocida';
+                        } elseif (!$reserva -> readOne()) {
+                            $result ['exception'] = 'Registro inexistente';
+                        } elseif ($reserva -> deleteRow()) {
+                            $result ['status'] = 1;
+                            $result ['message'] = 'Horario eliminado correctamente';
+                        } else {
+                            $result ['exception'] = Database::getException();
                         }
                         break;
                     default:

@@ -2,7 +2,11 @@
     require_once('../helpers/database.php');
     require_once('../helpers/validator.php');
     require_once('../models/horario.php');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 0c501aee087f31076a0e0080f442a7da0def8137
     if (isset($_GET['action'])) {
         session_start();
 
